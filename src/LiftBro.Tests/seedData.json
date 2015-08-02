@@ -1,0 +1,69 @@
+﻿{
+    "UserPrograms": [
+        {
+            "Program": {
+                "Id": "8c34fdce-5948-4085-9a46-f7f488c98a85",
+                "Name": "Stronglifts",
+                "WorkoutDays": [
+                    {
+                        "Id": "f73a8a60-63b5-462c-bd8c-8f30f9aafed5",
+                        "Order": 1,
+                        "Exercises": [
+                            {
+                                "Id": "838e1027-4f04-444e-8515-f1b6cf313fc3",
+                                "Exercise": { "Id": "0a4a8c2a-7777-468d-81aa-0278376ca01a", "Name": "Squats" },
+                                "Sets": [
+                                    {
+                                        "Id": "444fc606-ef7e-4206-bceb-662b8082d786",
+                                        "ORMPercentage": 80.0,
+                                        "Reps": 5,
+                                        "Order": 1
+                                    },
+                                    {
+                                        "Id": "067e813d-471e-4c94-b5e9-075fe08b4f92",
+                                        "ORMPercentage": 80.0,
+                                        "Reps": 5,
+                                        "Order": 1
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Id": "eb1d4ad2-0238-4968-9ee9-40d38fb0c587",
+                        "Order": 2,
+                        "Exercises": [
+                            {
+                                "Id": "0b8cf0c2-8682-41e3-8bb6-cf3344b7cc2b",
+                                "Exercise": { "Id": "0a4a8c2a-7777-468d-81aa-0278376ca01a", "Name": "Squats" },
+                                "Sets": [
+                                    {
+                                        "Id": "444fc606-ef7e-4206-bceb-662b8082d786",
+                                        "ORMPercentage": 55.0,
+                                        "Reps": 66,
+                                        "Order": 1
+                                    },
+                                    {
+                                        "Id": "067e813d-471e-4c94-b5e9-075fe08b4f92",
+                                        "ORMPercentage": 44.0,
+                                        "Reps": 22,
+                                        "Order": 2
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            "User": { "Id": "432d8f5b-36ca-4275-82b1-57d11e559a01", "Name": "Brohard" }
+        }
+    ],
+    "UserExercises": [
+        {
+            "Id": "45a951cc-53c1-4ecb-82a7-0ac42376358b",
+            "Exercise": { "Id": "0a4a8c2a-7777-468d-81aa-0278376ca01a", "Name": "Squats" },
+            "User": { "Id": "432d8f5b-36ca-4275-82b1-57d11e559a01", "Name": "Brohard" },
+            "OneRepetitionMax": 120
+        }
+    ]
+}

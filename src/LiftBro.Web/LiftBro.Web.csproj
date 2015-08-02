@@ -1,0 +1,1773 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9B8BF380-7F42-4F02-8107-2C03CA88527C}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LiftBro.Web</RootNamespace>
+    <AssemblyName>LiftBro.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
+    <JSLintSkip>\Scripts\</JSLintSkip>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.AspNet, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.AspNet.4.3.4.13329\lib\net45-full\DotNetOpenAuth.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.Core, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.Core.4.3.4.13329\lib\net45-full\DotNetOpenAuth.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Core.4.3.4.13329\lib\net45-full\DotNetOpenAuth.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth.Consumer, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Consumer.4.3.4.13329\lib\net45-full\DotNetOpenAuth.OAuth.Consumer.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.Core.4.3.4.13329\lib\net45-full\DotNetOpenAuth.OpenId.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId.RelyingParty, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.RelyingParty.4.3.4.13329\lib\net45-full\DotNetOpenAuth.OpenId.RelyingParty.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Data.Edm, Version=5.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Data.Edm.5.6.4\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Data.OData.5.6.4\lib\net40\Microsoft.Data.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebPages.OAuth, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.OAuth.3.2.3\lib\net45\Microsoft.Web.WebPages.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Extensions">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net45\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net45\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Spatial, Version=5.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\System.Spatial.5.6.4\lib\net40\System.Spatial.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.OData, Version=5.5.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.OData.5.5.1\lib\net45\System.Web.Http.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.Data, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.Data.3.2.3\lib\net45\WebMatrix.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.WebData, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.WebData.3.2.3\lib\net45\WebMatrix.WebData.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Api\ExerciseController.cs" />
+    <Compile Include="Api\ProgramController.cs" />
+    <Compile Include="Api\WorkoutDayController.cs" />
+    <Compile Include="Api\WorkoutExerciseController.cs" />
+    <Compile Include="App_Start\AuthConfig.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProgramController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\ChangeModifier.cs" />
+    <Compile Include="Models\LiftingProfile.cs" />
+    <Compile Include="Models\Requests\SetUpdate.cs" />
+    <Compile Include="Models\Requests\WorkoutDayExerciseChange.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\glyphs\glyphicons-1-glass.png" />
+    <Content Include="Content\glyphs\glyphicons-10-magic.png" />
+    <Content Include="Content\glyphs\glyphicons-100-vector-path-all.png" />
+    <Content Include="Content\glyphs\glyphicons-101-font.png" />
+    <Content Include="Content\glyphs\glyphicons-102-italic.png" />
+    <Content Include="Content\glyphs\glyphicons-103-bold.png" />
+    <Content Include="Content\glyphs\glyphicons-104-text-underline.png" />
+    <Content Include="Content\glyphs\glyphicons-105-text-strike.png" />
+    <Content Include="Content\glyphs\glyphicons-106-text-height.png" />
+    <Content Include="Content\glyphs\glyphicons-107-text-width.png" />
+    <Content Include="Content\glyphs\glyphicons-108-text-resize.png" />
+    <Content Include="Content\glyphs\glyphicons-109-left-indent.png" />
+    <Content Include="Content\glyphs\glyphicons-11-envelope.png" />
+    <Content Include="Content\glyphs\glyphicons-110-right-indent.png" />
+    <Content Include="Content\glyphs\glyphicons-111-align-left.png" />
+    <Content Include="Content\glyphs\glyphicons-112-align-center.png" />
+    <Content Include="Content\glyphs\glyphicons-113-align-right.png" />
+    <Content Include="Content\glyphs\glyphicons-114-justify.png" />
+    <Content Include="Content\glyphs\glyphicons-115-list.png" />
+    <Content Include="Content\glyphs\glyphicons-116-text-smaller.png" />
+    <Content Include="Content\glyphs\glyphicons-117-text-bigger.png" />
+    <Content Include="Content\glyphs\glyphicons-118-embed.png" />
+    <Content Include="Content\glyphs\glyphicons-119-embed-close.png" />
+    <Content Include="Content\glyphs\glyphicons-12-camera.png" />
+    <Content Include="Content\glyphs\glyphicons-120-table.png" />
+    <Content Include="Content\glyphs\glyphicons-121-message-full.png" />
+    <Content Include="Content\glyphs\glyphicons-122-message-empty.png" />
+    <Content Include="Content\glyphs\glyphicons-123-message-in.png" />
+    <Content Include="Content\glyphs\glyphicons-124-message-out.png" />
+    <Content Include="Content\glyphs\glyphicons-125-message-plus.png" />
+    <Content Include="Content\glyphs\glyphicons-126-message-minus.png" />
+    <Content Include="Content\glyphs\glyphicons-127-message-ban.png" />
+    <Content Include="Content\glyphs\glyphicons-128-message-flag.png" />
+    <Content Include="Content\glyphs\glyphicons-129-message-lock.png" />
+    <Content Include="Content\glyphs\glyphicons-13-heart.png" />
+    <Content Include="Content\glyphs\glyphicons-130-message-new.png" />
+    <Content Include="Content\glyphs\glyphicons-131-inbox.png" />
+    <Content Include="Content\glyphs\glyphicons-132-inbox-plus.png" />
+    <Content Include="Content\glyphs\glyphicons-133-inbox-minus.png" />
+    <Content Include="Content\glyphs\glyphicons-134-inbox-lock.png" />
+    <Content Include="Content\glyphs\glyphicons-135-inbox-in.png" />
+    <Content Include="Content\glyphs\glyphicons-136-inbox-out.png" />
+    <Content Include="Content\glyphs\glyphicons-137-cogwheel.png" />
+    <Content Include="Content\glyphs\glyphicons-138-cogwheels.png" />
+    <Content Include="Content\glyphs\glyphicons-139-picture.png" />
+    <Content Include="Content\glyphs\glyphicons-14-beach-umbrella.png" />
+    <Content Include="Content\glyphs\glyphicons-140-adjust-alt.png" />
+    <Content Include="Content\glyphs\glyphicons-141-database-lock.png" />
+    <Content Include="Content\glyphs\glyphicons-142-database-plus.png" />
+    <Content Include="Content\glyphs\glyphicons-143-database-minus.png" />
+    <Content Include="Content\glyphs\glyphicons-144-database-ban.png" />
+    <Content Include="Content\glyphs\glyphicons-145-folder-open.png" />
+    <Content Include="Content\glyphs\glyphicons-146-folder-plus.png" />
+    <Content Include="Content\glyphs\glyphicons-147-folder-minus.png" />
+    <Content Include="Content\glyphs\glyphicons-148-folder-lock.png" />
+    <Content Include="Content\glyphs\glyphicons-149-folder-flag.png" />
+    <Content Include="Content\glyphs\glyphicons-15-train.png" />
+    <Content Include="Content\glyphs\glyphicons-150-folder-new.png" />
+    <Content Include="Content\glyphs\glyphicons-151-edit.png" />
+    <Content Include="Content\glyphs\glyphicons-152-new-window.png" />
+    <Content Include="Content\glyphs\glyphicons-153-check.png" />
+    <Content Include="Content\glyphs\glyphicons-154-unchecked.png" />
+    <Content Include="Content\glyphs\glyphicons-155-more-windows.png" />
+    <Content Include="Content\glyphs\glyphicons-156-show-big-thumbnails.png" />
+    <Content Include="Content\glyphs\glyphicons-157-show-thumbnails.png" />
+    <Content Include="Content\glyphs\glyphicons-158-show-thumbnails-with-lines.png" />
+    <Content Include="Content\glyphs\glyphicons-159-show-lines.png" />
+    <Content Include="Content\glyphs\glyphicons-16-print.png" />
+    <Content Include="Content\glyphs\glyphicons-160-playlist.png" />
+    <Content Include="Content\glyphs\glyphicons-161-imac.png" />
+    <Content Include="Content\glyphs\glyphicons-162-macbook.png" />
+    <Content Include="Content\glyphs\glyphicons-163-ipad.png" />
+    <Content Include="Content\glyphs\glyphicons-164-iphone.png" />
+    <Content Include="Content\glyphs\glyphicons-165-iphone-transfer.png" />
+    <Content Include="Content\glyphs\glyphicons-166-iphone-exchange.png" />
+    <Content Include="Content\glyphs\glyphicons-167-ipod.png" />
+    <Content Include="Content\glyphs\glyphicons-168-ipod-shuffle.png" />
+    <Content Include="Content\glyphs\glyphicons-169-ear-plugs.png" />
+    <Content Include="Content\glyphs\glyphicons-17-bin.png" />
+    <Content Include="Content\glyphs\glyphicons-170-record.png" />
+    <Content Include="Content\glyphs\glyphicons-171-step-backward.png" />
+    <Content Include="Content\glyphs\glyphicons-172-fast-backward.png" />
+    <Content Include="Content\glyphs\glyphicons-173-rewind.png" />
+    <Content Include="Content\glyphs\glyphicons-174-play.png" />
+    <Content Include="Content\glyphs\glyphicons-175-pause.png" />
+    <Content Include="Content\glyphs\glyphicons-176-stop.png" />
+    <Content Include="Content\glyphs\glyphicons-177-forward.png" />
+    <Content Include="Content\glyphs\glyphicons-178-fast-forward.png" />
+    <Content Include="Content\glyphs\glyphicons-179-step-forward.png" />
+    <Content Include="Content\glyphs\glyphicons-18-music.png" />
+    <Content Include="Content\glyphs\glyphicons-180-eject.png" />
+    <Content Include="Content\glyphs\glyphicons-181-facetime-video.png" />
+    <Content Include="Content\glyphs\glyphicons-182-download-alt.png" />
+    <Content Include="Content\glyphs\glyphicons-183-mute.png" />
+    <Content Include="Content\glyphs\glyphicons-184-volume-down.png" />
+    <Content Include="Content\glyphs\glyphicons-185-volume-up.png" />
+    <Content Include="Content\glyphs\glyphicons-186-screenshot.png" />
+    <Content Include="Content\glyphs\glyphicons-187-move.png" />
+    <Content Include="Content\glyphs\glyphicons-188-more.png" />
+    <Content Include="Content\glyphs\glyphicons-189-brightness-reduce.png" />
+    <Content Include="Content\glyphs\glyphicons-19-note.png" />
+    <Content Include="Content\glyphs\glyphicons-190-brightness-increase.png" />
+    <Content Include="Content\glyphs\glyphicons-191-circle-plus.png" />
+    <Content Include="Content\glyphs\glyphicons-192-circle-minus.png" />
+    <Content Include="Content\glyphs\glyphicons-193-circle-remove.png" />
+    <Content Include="Content\glyphs\glyphicons-194-circle-ok.png" />
+    <Content Include="Content\glyphs\glyphicons-195-circle-question-mark.png" />
+    <Content Include="Content\glyphs\glyphicons-196-circle-info.png" />
+    <Content Include="Content\glyphs\glyphicons-197-circle-exclamation-mark.png" />
+    <Content Include="Content\glyphs\glyphicons-198-remove.png" />
+    <Content Include="Content\glyphs\glyphicons-199-ok.png" />
+    <Content Include="Content\glyphs\glyphicons-2-leaf.png" />
+    <Content Include="Content\glyphs\glyphicons-20-heart-empty.png" />
+    <Content Include="Content\glyphs\glyphicons-200-ban.png" />
+    <Content Include="Content\glyphs\glyphicons-201-download.png" />
+    <Content Include="Content\glyphs\glyphicons-202-upload.png" />
+    <Content Include="Content\glyphs\glyphicons-203-shopping-cart.png" />
+    <Content Include="Content\glyphs\glyphicons-204-lock.png" />
+    <Content Include="Content\glyphs\glyphicons-205-unlock.png" />
+    <Content Include="Content\glyphs\glyphicons-206-electricity.png" />
+    <Content Include="Content\glyphs\glyphicons-207-ok-2.png" />
+    <Content Include="Content\glyphs\glyphicons-208-remove-2.png" />
+    <Content Include="Content\glyphs\glyphicons-209-cart-out.png" />
+    <Content Include="Content\glyphs\glyphicons-21-home.png" />
+    <Content Include="Content\glyphs\glyphicons-210-cart-in.png" />
+    <Content Include="Content\glyphs\glyphicons-211-left-arrow.png" />
+    <Content Include="Content\glyphs\glyphicons-212-right-arrow.png" />
+    <Content Include="Content\glyphs\glyphicons-213-down-arrow.png" />
+    <Content Include="Content\glyphs\glyphicons-214-up-arrow.png" />
+    <Content Include="Content\glyphs\glyphicons-215-resize-small.png" />
+    <Content Include="Content\glyphs\glyphicons-216-resize-full.png" />
+    <Content Include="Content\glyphs\glyphicons-217-circle-arrow-left.png" />
+    <Content Include="Content\glyphs\glyphicons-218-circle-arrow-right.png" />
+    <Content Include="Content\glyphs\glyphicons-219-circle-arrow-top.png" />
+    <Content Include="Content\glyphs\glyphicons-22-snowflake.png" />
+    <Content Include="Content\glyphs\glyphicons-220-circle-arrow-down.png" />
+    <Content Include="Content\glyphs\glyphicons-221-play-button.png" />
+    <Content Include="Content\glyphs\glyphicons-222-unshare.png" />
+    <Content Include="Content\glyphs\glyphicons-223-share.png" />
+    <Content Include="Content\glyphs\glyphicons-224-chevron-right.png" />
+    <Content Include="Content\glyphs\glyphicons-225-chevron-left.png" />
+    <Content Include="Content\glyphs\glyphicons-226-bluetooth.png" />
+    <Content Include="Content\glyphs\glyphicons-227-euro.png" />
+    <Content Include="Content\glyphs\glyphicons-228-usd.png" />
+    <Content Include="Content\glyphs\glyphicons-229-gbp.png" />
+    <Content Include="Content\glyphs\glyphicons-23-fire.png" />
+    <Content Include="Content\glyphs\glyphicons-230-retweet-2.png" />
+    <Content Include="Content\glyphs\glyphicons-231-moon.png" />
+    <Content Include="Content\glyphs\glyphicons-232-sun.png" />
+    <Content Include="Content\glyphs\glyphicons-233-cloud.png" />
+    <Content Include="Content\glyphs\glyphicons-234-direction.png" />
+    <Content Include="Content\glyphs\glyphicons-235-brush.png" />
+    <Content Include="Content\glyphs\glyphicons-236-pen.png" />
+    <Content Include="Content\glyphs\glyphicons-237-zoom-in.png" />
+    <Content Include="Content\glyphs\glyphicons-238-zoom-out.png" />
+    <Content Include="Content\glyphs\glyphicons-239-pin.png" />
+    <Content Include="Content\glyphs\glyphicons-24-magnet.png" />
+    <Content Include="Content\glyphs\glyphicons-240-albums.png" />
+    <Content Include="Content\glyphs\glyphicons-241-rotation-lock.png" />
+    <Content Include="Content\glyphs\glyphicons-242-flash.png" />
+    <Content Include="Content\glyphs\glyphicons-243-google-maps.png" />
+    <Content Include="Content\glyphs\glyphicons-244-anchor.png" />
+    <Content Include="Content\glyphs\glyphicons-245-conversation.png" />
+    <Content Include="Content\glyphs\glyphicons-246-chat.png" />
+    <Content Include="Content\glyphs\glyphicons-247-male.png" />
+    <Content Include="Content\glyphs\glyphicons-248-female.png" />
+    <Content Include="Content\glyphs\glyphicons-249-asterisk.png" />
+    <Content Include="Content\glyphs\glyphicons-25-parents.png" />
+    <Content Include="Content\glyphs\glyphicons-250-divide.png" />
+    <Content Include="Content\glyphs\glyphicons-251-snorkel-diving.png" />
+    <Content Include="Content\glyphs\glyphicons-252-scuba-diving.png" />
+    <Content Include="Content\glyphs\glyphicons-253-oxygen-bottle.png" />
+    <Content Include="Content\glyphs\glyphicons-254-fins.png" />
+    <Content Include="Content\glyphs\glyphicons-255-fishes.png" />
+    <Content Include="Content\glyphs\glyphicons-256-boat.png" />
+    <Content Include="Content\glyphs\glyphicons-257-delete.png" />
+    <Content Include="Content\glyphs\glyphicons-258-sheriffs-star.png" />
+    <Content Include="Content\glyphs\glyphicons-259-qrcode.png" />
+    <Content Include="Content\glyphs\glyphicons-26-binoculars.png" />
+    <Content Include="Content\glyphs\glyphicons-260-barcode.png" />
+    <Content Include="Content\glyphs\glyphicons-261-pool.png" />
+    <Content Include="Content\glyphs\glyphicons-262-buoy.png" />
+    <Content Include="Content\glyphs\glyphicons-263-spade.png" />
+    <Content Include="Content\glyphs\glyphicons-264-bank.png" />
+    <Content Include="Content\glyphs\glyphicons-265-vcard.png" />
+    <Content Include="Content\glyphs\glyphicons-266-electrical-plug.png" />
+    <Content Include="Content\glyphs\glyphicons-267-flag.png" />
+    <Content Include="Content\glyphs\glyphicons-268-credit-card.png" />
+    <Content Include="Content\glyphs\glyphicons-269-keyboard-wireless.png" />
+    <Content Include="Content\glyphs\glyphicons-27-road.png" />
+    <Content Include="Content\glyphs\glyphicons-270-keyboard-wired.png" />
+    <Content Include="Content\glyphs\glyphicons-271-shield.png" />
+    <Content Include="Content\glyphs\glyphicons-272-ring.png" />
+    <Content Include="Content\glyphs\glyphicons-273-cake.png" />
+    <Content Include="Content\glyphs\glyphicons-274-drink.png" />
+    <Content Include="Content\glyphs\glyphicons-275-beer.png" />
+    <Content Include="Content\glyphs\glyphicons-276-fast-food.png" />
+    <Content Include="Content\glyphs\glyphicons-277-cutlery.png" />
+    <Content Include="Content\glyphs\glyphicons-278-pizza.png" />
+    <Content Include="Content\glyphs\glyphicons-279-birthday-cake.png" />
+    <Content Include="Content\glyphs\glyphicons-28-search.png" />
+    <Content Include="Content\glyphs\glyphicons-280-tablet.png" />
+    <Content Include="Content\glyphs\glyphicons-281-settings.png" />
+    <Content Include="Content\glyphs\glyphicons-282-bullets.png" />
+    <Content Include="Content\glyphs\glyphicons-283-cardio.png" />
+    <Content Include="Content\glyphs\glyphicons-284-t-shirt.png" />
+    <Content Include="Content\glyphs\glyphicons-285-pants.png" />
+    <Content Include="Content\glyphs\glyphicons-286-sweater.png" />
+    <Content Include="Content\glyphs\glyphicons-287-fabric.png" />
+    <Content Include="Content\glyphs\glyphicons-288-leather.png" />
+    <Content Include="Content\glyphs\glyphicons-289-scissors.png" />
+    <Content Include="Content\glyphs\glyphicons-29-cars.png" />
+    <Content Include="Content\glyphs\glyphicons-290-bomb.png" />
+    <Content Include="Content\glyphs\glyphicons-291-skull.png" />
+    <Content Include="Content\glyphs\glyphicons-292-celebration.png" />
+    <Content Include="Content\glyphs\glyphicons-293-tea-kettle.png" />
+    <Content Include="Content\glyphs\glyphicons-294-french-press.png" />
+    <Content Include="Content\glyphs\glyphicons-295-coffee-cup.png" />
+    <Content Include="Content\glyphs\glyphicons-296-pot.png" />
+    <Content Include="Content\glyphs\glyphicons-297-grater.png" />
+    <Content Include="Content\glyphs\glyphicons-298-kettle.png" />
+    <Content Include="Content\glyphs\glyphicons-299-hospital.png" />
+    <Content Include="Content\glyphs\glyphicons-3-dog.png" />
+    <Content Include="Content\glyphs\glyphicons-30-notes-2.png" />
+    <Content Include="Content\glyphs\glyphicons-300-hospital-h.png" />
+    <Content Include="Content\glyphs\glyphicons-301-microphone.png" />
+    <Content Include="Content\glyphs\glyphicons-302-webcam.png" />
+    <Content Include="Content\glyphs\glyphicons-303-temple-christianity-church.png" />
+    <Content Include="Content\glyphs\glyphicons-304-temple-islam.png" />
+    <Content Include="Content\glyphs\glyphicons-305-temple-hindu.png" />
+    <Content Include="Content\glyphs\glyphicons-306-temple-buddhist.png" />
+    <Content Include="Content\glyphs\glyphicons-307-bicycle.png" />
+    <Content Include="Content\glyphs\glyphicons-308-life-preserver.png" />
+    <Content Include="Content\glyphs\glyphicons-309-share-alt.png" />
+    <Content Include="Content\glyphs\glyphicons-31-pencil.png" />
+    <Content Include="Content\glyphs\glyphicons-310-comments.png" />
+    <Content Include="Content\glyphs\glyphicons-311-flower.png" />
+    <Content Include="Content\glyphs\glyphicons-312-baseball.png" />
+    <Content Include="Content\glyphs\glyphicons-313-rugby.png" />
+    <Content Include="Content\glyphs\glyphicons-314-ax.png" />
+    <Content Include="Content\glyphs\glyphicons-315-table-tennis.png" />
+    <Content Include="Content\glyphs\glyphicons-316-bowling.png" />
+    <Content Include="Content\glyphs\glyphicons-317-tree-conifer.png" />
+    <Content Include="Content\glyphs\glyphicons-318-tree-deciduous.png" />
+    <Content Include="Content\glyphs\glyphicons-319-more-items.png" />
+    <Content Include="Content\glyphs\glyphicons-32-bus.png" />
+    <Content Include="Content\glyphs\glyphicons-320-sort.png" />
+    <Content Include="Content\glyphs\glyphicons-321-filter.png" />
+    <Content Include="Content\glyphs\glyphicons-322-gamepad.png" />
+    <Content Include="Content\glyphs\glyphicons-323-playing-dices.png" />
+    <Content Include="Content\glyphs\glyphicons-324-calculator.png" />
+    <Content Include="Content\glyphs\glyphicons-325-tie.png" />
+    <Content Include="Content\glyphs\glyphicons-326-wallet.png" />
+    <Content Include="Content\glyphs\glyphicons-327-piano.png" />
+    <Content Include="Content\glyphs\glyphicons-328-sampler.png" />
+    <Content Include="Content\glyphs\glyphicons-329-podium.png" />
+    <Content Include="Content\glyphs\glyphicons-33-wifi-alt.png" />
+    <Content Include="Content\glyphs\glyphicons-330-soccer-ball.png" />
+    <Content Include="Content\glyphs\glyphicons-331-blog.png" />
+    <Content Include="Content\glyphs\glyphicons-332-dashboard.png" />
+    <Content Include="Content\glyphs\glyphicons-333-certificate.png" />
+    <Content Include="Content\glyphs\glyphicons-334-bell.png" />
+    <Content Include="Content\glyphs\glyphicons-335-candle.png" />
+    <Content Include="Content\glyphs\glyphicons-336-pushpin.png" />
+    <Content Include="Content\glyphs\glyphicons-337-iphone-shake.png" />
+    <Content Include="Content\glyphs\glyphicons-338-pin-flag.png" />
+    <Content Include="Content\glyphs\glyphicons-339-turtle.png" />
+    <Content Include="Content\glyphs\glyphicons-34-luggage.png" />
+    <Content Include="Content\glyphs\glyphicons-340-rabbit.png" />
+    <Content Include="Content\glyphs\glyphicons-341-globe.png" />
+    <Content Include="Content\glyphs\glyphicons-342-briefcase.png" />
+    <Content Include="Content\glyphs\glyphicons-343-hdd.png" />
+    <Content Include="Content\glyphs\glyphicons-344-thumbs-up.png" />
+    <Content Include="Content\glyphs\glyphicons-345-thumbs-down.png" />
+    <Content Include="Content\glyphs\glyphicons-346-hand-right.png" />
+    <Content Include="Content\glyphs\glyphicons-347-hand-left.png" />
+    <Content Include="Content\glyphs\glyphicons-348-hand-up.png" />
+    <Content Include="Content\glyphs\glyphicons-349-hand-down.png" />
+    <Content Include="Content\glyphs\glyphicons-35-old-man.png" />
+    <Content Include="Content\glyphs\glyphicons-350-fullscreen.png" />
+    <Content Include="Content\glyphs\glyphicons-351-shopping-bag.png" />
+    <Content Include="Content\glyphs\glyphicons-352-book-open.png" />
+    <Content Include="Content\glyphs\glyphicons-353-nameplate.png" />
+    <Content Include="Content\glyphs\glyphicons-354-nameplate-alt.png" />
+    <Content Include="Content\glyphs\glyphicons-355-vases.png" />
+    <Content Include="Content\glyphs\glyphicons-356-bullhorn.png" />
+    <Content Include="Content\glyphs\glyphicons-357-dumbbell.png" />
+    <Content Include="Content\glyphs\glyphicons-358-suitcase.png" />
+    <Content Include="Content\glyphs\glyphicons-359-file-import.png" />
+    <Content Include="Content\glyphs\glyphicons-36-woman.png" />
+    <Content Include="Content\glyphs\glyphicons-360-file-export.png" />
+    <Content Include="Content\glyphs\glyphicons-361-bug.png" />
+    <Content Include="Content\glyphs\glyphicons-362-crown.png" />
+    <Content Include="Content\glyphs\glyphicons-363-smoking.png" />
+    <Content Include="Content\glyphs\glyphicons-364-cloud-download.png" />
+    <Content Include="Content\glyphs\glyphicons-365-cloud-upload.png" />
+    <Content Include="Content\glyphs\glyphicons-366-restart.png" />
+    <Content Include="Content\glyphs\glyphicons-367-security-camera.png" />
+    <Content Include="Content\glyphs\glyphicons-368-expand.png" />
+    <Content Include="Content\glyphs\glyphicons-369-collapse.png" />
+    <Content Include="Content\glyphs\glyphicons-37-file.png" />
+    <Content Include="Content\glyphs\glyphicons-370-collapse-top.png" />
+    <Content Include="Content\glyphs\glyphicons-371-globe-af.png" />
+    <Content Include="Content\glyphs\glyphicons-372-global.png" />
+    <Content Include="Content\glyphs\glyphicons-373-spray.png" />
+    <Content Include="Content\glyphs\glyphicons-374-nails.png" />
+    <Content Include="Content\glyphs\glyphicons-375-claw-hammer.png" />
+    <Content Include="Content\glyphs\glyphicons-376-classic-hammer.png" />
+    <Content Include="Content\glyphs\glyphicons-377-hand-saw.png" />
+    <Content Include="Content\glyphs\glyphicons-378-riflescope.png" />
+    <Content Include="Content\glyphs\glyphicons-379-electrical-socket-eu.png" />
+    <Content Include="Content\glyphs\glyphicons-38-coins.png" />
+    <Content Include="Content\glyphs\glyphicons-380-electrical-socket-us.png" />
+    <Content Include="Content\glyphs\glyphicons-381-message-forward.png" />
+    <Content Include="Content\glyphs\glyphicons-382-coat-hanger.png" />
+    <Content Include="Content\glyphs\glyphicons-383-dress.png" />
+    <Content Include="Content\glyphs\glyphicons-384-bathrobe.png" />
+    <Content Include="Content\glyphs\glyphicons-385-shirt.png" />
+    <Content Include="Content\glyphs\glyphicons-386-underwear.png" />
+    <Content Include="Content\glyphs\glyphicons-387-log-in.png" />
+    <Content Include="Content\glyphs\glyphicons-388-log-out.png" />
+    <Content Include="Content\glyphs\glyphicons-389-exit.png" />
+    <Content Include="Content\glyphs\glyphicons-39-airplane.png" />
+    <Content Include="Content\glyphs\glyphicons-390-new-window-alt.png" />
+    <Content Include="Content\glyphs\glyphicons-391-video-sd.png" />
+    <Content Include="Content\glyphs\glyphicons-392-video-hd.png" />
+    <Content Include="Content\glyphs\glyphicons-393-subtitles.png" />
+    <Content Include="Content\glyphs\glyphicons-394-sound-stereo.png" />
+    <Content Include="Content\glyphs\glyphicons-395-sound-dolby.png" />
+    <Content Include="Content\glyphs\glyphicons-396-sound-5-1.png" />
+    <Content Include="Content\glyphs\glyphicons-397-sound-6-1.png" />
+    <Content Include="Content\glyphs\glyphicons-398-sound-7-1.png" />
+    <Content Include="Content\glyphs\glyphicons-399-copyright-mark.png" />
+    <Content Include="Content\glyphs\glyphicons-4-user.png" />
+    <Content Include="Content\glyphs\glyphicons-40-notes.png" />
+    <Content Include="Content\glyphs\glyphicons-400-registration-mark.png" />
+    <Content Include="Content\glyphs\glyphicons-401-radar.png" />
+    <Content Include="Content\glyphs\glyphicons-402-skateboard.png" />
+    <Content Include="Content\glyphs\glyphicons-403-golf-course.png" />
+    <Content Include="Content\glyphs\glyphicons-404-sorting.png" />
+    <Content Include="Content\glyphs\glyphicons-405-sort-by-alphabet.png" />
+    <Content Include="Content\glyphs\glyphicons-406-sort-by-alphabet-alt.png" />
+    <Content Include="Content\glyphs\glyphicons-407-sort-by-order.png" />
+    <Content Include="Content\glyphs\glyphicons-408-sort-by-order-alt.png" />
+    <Content Include="Content\glyphs\glyphicons-409-sort-by-attributes.png" />
+    <Content Include="Content\glyphs\glyphicons-41-stats.png" />
+    <Content Include="Content\glyphs\glyphicons-410-sort-by-attributes-alt.png" />
+    <Content Include="Content\glyphs\glyphicons-411-compressed.png" />
+    <Content Include="Content\glyphs\glyphicons-412-package.png" />
+    <Content Include="Content\glyphs\glyphicons-413-cloud-plus.png" />
+    <Content Include="Content\glyphs\glyphicons-414-cloud-minus.png" />
+    <Content Include="Content\glyphs\glyphicons-415-disk-save.png" />
+    <Content Include="Content\glyphs\glyphicons-416-disk-open.png" />
+    <Content Include="Content\glyphs\glyphicons-417-disk-saved.png" />
+    <Content Include="Content\glyphs\glyphicons-418-disk-remove.png" />
+    <Content Include="Content\glyphs\glyphicons-419-disk-import.png" />
+    <Content Include="Content\glyphs\glyphicons-42-charts.png" />
+    <Content Include="Content\glyphs\glyphicons-420-disk-export.png" />
+    <Content Include="Content\glyphs\glyphicons-421-tower.png" />
+    <Content Include="Content\glyphs\glyphicons-422-send.png" />
+    <Content Include="Content\glyphs\glyphicons-423-git-branch.png" />
+    <Content Include="Content\glyphs\glyphicons-424-git-create.png" />
+    <Content Include="Content\glyphs\glyphicons-425-git-private.png" />
+    <Content Include="Content\glyphs\glyphicons-426-git-delete.png" />
+    <Content Include="Content\glyphs\glyphicons-427-git-merge.png" />
+    <Content Include="Content\glyphs\glyphicons-428-git-pull-request.png" />
+    <Content Include="Content\glyphs\glyphicons-429-git-compare.png" />
+    <Content Include="Content\glyphs\glyphicons-43-pie-chart.png" />
+    <Content Include="Content\glyphs\glyphicons-430-git-commit.png" />
+    <Content Include="Content\glyphs\glyphicons-431-construction-cone.png" />
+    <Content Include="Content\glyphs\glyphicons-432-shoe-steps.png" />
+    <Content Include="Content\glyphs\glyphicons-433-plus.png" />
+    <Content Include="Content\glyphs\glyphicons-434-minus.png" />
+    <Content Include="Content\glyphs\glyphicons-435-redo.png" />
+    <Content Include="Content\glyphs\glyphicons-436-undo.png" />
+    <Content Include="Content\glyphs\glyphicons-437-golf.png" />
+    <Content Include="Content\glyphs\glyphicons-438-hockey.png" />
+    <Content Include="Content\glyphs\glyphicons-439-pipe.png" />
+    <Content Include="Content\glyphs\glyphicons-44-group.png" />
+    <Content Include="Content\glyphs\glyphicons-440-wrench.png" />
+    <Content Include="Content\glyphs\glyphicons-441-folder-closed.png" />
+    <Content Include="Content\glyphs\glyphicons-442-phone-alt.png" />
+    <Content Include="Content\glyphs\glyphicons-443-earphone.png" />
+    <Content Include="Content\glyphs\glyphicons-444-floppy-disk.png" />
+    <Content Include="Content\glyphs\glyphicons-445-floppy-saved.png" />
+    <Content Include="Content\glyphs\glyphicons-446-floppy-remove.png" />
+    <Content Include="Content\glyphs\glyphicons-447-floppy-save.png" />
+    <Content Include="Content\glyphs\glyphicons-448-floppy-open.png" />
+    <Content Include="Content\glyphs\glyphicons-449-translate.png" />
+    <Content Include="Content\glyphs\glyphicons-45-keys.png" />
+    <Content Include="Content\glyphs\glyphicons-450-fax.png" />
+    <Content Include="Content\glyphs\glyphicons-451-factory.png" />
+    <Content Include="Content\glyphs\glyphicons-452-shop-window.png" />
+    <Content Include="Content\glyphs\glyphicons-453-shop.png" />
+    <Content Include="Content\glyphs\glyphicons-454-kiosk.png" />
+    <Content Include="Content\glyphs\glyphicons-455-kiosk-wheels.png" />
+    <Content Include="Content\glyphs\glyphicons-456-kiosk-light.png" />
+    <Content Include="Content\glyphs\glyphicons-457-kiosk-food.png" />
+    <Content Include="Content\glyphs\glyphicons-458-transfer.png" />
+    <Content Include="Content\glyphs\glyphicons-459-money.png" />
+    <Content Include="Content\glyphs\glyphicons-46-calendar.png" />
+    <Content Include="Content\glyphs\glyphicons-460-header.png" />
+    <Content Include="Content\glyphs\glyphicons-461-blacksmith.png" />
+    <Content Include="Content\glyphs\glyphicons-462-saw-blade.png" />
+    <Content Include="Content\glyphs\glyphicons-463-basketball.png" />
+    <Content Include="Content\glyphs\glyphicons-464-server.png" />
+    <Content Include="Content\glyphs\glyphicons-465-server-plus.png" />
+    <Content Include="Content\glyphs\glyphicons-466-server-minus.png" />
+    <Content Include="Content\glyphs\glyphicons-467-server-ban.png" />
+    <Content Include="Content\glyphs\glyphicons-468-server-flag.png" />
+    <Content Include="Content\glyphs\glyphicons-469-server-lock.png" />
+    <Content Include="Content\glyphs\glyphicons-47-router.png" />
+    <Content Include="Content\glyphs\glyphicons-470-server-new.png" />
+    <Content Include="Content\glyphs\glyphicons-471-elec-station.png" />
+    <Content Include="Content\glyphs\glyphicons-472-gas-station.png" />
+    <Content Include="Content\glyphs\glyphicons-473-target.png" />
+    <Content Include="Content\glyphs\glyphicons-474-bed-alt.png" />
+    <Content Include="Content\glyphs\glyphicons-475-mosquito-net.png" />
+    <Content Include="Content\glyphs\glyphicons-476-dining-set.png" />
+    <Content Include="Content\glyphs\glyphicons-477-plate-of-food.png" />
+    <Content Include="Content\glyphs\glyphicons-478-hygiene-kit.png" />
+    <Content Include="Content\glyphs\glyphicons-479-blackboard.png" />
+    <Content Include="Content\glyphs\glyphicons-48-camera-small.png" />
+    <Content Include="Content\glyphs\glyphicons-480-marriage.png" />
+    <Content Include="Content\glyphs\glyphicons-481-bucket.png" />
+    <Content Include="Content\glyphs\glyphicons-482-none-color-swatch.png" />
+    <Content Include="Content\glyphs\glyphicons-483-bring-forward.png" />
+    <Content Include="Content\glyphs\glyphicons-484-bring-to-front.png" />
+    <Content Include="Content\glyphs\glyphicons-485-send-backward.png" />
+    <Content Include="Content\glyphs\glyphicons-486-send-to-back.png" />
+    <Content Include="Content\glyphs\glyphicons-487-fit-frame-to-image.png" />
+    <Content Include="Content\glyphs\glyphicons-488-fit-image-to-frame.png" />
+    <Content Include="Content\glyphs\glyphicons-489-multiple-displays.png" />
+    <Content Include="Content\glyphs\glyphicons-49-star-empty.png" />
+    <Content Include="Content\glyphs\glyphicons-490-handshake.png" />
+    <Content Include="Content\glyphs\glyphicons-491-child.png" />
+    <Content Include="Content\glyphs\glyphicons-492-baby-formula.png" />
+    <Content Include="Content\glyphs\glyphicons-493-medicine.png" />
+    <Content Include="Content\glyphs\glyphicons-494-atv-vehicle.png" />
+    <Content Include="Content\glyphs\glyphicons-495-motorcycle.png" />
+    <Content Include="Content\glyphs\glyphicons-496-bed.png" />
+    <Content Include="Content\glyphs\glyphicons-497-tent.png" />
+    <Content Include="Content\glyphs\glyphicons-498-glasses.png" />
+    <Content Include="Content\glyphs\glyphicons-499-sunglasses.png" />
+    <Content Include="Content\glyphs\glyphicons-5-girl.png" />
+    <Content Include="Content\glyphs\glyphicons-50-star.png" />
+    <Content Include="Content\glyphs\glyphicons-500-family.png" />
+    <Content Include="Content\glyphs\glyphicons-501-education.png" />
+    <Content Include="Content\glyphs\glyphicons-502-shoes.png" />
+    <Content Include="Content\glyphs\glyphicons-503-map.png" />
+    <Content Include="Content\glyphs\glyphicons-504-cd.png" />
+    <Content Include="Content\glyphs\glyphicons-505-alert.png" />
+    <Content Include="Content\glyphs\glyphicons-506-piggy-bank.png" />
+    <Content Include="Content\glyphs\glyphicons-507-star-half.png" />
+    <Content Include="Content\glyphs\glyphicons-508-cluster.png" />
+    <Content Include="Content\glyphs\glyphicons-509-flowchart.png" />
+    <Content Include="Content\glyphs\glyphicons-51-link.png" />
+    <Content Include="Content\glyphs\glyphicons-510-commodities.png" />
+    <Content Include="Content\glyphs\glyphicons-511-duplicate.png" />
+    <Content Include="Content\glyphs\glyphicons-512-copy.png" />
+    <Content Include="Content\glyphs\glyphicons-513-paste.png" />
+    <Content Include="Content\glyphs\glyphicons-514-bath-bathtub.png" />
+    <Content Include="Content\glyphs\glyphicons-515-bath-shower.png" />
+    <Content Include="Content\glyphs\glyphicons-516-shower.png" />
+    <Content Include="Content\glyphs\glyphicons-517-menu-hamburger.png" />
+    <Content Include="Content\glyphs\glyphicons-518-option-vertical.png" />
+    <Content Include="Content\glyphs\glyphicons-519-option-horizontal.png" />
+    <Content Include="Content\glyphs\glyphicons-52-eye-open.png" />
+    <Content Include="Content\glyphs\glyphicons-520-currency-conversion.png" />
+    <Content Include="Content\glyphs\glyphicons-521-user-ban.png" />
+    <Content Include="Content\glyphs\glyphicons-522-user-lock.png" />
+    <Content Include="Content\glyphs\glyphicons-523-user-flag.png" />
+    <Content Include="Content\glyphs\glyphicons-524-user-asterisk.png" />
+    <Content Include="Content\glyphs\glyphicons-525-user-alert.png" />
+    <Content Include="Content\glyphs\glyphicons-526-user-key.png" />
+    <Content Include="Content\glyphs\glyphicons-527-user-conversation.png" />
+    <Content Include="Content\glyphs\glyphicons-528-database.png" />
+    <Content Include="Content\glyphs\glyphicons-529-database-search.png" />
+    <Content Include="Content\glyphs\glyphicons-53-eye-close.png" />
+    <Content Include="Content\glyphs\glyphicons-530-list-alt.png" />
+    <Content Include="Content\glyphs\glyphicons-531-hazard-sign.png" />
+    <Content Include="Content\glyphs\glyphicons-532-hazard.png" />
+    <Content Include="Content\glyphs\glyphicons-533-stop-sign.png" />
+    <Content Include="Content\glyphs\glyphicons-534-lab.png" />
+    <Content Include="Content\glyphs\glyphicons-535-lab-alt.png" />
+    <Content Include="Content\glyphs\glyphicons-536-ice-cream.png" />
+    <Content Include="Content\glyphs\glyphicons-537-ice-lolly.png" />
+    <Content Include="Content\glyphs\glyphicons-538-ice-lolly-tasted.png" />
+    <Content Include="Content\glyphs\glyphicons-539-invoice.png" />
+    <Content Include="Content\glyphs\glyphicons-54-alarm.png" />
+    <Content Include="Content\glyphs\glyphicons-540-cart-tick.png" />
+    <Content Include="Content\glyphs\glyphicons-541-hourglass.png" />
+    <Content Include="Content\glyphs\glyphicons-542-cat.png" />
+    <Content Include="Content\glyphs\glyphicons-543-lamp.png" />
+    <Content Include="Content\glyphs\glyphicons-544-scale-classic.png" />
+    <Content Include="Content\glyphs\glyphicons-545-eye-plus.png" />
+    <Content Include="Content\glyphs\glyphicons-546-eye-minus.png" />
+    <Content Include="Content\glyphs\glyphicons-547-quote.png" />
+    <Content Include="Content\glyphs\glyphicons-548-bitcoin.png" />
+    <Content Include="Content\glyphs\glyphicons-549-yen.png" />
+    <Content Include="Content\glyphs\glyphicons-55-clock.png" />
+    <Content Include="Content\glyphs\glyphicons-550-ruble.png" />
+    <Content Include="Content\glyphs\glyphicons-551-erase.png" />
+    <Content Include="Content\glyphs\glyphicons-552-podcast.png" />
+    <Content Include="Content\glyphs\glyphicons-553-firework.png" />
+    <Content Include="Content\glyphs\glyphicons-554-scale.png" />
+    <Content Include="Content\glyphs\glyphicons-555-king.png" />
+    <Content Include="Content\glyphs\glyphicons-556-queen.png" />
+    <Content Include="Content\glyphs\glyphicons-557-pawn.png" />
+    <Content Include="Content\glyphs\glyphicons-558-bishop.png" />
+    <Content Include="Content\glyphs\glyphicons-559-knight.png" />
+    <Content Include="Content\glyphs\glyphicons-56-stopwatch.png" />
+    <Content Include="Content\glyphs\glyphicons-560-mic-mute.png" />
+    <Content Include="Content\glyphs\glyphicons-561-voicemail.png" />
+    <Content Include="Content\glyphs\glyphicons-562-paragraph.png" />
+    <Content Include="Content\glyphs\glyphicons-563-person-walking.png" />
+    <Content Include="Content\glyphs\glyphicons-564-person-wheelchair.png" />
+    <Content Include="Content\glyphs\glyphicons-565-underground.png" />
+    <Content Include="Content\glyphs\glyphicons-566-car-hov.png" />
+    <Content Include="Content\glyphs\glyphicons-567-car-rental.png" />
+    <Content Include="Content\glyphs\glyphicons-568-transport.png" />
+    <Content Include="Content\glyphs\glyphicons-569-taxi.png" />
+    <Content Include="Content\glyphs\glyphicons-57-projector.png" />
+    <Content Include="Content\glyphs\glyphicons-570-ice-cream-no.png" />
+    <Content Include="Content\glyphs\glyphicons-571-uk-rat-u.png" />
+    <Content Include="Content\glyphs\glyphicons-572-uk-rat-pg.png" />
+    <Content Include="Content\glyphs\glyphicons-573-uk-rat-12a.png" />
+    <Content Include="Content\glyphs\glyphicons-574-uk-rat-12.png" />
+    <Content Include="Content\glyphs\glyphicons-575-uk-rat-15.png" />
+    <Content Include="Content\glyphs\glyphicons-576-uk-rat-18.png" />
+    <Content Include="Content\glyphs\glyphicons-577-uk-rat-r18.png" />
+    <Content Include="Content\glyphs\glyphicons-578-tv.png" />
+    <Content Include="Content\glyphs\glyphicons-579-sms.png" />
+    <Content Include="Content\glyphs\glyphicons-58-history.png" />
+    <Content Include="Content\glyphs\glyphicons-580-mms.png" />
+    <Content Include="Content\glyphs\glyphicons-581-us-rat-g.png" />
+    <Content Include="Content\glyphs\glyphicons-582-us-rat-pg.png" />
+    <Content Include="Content\glyphs\glyphicons-583-us-rat-pg-13.png" />
+    <Content Include="Content\glyphs\glyphicons-584-us-rat-restricted.png" />
+    <Content Include="Content\glyphs\glyphicons-585-us-rat-no-one-17.png" />
+    <Content Include="Content\glyphs\glyphicons-586-equalizer.png" />
+    <Content Include="Content\glyphs\glyphicons-587-speakers.png" />
+    <Content Include="Content\glyphs\glyphicons-588-remote-control.png" />
+    <Content Include="Content\glyphs\glyphicons-589-remote-control-tv.png" />
+    <Content Include="Content\glyphs\glyphicons-59-truck.png" />
+    <Content Include="Content\glyphs\glyphicons-590-shredder.png" />
+    <Content Include="Content\glyphs\glyphicons-591-folder-heart.png" />
+    <Content Include="Content\glyphs\glyphicons-592-person-running.png" />
+    <Content Include="Content\glyphs\glyphicons-593-person.png" />
+    <Content Include="Content\glyphs\glyphicons-594-voice.png" />
+    <Content Include="Content\glyphs\glyphicons-595-stethoscope.png" />
+    <Content Include="Content\glyphs\glyphicons-596-hotspot.png" />
+    <Content Include="Content\glyphs\glyphicons-597-activity.png" />
+    <Content Include="Content\glyphs\glyphicons-598-watch.png" />
+    <Content Include="Content\glyphs\glyphicons-599-scissors-alt.png" />
+    <Content Include="Content\glyphs\glyphicons-6-car.png" />
+    <Content Include="Content\glyphs\glyphicons-60-cargo.png" />
+    <Content Include="Content\glyphs\glyphicons-600-car-wheel.png" />
+    <Content Include="Content\glyphs\glyphicons-601-chevron-up.png" />
+    <Content Include="Content\glyphs\glyphicons-602-chevron-down.png" />
+    <Content Include="Content\glyphs\glyphicons-603-superscript.png" />
+    <Content Include="Content\glyphs\glyphicons-604-subscript.png" />
+    <Content Include="Content\glyphs\glyphicons-605-text-size.png" />
+    <Content Include="Content\glyphs\glyphicons-606-text-color.png" />
+    <Content Include="Content\glyphs\glyphicons-607-text-background.png" />
+    <Content Include="Content\glyphs\glyphicons-608-modal-window.png" />
+    <Content Include="Content\glyphs\glyphicons-609-newspaper.png" />
+    <Content Include="Content\glyphs\glyphicons-61-compass.png" />
+    <Content Include="Content\glyphs\glyphicons-610-tractor.png" />
+    <Content Include="Content\glyphs\glyphicons-62-keynote.png" />
+    <Content Include="Content\glyphs\glyphicons-63-paperclip.png" />
+    <Content Include="Content\glyphs\glyphicons-64-power.png" />
+    <Content Include="Content\glyphs\glyphicons-65-lightbulb.png" />
+    <Content Include="Content\glyphs\glyphicons-66-tag.png" />
+    <Content Include="Content\glyphs\glyphicons-67-tags.png" />
+    <Content Include="Content\glyphs\glyphicons-68-cleaning.png" />
+    <Content Include="Content\glyphs\glyphicons-69-ruler.png" />
+    <Content Include="Content\glyphs\glyphicons-7-user-add.png" />
+    <Content Include="Content\glyphs\glyphicons-70-gift.png" />
+    <Content Include="Content\glyphs\glyphicons-71-umbrella.png" />
+    <Content Include="Content\glyphs\glyphicons-72-book.png" />
+    <Content Include="Content\glyphs\glyphicons-73-bookmark.png" />
+    <Content Include="Content\glyphs\glyphicons-74-wifi.png" />
+    <Content Include="Content\glyphs\glyphicons-75-cup.png" />
+    <Content Include="Content\glyphs\glyphicons-76-stroller.png" />
+    <Content Include="Content\glyphs\glyphicons-77-headphones.png" />
+    <Content Include="Content\glyphs\glyphicons-78-headset.png" />
+    <Content Include="Content\glyphs\glyphicons-79-warning-sign.png" />
+    <Content Include="Content\glyphs\glyphicons-8-user-remove.png" />
+    <Content Include="Content\glyphs\glyphicons-80-signal.png" />
+    <Content Include="Content\glyphs\glyphicons-81-retweet.png" />
+    <Content Include="Content\glyphs\glyphicons-82-refresh.png" />
+    <Content Include="Content\glyphs\glyphicons-83-roundabout.png" />
+    <Content Include="Content\glyphs\glyphicons-84-random.png" />
+    <Content Include="Content\glyphs\glyphicons-85-heat.png" />
+    <Content Include="Content\glyphs\glyphicons-86-repeat.png" />
+    <Content Include="Content\glyphs\glyphicons-87-display.png" />
+    <Content Include="Content\glyphs\glyphicons-88-log-book.png" />
+    <Content Include="Content\glyphs\glyphicons-89-address-book.png" />
+    <Content Include="Content\glyphs\glyphicons-9-film.png" />
+    <Content Include="Content\glyphs\glyphicons-90-building.png" />
+    <Content Include="Content\glyphs\glyphicons-91-eyedropper.png" />
+    <Content Include="Content\glyphs\glyphicons-92-adjust.png" />
+    <Content Include="Content\glyphs\glyphicons-93-tint.png" />
+    <Content Include="Content\glyphs\glyphicons-94-crop.png" />
+    <Content Include="Content\glyphs\glyphicons-95-vector-path-square.png" />
+    <Content Include="Content\glyphs\glyphicons-96-vector-path-circle.png" />
+    <Content Include="Content\glyphs\glyphicons-97-vector-path-polygon.png" />
+    <Content Include="Content\glyphs\glyphicons-98-vector-path-line.png" />
+    <Content Include="Content\glyphs\glyphicons-99-vector-path-curve.png" />
+    <Content Include="Content\site.css" />
+    <Content Include="Content\ng-grid.css" />
+    <Content Include="Content\themes\base\accordion.css" />
+    <Content Include="Content\themes\base\all.css" />
+    <Content Include="Content\themes\base\autocomplete.css" />
+    <Content Include="Content\themes\base\base.css" />
+    <Content Include="Content\themes\base\button.css" />
+    <Content Include="Content\themes\base\core.css" />
+    <Content Include="Content\themes\base\datepicker.css" />
+    <Content Include="Content\themes\base\dialog.css" />
+    <Content Include="Content\themes\base\draggable.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\menu.css" />
+    <Content Include="Content\themes\base\progressbar.css" />
+    <Content Include="Content\themes\base\resizable.css" />
+    <Content Include="Content\themes\base\selectable.css" />
+    <Content Include="Content\themes\base\selectmenu.css" />
+    <Content Include="Content\themes\base\slider.css" />
+    <Content Include="Content\themes\base\sortable.css" />
+    <Content Include="Content\themes\base\spinner.css" />
+    <Content Include="Content\themes\base\tabs.css" />
+    <Content Include="Content\themes\base\theme.css" />
+    <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="README.txt" />
+    <Content Include="Scripts\angular-animate.js" />
+    <Content Include="Scripts\angular-animate.min.js" />
+    <Content Include="Scripts\angular-aria.js" />
+    <Content Include="Scripts\angular-aria.min.js" />
+    <Content Include="Scripts\angular-cookies.js" />
+    <Content Include="Scripts\angular-cookies.min.js" />
+    <Content Include="Scripts\angular-csp.css" />
+    <Content Include="Scripts\angular-loader.js" />
+    <Content Include="Scripts\angular-loader.min.js" />
+    <Content Include="Scripts\angular-message-format.js" />
+    <Content Include="Scripts\angular-message-format.min.js" />
+    <Content Include="Scripts\angular-messages.js" />
+    <Content Include="Scripts\angular-messages.min.js" />
+    <Content Include="Scripts\angular-mocks.js" />
+    <Content Include="Scripts\angular-ng-grid.js" />
+    <Content Include="Scripts\angular-resource.js" />
+    <Content Include="Scripts\angular-resource.min.js" />
+    <Content Include="Scripts\angular-route.js" />
+    <Content Include="Scripts\angular-route.min.js" />
+    <Content Include="Scripts\angular-sanitize.js" />
+    <Content Include="Scripts\angular-sanitize.min.js" />
+    <Content Include="Scripts\angular-scenario.js" />
+    <Content Include="Scripts\angular-touch.js" />
+    <Content Include="Scripts\angular-touch.min.js" />
+    <Content Include="Scripts\angular.js" />
+    <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\app\app.js" />
+    <Content Include="Scripts\app\directives.js" />
+    <Content Include="Scripts\app\program.js" />
+    <Content Include="Scripts\app\routines.js" />
+    <Content Include="Scripts\app\main.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Scripts\errors.json" />
+    <Content Include="Scripts\angular-touch.min.js.map" />
+    <Content Include="Scripts\angular-sanitize.min.js.map" />
+    <Content Include="Scripts\angular-route.min.js.map" />
+    <Content Include="Scripts\angular-resource.min.js.map" />
+    <Content Include="Scripts\angular-messages.min.js.map" />
+    <Content Include="Scripts\angular-message-format.min.js.map" />
+    <Content Include="Scripts\angular-loader.min.js.map" />
+    <Content Include="Scripts\angular-cookies.min.js.map" />
+    <Content Include="Scripts\angular-aria.min.js.map" />
+    <Content Include="Scripts\angular-animate.min.js.map" />
+    <Content Include="Scripts\angular.min.js.map" />
+    <Content Include="Content\liftbro.scss" />
+    <Content Include="App_Data\seedData.json" />
+    <None Include="Scripts\jquery-2.1.4.intellisense.js" />
+    <Content Include="Scripts\i18n\angular-locale_aa-dj.js" />
+    <Content Include="Scripts\i18n\angular-locale_aa-er.js" />
+    <Content Include="Scripts\i18n\angular-locale_aa-et.js" />
+    <Content Include="Scripts\i18n\angular-locale_aa.js" />
+    <Content Include="Scripts\i18n\angular-locale_af-na.js" />
+    <Content Include="Scripts\i18n\angular-locale_af-za.js" />
+    <Content Include="Scripts\i18n\angular-locale_af.js" />
+    <Content Include="Scripts\i18n\angular-locale_agq-cm.js" />
+    <Content Include="Scripts\i18n\angular-locale_agq.js" />
+    <Content Include="Scripts\i18n\angular-locale_ak-gh.js" />
+    <Content Include="Scripts\i18n\angular-locale_ak.js" />
+    <Content Include="Scripts\i18n\angular-locale_am-et.js" />
+    <Content Include="Scripts\i18n\angular-locale_am.js" />
+    <Content Include="Scripts\i18n\angular-locale_ar-001.js" />
+    <Content Include="Scripts\i18n\angular-locale_ar-ae.js" />
+    <Content Include="Scripts\i18n\angular-locale_ar-bh.js" />
+    <Content Include="Scripts\i18n\angular-locale_ar-dj.js" />
+    <Content Include="Scripts\i18n\angular-locale_ar-dz.js" />
+    <Content Include="Scripts\i18n\angular-locale_ar-eg.js" />
+    <Content Include="Scripts\i18n\angular-locale_ar-eh.js" />
+    <Content Include="Scripts\i18n\angular-locale_ar-er.js" />
+    <Content Include="Scripts\i18n\angular-locale_ar-il.js" />
+    <Content Include="Scripts\i18n\angular-locale_ar-iq.js" />
+    <Content Include="Scripts\i18n\angular-locale_ar-jo.js" />
+    <Content Include="Scripts\i18n\angular-locale_ar-km.js" />
+    <Content Include="Scripts\i18n\angular-locale_ar-kw.js" />
+    <Content Include="Scripts\i18n\angular-locale_ar-lb.js" />
+    <Content Include="Scripts\i18n\angular-locale_ar-ly.js" />
+    <Content Include="Scripts\i18n\angular-locale_ar-ma.js" />
+    <Content Include="Scripts\i18n\angular-locale_ar-mr.js" />
+    <Content Include="Scripts\i18n\angular-locale_ar-om.js" />
+    <Content Include="Scripts\i18n\angular-locale_ar-ps.js" />
+    <Content Include="Scripts\i18n\angular-locale_ar-qa.js" />
+    <Content Include="Scripts\i18n\angular-locale_ar-sa.js" />
+    <Content Include="Scripts\i18n\angular-locale_ar-sd.js" />
+    <Content Include="Scripts\i18n\angular-locale_ar-so.js" />
+    <Content Include="Scripts\i18n\angular-locale_ar-ss.js" />
+    <Content Include="Scripts\i18n\angular-locale_ar-sy.js" />
+    <Content Include="Scripts\i18n\angular-locale_ar-td.js" />
+    <Content Include="Scripts\i18n\angular-locale_ar-tn.js" />
+    <Content Include="Scripts\i18n\angular-locale_ar-ye.js" />
+    <Content Include="Scripts\i18n\angular-locale_ar.js" />
+    <Content Include="Scripts\i18n\angular-locale_as-in.js" />
+    <Content Include="Scripts\i18n\angular-locale_as.js" />
+    <Content Include="Scripts\i18n\angular-locale_asa-tz.js" />
+    <Content Include="Scripts\i18n\angular-locale_asa.js" />
+    <Content Include="Scripts\i18n\angular-locale_ast-es.js" />
+    <Content Include="Scripts\i18n\angular-locale_ast.js" />
+    <Content Include="Scripts\i18n\angular-locale_az-cyrl-az.js" />
+    <Content Include="Scripts\i18n\angular-locale_az-cyrl.js" />
+    <Content Include="Scripts\i18n\angular-locale_az-latn-az.js" />
+    <Content Include="Scripts\i18n\angular-locale_az-latn.js" />
+    <Content Include="Scripts\i18n\angular-locale_az.js" />
+    <Content Include="Scripts\i18n\angular-locale_bas-cm.js" />
+    <Content Include="Scripts\i18n\angular-locale_bas.js" />
+    <Content Include="Scripts\i18n\angular-locale_be-by.js" />
+    <Content Include="Scripts\i18n\angular-locale_be.js" />
+    <Content Include="Scripts\i18n\angular-locale_bem-zm.js" />
+    <Content Include="Scripts\i18n\angular-locale_bem.js" />
+    <Content Include="Scripts\i18n\angular-locale_bez-tz.js" />
+    <Content Include="Scripts\i18n\angular-locale_bez.js" />
+    <Content Include="Scripts\i18n\angular-locale_bg-bg.js" />
+    <Content Include="Scripts\i18n\angular-locale_bg.js" />
+    <Content Include="Scripts\i18n\angular-locale_bm-latn-ml.js" />
+    <Content Include="Scripts\i18n\angular-locale_bm-latn.js" />
+    <Content Include="Scripts\i18n\angular-locale_bm-ml.js" />
+    <Content Include="Scripts\i18n\angular-locale_bm.js" />
+    <Content Include="Scripts\i18n\angular-locale_bn-bd.js" />
+    <Content Include="Scripts\i18n\angular-locale_bn-in.js" />
+    <Content Include="Scripts\i18n\angular-locale_bn.js" />
+    <Content Include="Scripts\i18n\angular-locale_bo-cn.js" />
+    <Content Include="Scripts\i18n\angular-locale_bo-in.js" />
+    <Content Include="Scripts\i18n\angular-locale_bo.js" />
+    <Content Include="Scripts\i18n\angular-locale_br-fr.js" />
+    <Content Include="Scripts\i18n\angular-locale_br.js" />
+    <Content Include="Scripts\i18n\angular-locale_brx-in.js" />
+    <Content Include="Scripts\i18n\angular-locale_brx.js" />
+    <Content Include="Scripts\i18n\angular-locale_bs-cyrl-ba.js" />
+    <Content Include="Scripts\i18n\angular-locale_bs-cyrl.js" />
+    <Content Include="Scripts\i18n\angular-locale_bs-latn-ba.js" />
+    <Content Include="Scripts\i18n\angular-locale_bs-latn.js" />
+    <Content Include="Scripts\i18n\angular-locale_bs.js" />
+    <Content Include="Scripts\i18n\angular-locale_byn-er.js" />
+    <Content Include="Scripts\i18n\angular-locale_byn.js" />
+    <Content Include="Scripts\i18n\angular-locale_ca-ad.js" />
+    <Content Include="Scripts\i18n\angular-locale_ca-es-valencia.js" />
+    <Content Include="Scripts\i18n\angular-locale_ca-es.js" />
+    <Content Include="Scripts\i18n\angular-locale_ca-fr.js" />
+    <Content Include="Scripts\i18n\angular-locale_ca-it.js" />
+    <Content Include="Scripts\i18n\angular-locale_ca.js" />
+    <Content Include="Scripts\i18n\angular-locale_cgg-ug.js" />
+    <Content Include="Scripts\i18n\angular-locale_cgg.js" />
+    <Content Include="Scripts\i18n\angular-locale_chr-us.js" />
+    <Content Include="Scripts\i18n\angular-locale_chr.js" />
+    <Content Include="Scripts\i18n\angular-locale_ckb-arab-iq.js" />
+    <Content Include="Scripts\i18n\angular-locale_ckb-arab-ir.js" />
+    <Content Include="Scripts\i18n\angular-locale_ckb-arab.js" />
+    <Content Include="Scripts\i18n\angular-locale_ckb-iq.js" />
+    <Content Include="Scripts\i18n\angular-locale_ckb-ir.js" />
+    <Content Include="Scripts\i18n\angular-locale_ckb-latn-iq.js" />
+    <Content Include="Scripts\i18n\angular-locale_ckb-latn.js" />
+    <Content Include="Scripts\i18n\angular-locale_ckb.js" />
+    <Content Include="Scripts\i18n\angular-locale_cs-cz.js" />
+    <Content Include="Scripts\i18n\angular-locale_cs.js" />
+    <Content Include="Scripts\i18n\angular-locale_cy-gb.js" />
+    <Content Include="Scripts\i18n\angular-locale_cy.js" />
+    <Content Include="Scripts\i18n\angular-locale_da-dk.js" />
+    <Content Include="Scripts\i18n\angular-locale_da-gl.js" />
+    <Content Include="Scripts\i18n\angular-locale_da.js" />
+    <Content Include="Scripts\i18n\angular-locale_dav-ke.js" />
+    <Content Include="Scripts\i18n\angular-locale_dav.js" />
+    <Content Include="Scripts\i18n\angular-locale_de-at.js" />
+    <Content Include="Scripts\i18n\angular-locale_de-be.js" />
+    <Content Include="Scripts\i18n\angular-locale_de-ch.js" />
+    <Content Include="Scripts\i18n\angular-locale_de-de.js" />
+    <Content Include="Scripts\i18n\angular-locale_de-li.js" />
+    <Content Include="Scripts\i18n\angular-locale_de-lu.js" />
+    <Content Include="Scripts\i18n\angular-locale_de.js" />
+    <Content Include="Scripts\i18n\angular-locale_dje-ne.js" />
+    <Content Include="Scripts\i18n\angular-locale_dje.js" />
+    <Content Include="Scripts\i18n\angular-locale_dsb-de.js" />
+    <Content Include="Scripts\i18n\angular-locale_dsb.js" />
+    <Content Include="Scripts\i18n\angular-locale_dua-cm.js" />
+    <Content Include="Scripts\i18n\angular-locale_dua.js" />
+    <Content Include="Scripts\i18n\angular-locale_dyo-sn.js" />
+    <Content Include="Scripts\i18n\angular-locale_dyo.js" />
+    <Content Include="Scripts\i18n\angular-locale_dz-bt.js" />
+    <Content Include="Scripts\i18n\angular-locale_dz.js" />
+    <Content Include="Scripts\i18n\angular-locale_ebu-ke.js" />
+    <Content Include="Scripts\i18n\angular-locale_ebu.js" />
+    <Content Include="Scripts\i18n\angular-locale_ee-gh.js" />
+    <Content Include="Scripts\i18n\angular-locale_ee-tg.js" />
+    <Content Include="Scripts\i18n\angular-locale_ee.js" />
+    <Content Include="Scripts\i18n\angular-locale_el-cy.js" />
+    <Content Include="Scripts\i18n\angular-locale_el-gr.js" />
+    <Content Include="Scripts\i18n\angular-locale_el.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-001.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-150.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-ag.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-ai.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-as.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-au.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-bb.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-be.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-bm.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-bs.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-bw.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-bz.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-ca.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-cc.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-ck.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-cm.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-cx.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-dg.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-dm.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-er.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-fj.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-fk.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-fm.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-gb.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-gd.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-gg.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-gh.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-gi.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-gm.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-gu.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-gy.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-hk.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-ie.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-im.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-in.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-io.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-iso.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-je.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-jm.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-ke.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-ki.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-kn.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-ky.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-lc.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-lr.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-ls.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-mg.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-mh.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-mo.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-mp.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-ms.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-mt.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-mu.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-mw.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-my.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-na.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-nf.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-ng.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-nr.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-nu.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-nz.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-pg.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-ph.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-pk.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-pn.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-pr.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-pw.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-rw.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-sb.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-sc.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-sd.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-sg.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-sh.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-sl.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-ss.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-sx.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-sz.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-tc.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-tk.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-to.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-tt.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-tv.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-tz.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-ug.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-um.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-us.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-vc.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-vg.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-vi.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-vu.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-ws.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-za.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-zm.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-zw.js" />
+    <Content Include="Scripts\i18n\angular-locale_en.js" />
+    <Content Include="Scripts\i18n\angular-locale_eo-001.js" />
+    <Content Include="Scripts\i18n\angular-locale_eo.js" />
+    <Content Include="Scripts\i18n\angular-locale_es-419.js" />
+    <Content Include="Scripts\i18n\angular-locale_es-ar.js" />
+    <Content Include="Scripts\i18n\angular-locale_es-bo.js" />
+    <Content Include="Scripts\i18n\angular-locale_es-cl.js" />
+    <Content Include="Scripts\i18n\angular-locale_es-co.js" />
+    <Content Include="Scripts\i18n\angular-locale_es-cr.js" />
+    <Content Include="Scripts\i18n\angular-locale_es-cu.js" />
+    <Content Include="Scripts\i18n\angular-locale_es-do.js" />
+    <Content Include="Scripts\i18n\angular-locale_es-ea.js" />
+    <Content Include="Scripts\i18n\angular-locale_es-ec.js" />
+    <Content Include="Scripts\i18n\angular-locale_es-es.js" />
+    <Content Include="Scripts\i18n\angular-locale_es-gq.js" />
+    <Content Include="Scripts\i18n\angular-locale_es-gt.js" />
+    <Content Include="Scripts\i18n\angular-locale_es-hn.js" />
+    <Content Include="Scripts\i18n\angular-locale_es-ic.js" />
+    <Content Include="Scripts\i18n\angular-locale_es-mx.js" />
+    <Content Include="Scripts\i18n\angular-locale_es-ni.js" />
+    <Content Include="Scripts\i18n\angular-locale_es-pa.js" />
+    <Content Include="Scripts\i18n\angular-locale_es-pe.js" />
+    <Content Include="Scripts\i18n\angular-locale_es-ph.js" />
+    <Content Include="Scripts\i18n\angular-locale_es-pr.js" />
+    <Content Include="Scripts\i18n\angular-locale_es-py.js" />
+    <Content Include="Scripts\i18n\angular-locale_es-sv.js" />
+    <Content Include="Scripts\i18n\angular-locale_es-us.js" />
+    <Content Include="Scripts\i18n\angular-locale_es-uy.js" />
+    <Content Include="Scripts\i18n\angular-locale_es-ve.js" />
+    <Content Include="Scripts\i18n\angular-locale_es.js" />
+    <Content Include="Scripts\i18n\angular-locale_et-ee.js" />
+    <Content Include="Scripts\i18n\angular-locale_et.js" />
+    <Content Include="Scripts\i18n\angular-locale_eu-es.js" />
+    <Content Include="Scripts\i18n\angular-locale_eu.js" />
+    <Content Include="Scripts\i18n\angular-locale_ewo-cm.js" />
+    <Content Include="Scripts\i18n\angular-locale_ewo.js" />
+    <Content Include="Scripts\i18n\angular-locale_fa-af.js" />
+    <Content Include="Scripts\i18n\angular-locale_fa-ir.js" />
+    <Content Include="Scripts\i18n\angular-locale_fa.js" />
+    <Content Include="Scripts\i18n\angular-locale_ff-cm.js" />
+    <Content Include="Scripts\i18n\angular-locale_ff-gn.js" />
+    <Content Include="Scripts\i18n\angular-locale_ff-mr.js" />
+    <Content Include="Scripts\i18n\angular-locale_ff-sn.js" />
+    <Content Include="Scripts\i18n\angular-locale_ff.js" />
+    <Content Include="Scripts\i18n\angular-locale_fi-fi.js" />
+    <Content Include="Scripts\i18n\angular-locale_fi.js" />
+    <Content Include="Scripts\i18n\angular-locale_fil-ph.js" />
+    <Content Include="Scripts\i18n\angular-locale_fil.js" />
+    <Content Include="Scripts\i18n\angular-locale_fo-fo.js" />
+    <Content Include="Scripts\i18n\angular-locale_fo.js" />
+    <Content Include="Scripts\i18n\angular-locale_fr-be.js" />
+    <Content Include="Scripts\i18n\angular-locale_fr-bf.js" />
+    <Content Include="Scripts\i18n\angular-locale_fr-bi.js" />
+    <Content Include="Scripts\i18n\angular-locale_fr-bj.js" />
+    <Content Include="Scripts\i18n\angular-locale_fr-bl.js" />
+    <Content Include="Scripts\i18n\angular-locale_fr-ca.js" />
+    <Content Include="Scripts\i18n\angular-locale_fr-cd.js" />
+    <Content Include="Scripts\i18n\angular-locale_fr-cf.js" />
+    <Content Include="Scripts\i18n\angular-locale_fr-cg.js" />
+    <Content Include="Scripts\i18n\angular-locale_fr-ch.js" />
+    <Content Include="Scripts\i18n\angular-locale_fr-ci.js" />
+    <Content Include="Scripts\i18n\angular-locale_fr-cm.js" />
+    <Content Include="Scripts\i18n\angular-locale_fr-dj.js" />
+    <Content Include="Scripts\i18n\angular-locale_fr-dz.js" />
+    <Content Include="Scripts\i18n\angular-locale_fr-fr.js" />
+    <Content Include="Scripts\i18n\angular-locale_fr-ga.js" />
+    <Content Include="Scripts\i18n\angular-locale_fr-gf.js" />
+    <Content Include="Scripts\i18n\angular-locale_fr-gn.js" />
+    <Content Include="Scripts\i18n\angular-locale_fr-gp.js" />
+    <Content Include="Scripts\i18n\angular-locale_fr-gq.js" />
+    <Content Include="Scripts\i18n\angular-locale_fr-ht.js" />
+    <Content Include="Scripts\i18n\angular-locale_fr-km.js" />
+    <Content Include="Scripts\i18n\angular-locale_fr-lu.js" />
+    <Content Include="Scripts\i18n\angular-locale_fr-ma.js" />
+    <Content Include="Scripts\i18n\angular-locale_fr-mc.js" />
+    <Content Include="Scripts\i18n\angular-locale_fr-mf.js" />
+    <Content Include="Scripts\i18n\angular-locale_fr-mg.js" />
+    <Content Include="Scripts\i18n\angular-locale_fr-ml.js" />
+    <Content Include="Scripts\i18n\angular-locale_fr-mq.js" />
+    <Content Include="Scripts\i18n\angular-locale_fr-mr.js" />
+    <Content Include="Scripts\i18n\angular-locale_fr-mu.js" />
+    <Content Include="Scripts\i18n\angular-locale_fr-nc.js" />
+    <Content Include="Scripts\i18n\angular-locale_fr-ne.js" />
+    <Content Include="Scripts\i18n\angular-locale_fr-pf.js" />
+    <Content Include="Scripts\i18n\angular-locale_fr-pm.js" />
+    <Content Include="Scripts\i18n\angular-locale_fr-re.js" />
+    <Content Include="Scripts\i18n\angular-locale_fr-rw.js" />
+    <Content Include="Scripts\i18n\angular-locale_fr-sc.js" />
+    <Content Include="Scripts\i18n\angular-locale_fr-sn.js" />
+    <Content Include="Scripts\i18n\angular-locale_fr-sy.js" />
+    <Content Include="Scripts\i18n\angular-locale_fr-td.js" />
+    <Content Include="Scripts\i18n\angular-locale_fr-tg.js" />
+    <Content Include="Scripts\i18n\angular-locale_fr-tn.js" />
+    <Content Include="Scripts\i18n\angular-locale_fr-vu.js" />
+    <Content Include="Scripts\i18n\angular-locale_fr-wf.js" />
+    <Content Include="Scripts\i18n\angular-locale_fr-yt.js" />
+    <Content Include="Scripts\i18n\angular-locale_fr.js" />
+    <Content Include="Scripts\i18n\angular-locale_fur-it.js" />
+    <Content Include="Scripts\i18n\angular-locale_fur.js" />
+    <Content Include="Scripts\i18n\angular-locale_fy-nl.js" />
+    <Content Include="Scripts\i18n\angular-locale_fy.js" />
+    <Content Include="Scripts\i18n\angular-locale_ga-ie.js" />
+    <Content Include="Scripts\i18n\angular-locale_ga.js" />
+    <Content Include="Scripts\i18n\angular-locale_gd-gb.js" />
+    <Content Include="Scripts\i18n\angular-locale_gd.js" />
+    <Content Include="Scripts\i18n\angular-locale_gl-es.js" />
+    <Content Include="Scripts\i18n\angular-locale_gl.js" />
+    <Content Include="Scripts\i18n\angular-locale_gsw-ch.js" />
+    <Content Include="Scripts\i18n\angular-locale_gsw-fr.js" />
+    <Content Include="Scripts\i18n\angular-locale_gsw-li.js" />
+    <Content Include="Scripts\i18n\angular-locale_gsw.js" />
+    <Content Include="Scripts\i18n\angular-locale_gu-in.js" />
+    <Content Include="Scripts\i18n\angular-locale_gu.js" />
+    <Content Include="Scripts\i18n\angular-locale_guz-ke.js" />
+    <Content Include="Scripts\i18n\angular-locale_guz.js" />
+    <Content Include="Scripts\i18n\angular-locale_gv-im.js" />
+    <Content Include="Scripts\i18n\angular-locale_gv.js" />
+    <Content Include="Scripts\i18n\angular-locale_ha-latn-gh.js" />
+    <Content Include="Scripts\i18n\angular-locale_ha-latn-ne.js" />
+    <Content Include="Scripts\i18n\angular-locale_ha-latn-ng.js" />
+    <Content Include="Scripts\i18n\angular-locale_ha-latn.js" />
+    <Content Include="Scripts\i18n\angular-locale_ha.js" />
+    <Content Include="Scripts\i18n\angular-locale_haw-us.js" />
+    <Content Include="Scripts\i18n\angular-locale_haw.js" />
+    <Content Include="Scripts\i18n\angular-locale_he-il.js" />
+    <Content Include="Scripts\i18n\angular-locale_he.js" />
+    <Content Include="Scripts\i18n\angular-locale_hi-in.js" />
+    <Content Include="Scripts\i18n\angular-locale_hi.js" />
+    <Content Include="Scripts\i18n\angular-locale_hr-ba.js" />
+    <Content Include="Scripts\i18n\angular-locale_hr-hr.js" />
+    <Content Include="Scripts\i18n\angular-locale_hr.js" />
+    <Content Include="Scripts\i18n\angular-locale_hsb-de.js" />
+    <Content Include="Scripts\i18n\angular-locale_hsb.js" />
+    <Content Include="Scripts\i18n\angular-locale_hu-hu.js" />
+    <Content Include="Scripts\i18n\angular-locale_hu.js" />
+    <Content Include="Scripts\i18n\angular-locale_hy-am.js" />
+    <Content Include="Scripts\i18n\angular-locale_hy.js" />
+    <Content Include="Scripts\i18n\angular-locale_ia-fr.js" />
+    <Content Include="Scripts\i18n\angular-locale_ia.js" />
+    <Content Include="Scripts\i18n\angular-locale_id-id.js" />
+    <Content Include="Scripts\i18n\angular-locale_id.js" />
+    <Content Include="Scripts\i18n\angular-locale_ig-ng.js" />
+    <Content Include="Scripts\i18n\angular-locale_ig.js" />
+    <Content Include="Scripts\i18n\angular-locale_ii-cn.js" />
+    <Content Include="Scripts\i18n\angular-locale_ii.js" />
+    <Content Include="Scripts\i18n\angular-locale_in.js" />
+    <Content Include="Scripts\i18n\angular-locale_is-is.js" />
+    <Content Include="Scripts\i18n\angular-locale_is.js" />
+    <Content Include="Scripts\i18n\angular-locale_it-ch.js" />
+    <Content Include="Scripts\i18n\angular-locale_it-it.js" />
+    <Content Include="Scripts\i18n\angular-locale_it-sm.js" />
+    <Content Include="Scripts\i18n\angular-locale_it.js" />
+    <Content Include="Scripts\i18n\angular-locale_iw.js" />
+    <Content Include="Scripts\i18n\angular-locale_ja-jp.js" />
+    <Content Include="Scripts\i18n\angular-locale_ja.js" />
+    <Content Include="Scripts\i18n\angular-locale_jgo-cm.js" />
+    <Content Include="Scripts\i18n\angular-locale_jgo.js" />
+    <Content Include="Scripts\i18n\angular-locale_jmc-tz.js" />
+    <Content Include="Scripts\i18n\angular-locale_jmc.js" />
+    <Content Include="Scripts\i18n\angular-locale_ka-ge.js" />
+    <Content Include="Scripts\i18n\angular-locale_ka.js" />
+    <Content Include="Scripts\i18n\angular-locale_kab-dz.js" />
+    <Content Include="Scripts\i18n\angular-locale_kab.js" />
+    <Content Include="Scripts\i18n\angular-locale_kam-ke.js" />
+    <Content Include="Scripts\i18n\angular-locale_kam.js" />
+    <Content Include="Scripts\i18n\angular-locale_kde-tz.js" />
+    <Content Include="Scripts\i18n\angular-locale_kde.js" />
+    <Content Include="Scripts\i18n\angular-locale_kea-cv.js" />
+    <Content Include="Scripts\i18n\angular-locale_kea.js" />
+    <Content Include="Scripts\i18n\angular-locale_khq-ml.js" />
+    <Content Include="Scripts\i18n\angular-locale_khq.js" />
+    <Content Include="Scripts\i18n\angular-locale_ki-ke.js" />
+    <Content Include="Scripts\i18n\angular-locale_ki.js" />
+    <Content Include="Scripts\i18n\angular-locale_kk-cyrl-kz.js" />
+    <Content Include="Scripts\i18n\angular-locale_kk-cyrl.js" />
+    <Content Include="Scripts\i18n\angular-locale_kk.js" />
+    <Content Include="Scripts\i18n\angular-locale_kkj-cm.js" />
+    <Content Include="Scripts\i18n\angular-locale_kkj.js" />
+    <Content Include="Scripts\i18n\angular-locale_kl-gl.js" />
+    <Content Include="Scripts\i18n\angular-locale_kl.js" />
+    <Content Include="Scripts\i18n\angular-locale_kln-ke.js" />
+    <Content Include="Scripts\i18n\angular-locale_kln.js" />
+    <Content Include="Scripts\i18n\angular-locale_km-kh.js" />
+    <Content Include="Scripts\i18n\angular-locale_km.js" />
+    <Content Include="Scripts\i18n\angular-locale_kn-in.js" />
+    <Content Include="Scripts\i18n\angular-locale_kn.js" />
+    <Content Include="Scripts\i18n\angular-locale_ko-kp.js" />
+    <Content Include="Scripts\i18n\angular-locale_ko-kr.js" />
+    <Content Include="Scripts\i18n\angular-locale_ko.js" />
+    <Content Include="Scripts\i18n\angular-locale_kok-in.js" />
+    <Content Include="Scripts\i18n\angular-locale_kok.js" />
+    <Content Include="Scripts\i18n\angular-locale_ks-arab-in.js" />
+    <Content Include="Scripts\i18n\angular-locale_ks-arab.js" />
+    <Content Include="Scripts\i18n\angular-locale_ks.js" />
+    <Content Include="Scripts\i18n\angular-locale_ksb-tz.js" />
+    <Content Include="Scripts\i18n\angular-locale_ksb.js" />
+    <Content Include="Scripts\i18n\angular-locale_ksf-cm.js" />
+    <Content Include="Scripts\i18n\angular-locale_ksf.js" />
+    <Content Include="Scripts\i18n\angular-locale_ksh-de.js" />
+    <Content Include="Scripts\i18n\angular-locale_ksh.js" />
+    <Content Include="Scripts\i18n\angular-locale_kw-gb.js" />
+    <Content Include="Scripts\i18n\angular-locale_kw.js" />
+    <Content Include="Scripts\i18n\angular-locale_ky-cyrl-kg.js" />
+    <Content Include="Scripts\i18n\angular-locale_ky-cyrl.js" />
+    <Content Include="Scripts\i18n\angular-locale_ky.js" />
+    <Content Include="Scripts\i18n\angular-locale_lag-tz.js" />
+    <Content Include="Scripts\i18n\angular-locale_lag.js" />
+    <Content Include="Scripts\i18n\angular-locale_lb-lu.js" />
+    <Content Include="Scripts\i18n\angular-locale_lb.js" />
+    <Content Include="Scripts\i18n\angular-locale_lg-ug.js" />
+    <Content Include="Scripts\i18n\angular-locale_lg.js" />
+    <Content Include="Scripts\i18n\angular-locale_lkt-us.js" />
+    <Content Include="Scripts\i18n\angular-locale_lkt.js" />
+    <Content Include="Scripts\i18n\angular-locale_ln-ao.js" />
+    <Content Include="Scripts\i18n\angular-locale_ln-cd.js" />
+    <Content Include="Scripts\i18n\angular-locale_ln-cf.js" />
+    <Content Include="Scripts\i18n\angular-locale_ln-cg.js" />
+    <Content Include="Scripts\i18n\angular-locale_ln.js" />
+    <Content Include="Scripts\i18n\angular-locale_lo-la.js" />
+    <Content Include="Scripts\i18n\angular-locale_lo.js" />
+    <Content Include="Scripts\i18n\angular-locale_lt-lt.js" />
+    <Content Include="Scripts\i18n\angular-locale_lt.js" />
+    <Content Include="Scripts\i18n\angular-locale_lu-cd.js" />
+    <Content Include="Scripts\i18n\angular-locale_lu.js" />
+    <Content Include="Scripts\i18n\angular-locale_luo-ke.js" />
+    <Content Include="Scripts\i18n\angular-locale_luo.js" />
+    <Content Include="Scripts\i18n\angular-locale_luy-ke.js" />
+    <Content Include="Scripts\i18n\angular-locale_luy.js" />
+    <Content Include="Scripts\i18n\angular-locale_lv-lv.js" />
+    <Content Include="Scripts\i18n\angular-locale_lv.js" />
+    <Content Include="Scripts\i18n\angular-locale_mas-ke.js" />
+    <Content Include="Scripts\i18n\angular-locale_mas-tz.js" />
+    <Content Include="Scripts\i18n\angular-locale_mas.js" />
+    <Content Include="Scripts\i18n\angular-locale_mer-ke.js" />
+    <Content Include="Scripts\i18n\angular-locale_mer.js" />
+    <Content Include="Scripts\i18n\angular-locale_mfe-mu.js" />
+    <Content Include="Scripts\i18n\angular-locale_mfe.js" />
+    <Content Include="Scripts\i18n\angular-locale_mg-mg.js" />
+    <Content Include="Scripts\i18n\angular-locale_mg.js" />
+    <Content Include="Scripts\i18n\angular-locale_mgh-mz.js" />
+    <Content Include="Scripts\i18n\angular-locale_mgh.js" />
+    <Content Include="Scripts\i18n\angular-locale_mgo-cm.js" />
+    <Content Include="Scripts\i18n\angular-locale_mgo.js" />
+    <Content Include="Scripts\i18n\angular-locale_mk-mk.js" />
+    <Content Include="Scripts\i18n\angular-locale_mk.js" />
+    <Content Include="Scripts\i18n\angular-locale_ml-in.js" />
+    <Content Include="Scripts\i18n\angular-locale_ml.js" />
+    <Content Include="Scripts\i18n\angular-locale_mn-cyrl-mn.js" />
+    <Content Include="Scripts\i18n\angular-locale_mn-cyrl.js" />
+    <Content Include="Scripts\i18n\angular-locale_mn.js" />
+    <Content Include="Scripts\i18n\angular-locale_mr-in.js" />
+    <Content Include="Scripts\i18n\angular-locale_mr.js" />
+    <Content Include="Scripts\i18n\angular-locale_ms-latn-bn.js" />
+    <Content Include="Scripts\i18n\angular-locale_ms-latn-my.js" />
+    <Content Include="Scripts\i18n\angular-locale_ms-latn-sg.js" />
+    <Content Include="Scripts\i18n\angular-locale_ms-latn.js" />
+    <Content Include="Scripts\i18n\angular-locale_ms.js" />
+    <Content Include="Scripts\i18n\angular-locale_mt-mt.js" />
+    <Content Include="Scripts\i18n\angular-locale_mt.js" />
+    <Content Include="Scripts\i18n\angular-locale_mua-cm.js" />
+    <Content Include="Scripts\i18n\angular-locale_mua.js" />
+    <Content Include="Scripts\i18n\angular-locale_my-mm.js" />
+    <Content Include="Scripts\i18n\angular-locale_my.js" />
+    <Content Include="Scripts\i18n\angular-locale_naq-na.js" />
+    <Content Include="Scripts\i18n\angular-locale_naq.js" />
+    <Content Include="Scripts\i18n\angular-locale_nb-no.js" />
+    <Content Include="Scripts\i18n\angular-locale_nb-sj.js" />
+    <Content Include="Scripts\i18n\angular-locale_nb.js" />
+    <Content Include="Scripts\i18n\angular-locale_nd-zw.js" />
+    <Content Include="Scripts\i18n\angular-locale_nd.js" />
+    <Content Include="Scripts\i18n\angular-locale_ne-in.js" />
+    <Content Include="Scripts\i18n\angular-locale_ne-np.js" />
+    <Content Include="Scripts\i18n\angular-locale_ne.js" />
+    <Content Include="Scripts\i18n\angular-locale_nl-aw.js" />
+    <Content Include="Scripts\i18n\angular-locale_nl-be.js" />
+    <Content Include="Scripts\i18n\angular-locale_nl-bq.js" />
+    <Content Include="Scripts\i18n\angular-locale_nl-cw.js" />
+    <Content Include="Scripts\i18n\angular-locale_nl-nl.js" />
+    <Content Include="Scripts\i18n\angular-locale_nl-sr.js" />
+    <Content Include="Scripts\i18n\angular-locale_nl-sx.js" />
+    <Content Include="Scripts\i18n\angular-locale_nl.js" />
+    <Content Include="Scripts\i18n\angular-locale_nmg-cm.js" />
+    <Content Include="Scripts\i18n\angular-locale_nmg.js" />
+    <Content Include="Scripts\i18n\angular-locale_nn-no.js" />
+    <Content Include="Scripts\i18n\angular-locale_nn.js" />
+    <Content Include="Scripts\i18n\angular-locale_nnh-cm.js" />
+    <Content Include="Scripts\i18n\angular-locale_nnh.js" />
+    <Content Include="Scripts\i18n\angular-locale_no-no.js" />
+    <Content Include="Scripts\i18n\angular-locale_no.js" />
+    <Content Include="Scripts\i18n\angular-locale_nr-za.js" />
+    <Content Include="Scripts\i18n\angular-locale_nr.js" />
+    <Content Include="Scripts\i18n\angular-locale_nso-za.js" />
+    <Content Include="Scripts\i18n\angular-locale_nso.js" />
+    <Content Include="Scripts\i18n\angular-locale_nus-sd.js" />
+    <Content Include="Scripts\i18n\angular-locale_nus.js" />
+    <Content Include="Scripts\i18n\angular-locale_nyn-ug.js" />
+    <Content Include="Scripts\i18n\angular-locale_nyn.js" />
+    <Content Include="Scripts\i18n\angular-locale_om-et.js" />
+    <Content Include="Scripts\i18n\angular-locale_om-ke.js" />
+    <Content Include="Scripts\i18n\angular-locale_om.js" />
+    <Content Include="Scripts\i18n\angular-locale_or-in.js" />
+    <Content Include="Scripts\i18n\angular-locale_or.js" />
+    <Content Include="Scripts\i18n\angular-locale_os-ge.js" />
+    <Content Include="Scripts\i18n\angular-locale_os-ru.js" />
+    <Content Include="Scripts\i18n\angular-locale_os.js" />
+    <Content Include="Scripts\i18n\angular-locale_pa-arab-pk.js" />
+    <Content Include="Scripts\i18n\angular-locale_pa-arab.js" />
+    <Content Include="Scripts\i18n\angular-locale_pa-guru-in.js" />
+    <Content Include="Scripts\i18n\angular-locale_pa-guru.js" />
+    <Content Include="Scripts\i18n\angular-locale_pa.js" />
+    <Content Include="Scripts\i18n\angular-locale_pl-pl.js" />
+    <Content Include="Scripts\i18n\angular-locale_pl.js" />
+    <Content Include="Scripts\i18n\angular-locale_ps-af.js" />
+    <Content Include="Scripts\i18n\angular-locale_ps.js" />
+    <Content Include="Scripts\i18n\angular-locale_pt-ao.js" />
+    <Content Include="Scripts\i18n\angular-locale_pt-br.js" />
+    <Content Include="Scripts\i18n\angular-locale_pt-cv.js" />
+    <Content Include="Scripts\i18n\angular-locale_pt-gw.js" />
+    <Content Include="Scripts\i18n\angular-locale_pt-mo.js" />
+    <Content Include="Scripts\i18n\angular-locale_pt-mz.js" />
+    <Content Include="Scripts\i18n\angular-locale_pt-pt.js" />
+    <Content Include="Scripts\i18n\angular-locale_pt-st.js" />
+    <Content Include="Scripts\i18n\angular-locale_pt-tl.js" />
+    <Content Include="Scripts\i18n\angular-locale_pt.js" />
+    <Content Include="Scripts\i18n\angular-locale_qu-bo.js" />
+    <Content Include="Scripts\i18n\angular-locale_qu-ec.js" />
+    <Content Include="Scripts\i18n\angular-locale_qu-pe.js" />
+    <Content Include="Scripts\i18n\angular-locale_qu.js" />
+    <Content Include="Scripts\i18n\angular-locale_rm-ch.js" />
+    <Content Include="Scripts\i18n\angular-locale_rm.js" />
+    <Content Include="Scripts\i18n\angular-locale_rn-bi.js" />
+    <Content Include="Scripts\i18n\angular-locale_rn.js" />
+    <Content Include="Scripts\i18n\angular-locale_ro-md.js" />
+    <Content Include="Scripts\i18n\angular-locale_ro-ro.js" />
+    <Content Include="Scripts\i18n\angular-locale_ro.js" />
+    <Content Include="Scripts\i18n\angular-locale_rof-tz.js" />
+    <Content Include="Scripts\i18n\angular-locale_rof.js" />
+    <Content Include="Scripts\i18n\angular-locale_ru-by.js" />
+    <Content Include="Scripts\i18n\angular-locale_ru-kg.js" />
+    <Content Include="Scripts\i18n\angular-locale_ru-kz.js" />
+    <Content Include="Scripts\i18n\angular-locale_ru-md.js" />
+    <Content Include="Scripts\i18n\angular-locale_ru-ru.js" />
+    <Content Include="Scripts\i18n\angular-locale_ru-ua.js" />
+    <Content Include="Scripts\i18n\angular-locale_ru.js" />
+    <Content Include="Scripts\i18n\angular-locale_rw-rw.js" />
+    <Content Include="Scripts\i18n\angular-locale_rw.js" />
+    <Content Include="Scripts\i18n\angular-locale_rwk-tz.js" />
+    <Content Include="Scripts\i18n\angular-locale_rwk.js" />
+    <Content Include="Scripts\i18n\angular-locale_sah-ru.js" />
+    <Content Include="Scripts\i18n\angular-locale_sah.js" />
+    <Content Include="Scripts\i18n\angular-locale_saq-ke.js" />
+    <Content Include="Scripts\i18n\angular-locale_saq.js" />
+    <Content Include="Scripts\i18n\angular-locale_sbp-tz.js" />
+    <Content Include="Scripts\i18n\angular-locale_sbp.js" />
+    <Content Include="Scripts\i18n\angular-locale_se-fi.js" />
+    <Content Include="Scripts\i18n\angular-locale_se-no.js" />
+    <Content Include="Scripts\i18n\angular-locale_se-se.js" />
+    <Content Include="Scripts\i18n\angular-locale_se.js" />
+    <Content Include="Scripts\i18n\angular-locale_seh-mz.js" />
+    <Content Include="Scripts\i18n\angular-locale_seh.js" />
+    <Content Include="Scripts\i18n\angular-locale_ses-ml.js" />
+    <Content Include="Scripts\i18n\angular-locale_ses.js" />
+    <Content Include="Scripts\i18n\angular-locale_sg-cf.js" />
+    <Content Include="Scripts\i18n\angular-locale_sg.js" />
+    <Content Include="Scripts\i18n\angular-locale_shi-latn-ma.js" />
+    <Content Include="Scripts\i18n\angular-locale_shi-latn.js" />
+    <Content Include="Scripts\i18n\angular-locale_shi-tfng-ma.js" />
+    <Content Include="Scripts\i18n\angular-locale_shi-tfng.js" />
+    <Content Include="Scripts\i18n\angular-locale_shi.js" />
+    <Content Include="Scripts\i18n\angular-locale_si-lk.js" />
+    <Content Include="Scripts\i18n\angular-locale_si.js" />
+    <Content Include="Scripts\i18n\angular-locale_sk-sk.js" />
+    <Content Include="Scripts\i18n\angular-locale_sk.js" />
+    <Content Include="Scripts\i18n\angular-locale_sl-si.js" />
+    <Content Include="Scripts\i18n\angular-locale_sl.js" />
+    <Content Include="Scripts\i18n\angular-locale_smn-fi.js" />
+    <Content Include="Scripts\i18n\angular-locale_smn.js" />
+    <Content Include="Scripts\i18n\angular-locale_sn-zw.js" />
+    <Content Include="Scripts\i18n\angular-locale_sn.js" />
+    <Content Include="Scripts\i18n\angular-locale_so-dj.js" />
+    <Content Include="Scripts\i18n\angular-locale_so-et.js" />
+    <Content Include="Scripts\i18n\angular-locale_so-ke.js" />
+    <Content Include="Scripts\i18n\angular-locale_so-so.js" />
+    <Content Include="Scripts\i18n\angular-locale_so.js" />
+    <Content Include="Scripts\i18n\angular-locale_sq-al.js" />
+    <Content Include="Scripts\i18n\angular-locale_sq-mk.js" />
+    <Content Include="Scripts\i18n\angular-locale_sq-xk.js" />
+    <Content Include="Scripts\i18n\angular-locale_sq.js" />
+    <Content Include="Scripts\i18n\angular-locale_sr-cyrl-ba.js" />
+    <Content Include="Scripts\i18n\angular-locale_sr-cyrl-me.js" />
+    <Content Include="Scripts\i18n\angular-locale_sr-cyrl-rs.js" />
+    <Content Include="Scripts\i18n\angular-locale_sr-cyrl-xk.js" />
+    <Content Include="Scripts\i18n\angular-locale_sr-cyrl.js" />
+    <Content Include="Scripts\i18n\angular-locale_sr-latn-ba.js" />
+    <Content Include="Scripts\i18n\angular-locale_sr-latn-me.js" />
+    <Content Include="Scripts\i18n\angular-locale_sr-latn-rs.js" />
+    <Content Include="Scripts\i18n\angular-locale_sr-latn-xk.js" />
+    <Content Include="Scripts\i18n\angular-locale_sr-latn.js" />
+    <Content Include="Scripts\i18n\angular-locale_sr.js" />
+    <Content Include="Scripts\i18n\angular-locale_ss-sz.js" />
+    <Content Include="Scripts\i18n\angular-locale_ss-za.js" />
+    <Content Include="Scripts\i18n\angular-locale_ss.js" />
+    <Content Include="Scripts\i18n\angular-locale_ssy-er.js" />
+    <Content Include="Scripts\i18n\angular-locale_ssy.js" />
+    <Content Include="Scripts\i18n\angular-locale_st-ls.js" />
+    <Content Include="Scripts\i18n\angular-locale_st-za.js" />
+    <Content Include="Scripts\i18n\angular-locale_st.js" />
+    <Content Include="Scripts\i18n\angular-locale_sv-ax.js" />
+    <Content Include="Scripts\i18n\angular-locale_sv-fi.js" />
+    <Content Include="Scripts\i18n\angular-locale_sv-se.js" />
+    <Content Include="Scripts\i18n\angular-locale_sv.js" />
+    <Content Include="Scripts\i18n\angular-locale_sw-ke.js" />
+    <Content Include="Scripts\i18n\angular-locale_sw-tz.js" />
+    <Content Include="Scripts\i18n\angular-locale_sw-ug.js" />
+    <Content Include="Scripts\i18n\angular-locale_sw.js" />
+    <Content Include="Scripts\i18n\angular-locale_swc-cd.js" />
+    <Content Include="Scripts\i18n\angular-locale_swc.js" />
+    <Content Include="Scripts\i18n\angular-locale_ta-in.js" />
+    <Content Include="Scripts\i18n\angular-locale_ta-lk.js" />
+    <Content Include="Scripts\i18n\angular-locale_ta-my.js" />
+    <Content Include="Scripts\i18n\angular-locale_ta-sg.js" />
+    <Content Include="Scripts\i18n\angular-locale_ta.js" />
+    <Content Include="Scripts\i18n\angular-locale_te-in.js" />
+    <Content Include="Scripts\i18n\angular-locale_te.js" />
+    <Content Include="Scripts\i18n\angular-locale_teo-ke.js" />
+    <Content Include="Scripts\i18n\angular-locale_teo-ug.js" />
+    <Content Include="Scripts\i18n\angular-locale_teo.js" />
+    <Content Include="Scripts\i18n\angular-locale_tg-cyrl-tj.js" />
+    <Content Include="Scripts\i18n\angular-locale_tg-cyrl.js" />
+    <Content Include="Scripts\i18n\angular-locale_tg.js" />
+    <Content Include="Scripts\i18n\angular-locale_th-th.js" />
+    <Content Include="Scripts\i18n\angular-locale_th.js" />
+    <Content Include="Scripts\i18n\angular-locale_ti-er.js" />
+    <Content Include="Scripts\i18n\angular-locale_ti-et.js" />
+    <Content Include="Scripts\i18n\angular-locale_ti.js" />
+    <Content Include="Scripts\i18n\angular-locale_tig-er.js" />
+    <Content Include="Scripts\i18n\angular-locale_tig.js" />
+    <Content Include="Scripts\i18n\angular-locale_tl.js" />
+    <Content Include="Scripts\i18n\angular-locale_tn-bw.js" />
+    <Content Include="Scripts\i18n\angular-locale_tn-za.js" />
+    <Content Include="Scripts\i18n\angular-locale_tn.js" />
+    <Content Include="Scripts\i18n\angular-locale_to-to.js" />
+    <Content Include="Scripts\i18n\angular-locale_to.js" />
+    <Content Include="Scripts\i18n\angular-locale_tr-cy.js" />
+    <Content Include="Scripts\i18n\angular-locale_tr-tr.js" />
+    <Content Include="Scripts\i18n\angular-locale_tr.js" />
+    <Content Include="Scripts\i18n\angular-locale_ts-za.js" />
+    <Content Include="Scripts\i18n\angular-locale_ts.js" />
+    <Content Include="Scripts\i18n\angular-locale_twq-ne.js" />
+    <Content Include="Scripts\i18n\angular-locale_twq.js" />
+    <Content Include="Scripts\i18n\angular-locale_tzm-latn-ma.js" />
+    <Content Include="Scripts\i18n\angular-locale_tzm-latn.js" />
+    <Content Include="Scripts\i18n\angular-locale_tzm.js" />
+    <Content Include="Scripts\i18n\angular-locale_ug-arab-cn.js" />
+    <Content Include="Scripts\i18n\angular-locale_ug-arab.js" />
+    <Content Include="Scripts\i18n\angular-locale_ug.js" />
+    <Content Include="Scripts\i18n\angular-locale_uk-ua.js" />
+    <Content Include="Scripts\i18n\angular-locale_uk.js" />
+    <Content Include="Scripts\i18n\angular-locale_ur-in.js" />
+    <Content Include="Scripts\i18n\angular-locale_ur-pk.js" />
+    <Content Include="Scripts\i18n\angular-locale_ur.js" />
+    <Content Include="Scripts\i18n\angular-locale_uz-arab-af.js" />
+    <Content Include="Scripts\i18n\angular-locale_uz-arab.js" />
+    <Content Include="Scripts\i18n\angular-locale_uz-cyrl-uz.js" />
+    <Content Include="Scripts\i18n\angular-locale_uz-cyrl.js" />
+    <Content Include="Scripts\i18n\angular-locale_uz-latn-uz.js" />
+    <Content Include="Scripts\i18n\angular-locale_uz-latn.js" />
+    <Content Include="Scripts\i18n\angular-locale_uz.js" />
+    <Content Include="Scripts\i18n\angular-locale_vai-latn-lr.js" />
+    <Content Include="Scripts\i18n\angular-locale_vai-latn.js" />
+    <Content Include="Scripts\i18n\angular-locale_vai-vaii-lr.js" />
+    <Content Include="Scripts\i18n\angular-locale_vai-vaii.js" />
+    <Content Include="Scripts\i18n\angular-locale_vai.js" />
+    <Content Include="Scripts\i18n\angular-locale_ve-za.js" />
+    <Content Include="Scripts\i18n\angular-locale_ve.js" />
+    <Content Include="Scripts\i18n\angular-locale_vi-vn.js" />
+    <Content Include="Scripts\i18n\angular-locale_vi.js" />
+    <Content Include="Scripts\i18n\angular-locale_vo-001.js" />
+    <Content Include="Scripts\i18n\angular-locale_vo.js" />
+    <Content Include="Scripts\i18n\angular-locale_vun-tz.js" />
+    <Content Include="Scripts\i18n\angular-locale_vun.js" />
+    <Content Include="Scripts\i18n\angular-locale_wae-ch.js" />
+    <Content Include="Scripts\i18n\angular-locale_wae.js" />
+    <Content Include="Scripts\i18n\angular-locale_wal-et.js" />
+    <Content Include="Scripts\i18n\angular-locale_wal.js" />
+    <Content Include="Scripts\i18n\angular-locale_xh-za.js" />
+    <Content Include="Scripts\i18n\angular-locale_xh.js" />
+    <Content Include="Scripts\i18n\angular-locale_xog-ug.js" />
+    <Content Include="Scripts\i18n\angular-locale_xog.js" />
+    <Content Include="Scripts\i18n\angular-locale_yav-cm.js" />
+    <Content Include="Scripts\i18n\angular-locale_yav.js" />
+    <Content Include="Scripts\i18n\angular-locale_yi-001.js" />
+    <Content Include="Scripts\i18n\angular-locale_yi.js" />
+    <Content Include="Scripts\i18n\angular-locale_yo-bj.js" />
+    <Content Include="Scripts\i18n\angular-locale_yo-ng.js" />
+    <Content Include="Scripts\i18n\angular-locale_yo.js" />
+    <Content Include="Scripts\i18n\angular-locale_zgh-ma.js" />
+    <Content Include="Scripts\i18n\angular-locale_zgh.js" />
+    <Content Include="Scripts\i18n\angular-locale_zh-cn.js" />
+    <Content Include="Scripts\i18n\angular-locale_zh-hans-cn.js" />
+    <Content Include="Scripts\i18n\angular-locale_zh-hans-hk.js" />
+    <Content Include="Scripts\i18n\angular-locale_zh-hans-mo.js" />
+    <Content Include="Scripts\i18n\angular-locale_zh-hans-sg.js" />
+    <Content Include="Scripts\i18n\angular-locale_zh-hans.js" />
+    <Content Include="Scripts\i18n\angular-locale_zh-hant-hk.js" />
+    <Content Include="Scripts\i18n\angular-locale_zh-hant-mo.js" />
+    <Content Include="Scripts\i18n\angular-locale_zh-hant-tw.js" />
+    <Content Include="Scripts\i18n\angular-locale_zh-hant.js" />
+    <Content Include="Scripts\i18n\angular-locale_zh-hk.js" />
+    <Content Include="Scripts\i18n\angular-locale_zh-tw.js" />
+    <Content Include="Scripts\i18n\angular-locale_zh.js" />
+    <Content Include="Scripts\i18n\angular-locale_zu-za.js" />
+    <Content Include="Scripts\i18n\angular-locale_zu.js" />
+    <Content Include="Scripts\jquery-2.1.4.js" />
+    <Content Include="Scripts\jquery-2.1.4.min.js" />
+    <Content Include="Scripts\jquery-2.1.4.min.map" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui-1.11.4.js" />
+    <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Images\accent.png" />
+    <Content Include="Images\bullet.png" />
+    <Content Include="Images\heroAccent.png" />
+    <Content Include="Images\orderedList0.png" />
+    <Content Include="Images\orderedList1.png" />
+    <Content Include="Images\orderedList2.png" />
+    <Content Include="Images\orderedList3.png" />
+    <Content Include="Images\orderedList4.png" />
+    <Content Include="Images\orderedList5.png" />
+    <Content Include="Images\orderedList6.png" />
+    <Content Include="Images\orderedList7.png" />
+    <Content Include="Images\orderedList8.png" />
+    <Content Include="Images\orderedList9.png" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\_RemoveExternalLoginsPartial.cshtml" />
+    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Manage.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\Home\Main.cshtml" />
+    <Content Include="Views\Home\angular.cshtml" />
+    <Content Include="Views\Home\Demo.cshtml" />
+    <Content Include="Scripts\version.json" />
+    <Content Include="Views\Home\Profile.cshtml" />
+    <Content Include="Views\Program\Index.cshtml" />
+    <Content Include="Views\Program\Exercises.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Filters\" />
+    <Folder Include="Views\Routines\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LiftBro\LiftBro.csproj">
+      <Project>{0CA29482-822A-4D3B-B8EA-FE2E381176F7}</Project>
+      <Name>LiftBro</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:4416/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

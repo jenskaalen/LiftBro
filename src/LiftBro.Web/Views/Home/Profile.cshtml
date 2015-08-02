@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Profile";
+}
+
+<div ng-controller="routineController">
+    
+    
+    @* Current exercise *@
+    <div class="row">        
+        <table class="table">
+            <caption class="h4">{{ currentExercise.exercise.name }}</caption>
+            <thead>
+                <tr>
+                    <th class="">Reps</th>
+                    <th>Weight</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="set in currentExercise.sets">
+                    <td> {{ set.reps }}</td>
+                    <td> {{ (exercises[currentExercise.exercise.name] * set.ormPercentage) / 100 }}kg </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="col-sm-offset-7 col-sm-3">Exercise {{ lastSetWorkout + 1 }} of {{ currentWorkout.exercises.length }}</div>
+        <div ng-show="lastSetWorkout < currentWorkout.exercises.length - 1" class="col-sm-2 btn btn-primary" ng-click="changeWorkout()">Next</div>
+        <div ng-show="lastSetWorkout >= currentWorkout.exercises.length - 1" class="col-sm-2 btn btn-primary" ng-click="changeWorkout()">Finished!</div>
+    </div>
+    
+    <div class="horizontal-divider">
+    </div>
+
+    <div class="row">
+        <div ng-repeat="exercise in currentWorkout.exercises">
+            <div>{{ exercise.Name }} </div>
+        </div>
+    </div>
+</div>

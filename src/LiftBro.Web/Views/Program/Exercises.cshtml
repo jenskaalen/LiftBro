@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "Exercises";
+}
+
+<div ng-controller="exerciseController">
+    <div>
+        <span class="glyphicon glyphicon-plus"></span><span>New</span>
+    </div>
+    
+    <div ng-show="creating">
+        <div></div>
+    </div>
+
+    <div ng-repeat="exercise in exercises">
+        {{exercise.name}}
+    </div>
+</div>
+
+<div class="h2">
+    <div></div>
+</div>

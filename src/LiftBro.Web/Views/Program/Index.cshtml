@@ -1,0 +1,58 @@
+﻿
+<div ng-controller="programController">
+    <div class="h3">
+        Current program: <strong>{{ currentProgram.name }}</strong>
+    </div>
+
+    <div ng-repeat="workoutDay in currentProgram.workoutDays | orderBy: 'order'">
+        <div class="btn btn-primary" ng-click="selectDay(workoutDay)">Select day {{ workoutDay.order }}</div>
+        
+        @*selectDay(workoutDay)*@
+        <div ng-show="selectedDay == workoutDay">
+
+            <div ng-show="workoutDay == selectedDay" ng-repeat="exercise in workoutDay.exercises | orderBy: 'order'">
+                <a href="javascript:;" ng-click="selectExercise(exercise)" class="btn">
+                    {{ exercise.exercise.name }} {{ workoutDay == selectedDay }}
+                </a>
+
+                <div ng-show="selectedExercise == exercise">
+                    <div>Exercise: {{ selectedExercise.exercise.name }}</div>
+
+                    <div class="row">
+                        <div class="h4">Sets</div>
+
+                        <div ng-repeat="set in selectedExercise.sets">
+                            <div>Reps: {{ set.reps }}</div>
+                            <div>One rep max percentage: {{ set.ormPercentage }}</div>
+                            <br />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <input ng-model="newSet.reps" />
+                        </div>
+
+                        <div class="col-sm-4">
+                            <input ng-model="newSet.ormPercentage" type="number" ng-init="newSet.ormPercentage = 50.0" />
+                        </div>
+                    </div>
+
+                    <div ng-click="addSet()" class="btn btn-primary">Add set</div>
+                </div>
+            </div>
+
+            <select ng-options="exercise as exercise.name for exercise in allExercises" ng-model="selectedExerciseToAdd"></select>
+            <div ng-show="selectedExerciseToAdd != null" class="btn btn-primary" ng-click="addExercise(selectedExerciseToAdd)">Add exercise</div>
+        </div>
+    </div>
+
+
+    <div>
+        <div class="btn btn-primary" ng-click="addDay()">Add day</div>
+    </div>
+
+    <div>
+        <span class="glyphicon glyphicon-plus"></span><span>New</span>
+    </div>
+</div>
