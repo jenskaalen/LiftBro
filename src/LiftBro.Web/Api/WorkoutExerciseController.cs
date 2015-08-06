@@ -30,6 +30,18 @@ namespace LiftBro.Web.Api
                         exercise.Sets.Add(set);
 
                         break;
+
+                        case ChangeModifier.Delete:
+                        var sourceSet = db.Sets.Find(update.Set.Id);
+                        db.Sets.Remove(sourceSet);
+                        break;
+
+                        case ChangeModifier.Update:
+                        var updateSet = db.Sets.Find(update.Set.Id);
+                        updateSet.ORMPercentage = set.ORMPercentage;
+                        updateSet.Reps = set.Reps;
+                        updateSet.Order = set.Order;
+                        break;
                     default:
                         throw new NotImplementedException();
                 }

@@ -12,8 +12,9 @@
 
             <div ng-show="workoutDay == selectedDay" ng-repeat="exercise in workoutDay.exercises | orderBy: 'order'">
                 <a href="javascript:;" ng-click="selectExercise(exercise)" class="btn">
-                    {{ exercise.exercise.name }} {{ workoutDay == selectedDay }}
+                    {{ exercise.exercise.name }}
                 </a>
+                <div class="glyphicon glyphicon-remove btn" ng-click="removeExercise(exercise)"></div>
 
                 <div ng-show="selectedExercise == exercise">
                     <div>Exercise: {{ selectedExercise.exercise.name }}</div>
@@ -21,7 +22,8 @@
                     <div class="row">
                         <div class="h4">Sets</div>
 
-                        <div ng-repeat="set in selectedExercise.sets">
+                        <div ng-repeat="set in selectedExercise.sets" class="set-container">
+                            <div class="glyphicon glyphicon-remove btn" ng-click="removeSet(set)"></div>
                             <div>Reps: {{ set.reps }}</div>
                             <div>One rep max percentage: {{ set.ormPercentage }}</div>
                             <br />
@@ -30,11 +32,11 @@
 
                     <div class="row">
                         <div class="col-sm-4">
-                            <input ng-model="newSet.reps" />
+                            <input ng-model="newSet.reps" placeholder="Repetitions" min="1" max="30"/>
                         </div>
 
                         <div class="col-sm-4">
-                            <input ng-model="newSet.ormPercentage" type="number" ng-init="newSet.ormPercentage = 50.0" />
+                            <input ng-model="newSet.ormPercentage" type="number" max="100" min="10" ng-init="newSet.ormPercentage = 50.0" />
                         </div>
                     </div>
 

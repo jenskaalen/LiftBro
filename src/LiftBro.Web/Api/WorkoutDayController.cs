@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -17,12 +18,15 @@ namespace LiftBro.Web.Api
         {
             using (var db = new LiftBroContext())
             {
-                ChangeModifier modifier = workoutDayExerciseChange.ChangeModifier;
-                Exercise exercise = workoutDayExerciseChange.Exercise;
+                ChangeModifier modifier = workoutDayExerciseChange.Modifier;
+                WorkoutExercise workoutExercise = db.WorkoutExercises.Find(workoutDayExerciseChange.Exercise.Id);
+                WorkoutDay sourceWorkoutDay = db.WorkoutDays.FirstOrDefault(day => day.Id == workoutDayExerciseChange.WorkoutDay.Id);
 
                 switch (modifier)
                 {
                     case ChangeModifier.Add:
+                        Exercise exercise = db.Exercises.Find(workoutDayExerciseChange.Exercise.Id);
+
                         Guid workoutDayId = workoutDayExerciseChange.WorkoutDay.Id;
                         WorkoutDay day = db.WorkoutDays
                             .Include("Exercises")
@@ -38,7 +42,14 @@ namespace LiftBro.Web.Api
                         break;
 
                     case ChangeModifier.Delete:
-                        throw new NotImplementedException();
+                        //TODO: this should be solved in database by making Exercise a non-null field
+                        //if (exercise == null)
+                        //    sourceWorkoutDay.Exercises.RemoveAll(workoutExercise => workoutExercise.Exercise == null);
+                        //else
+                        //    sourceWorkoutDay.Exercises.RemoveAll(workoutExercise => workoutExercise.Exercise.Id == exercise.Id);
+
+                        db.WorkoutExercises.Remove(workoutExercise);
+
                         //var exerciseToDelete =
                         //    workoutDay.Exercises.FirstOrDefault(
                         //        workoutExercise => workoutExercise.Exercise.Id == exercise.Id);

@@ -6,6 +6,6 @@ namespace LiftBro.Web.Models.Requests
     {
         public WorkoutDay WorkoutDay { get; set; }
         public Exercise Exercise { get; set; }
-        public ChangeModifier ChangeModifier { get; set; } 
+        public ChangeModifier Modifier { get; set; } 
     }
 }

@@ -191,6 +191,7 @@
   <ItemGroup>
     <Compile Include="Api\ExerciseController.cs" />
     <Compile Include="Api\ProgramController.cs" />
+    <Compile Include="Api\SetController.cs" />
     <Compile Include="Api\WorkoutDayController.cs" />
     <Compile Include="Api\WorkoutExerciseController.cs" />
     <Compile Include="App_Start\AuthConfig.cs" />
@@ -825,6 +826,12 @@
     <Content Include="Content\glyphs\glyphicons-97-vector-path-polygon.png" />
     <Content Include="Content\glyphs\glyphicons-98-vector-path-line.png" />
     <Content Include="Content\glyphs\glyphicons-99-vector-path-curve.png" />
+    <Content Include="Content\liftbro.css">
+      <DependentUpon>liftbro.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\liftbro.min.css">
+      <DependentUpon>liftbro.css</DependentUpon>
+    </Content>
     <Content Include="Content\site.css" />
     <Content Include="Content\ng-grid.css" />
     <Content Include="Content\themes\base\accordion.css" />
@@ -914,6 +921,9 @@
     <Content Include="Scripts\angular.min.js.map" />
     <Content Include="Content\liftbro.scss" />
     <Content Include="App_Data\seedData.json" />
+    <Content Include="Content\liftbro.css.map">
+      <DependentUpon>liftbro.css</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-dj.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-er.js" />
