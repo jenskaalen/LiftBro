@@ -64,8 +64,5 @@ namespace LiftBro.Web.Api
                 db.SaveChanges();
             }
         }
-
-        //[HttpPost]
-        //public void UpdateSets()
     }
 }

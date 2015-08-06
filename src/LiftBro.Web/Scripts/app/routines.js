@@ -1,21 +1,32 @@
 ﻿angular.module('main').controller('routineController', function ($scope, $http) {
     $scope.lastSetWorkout = 0;
+    var currentWorkoutDay = 0;
+    var currentExercise = 0;
 
     $scope.changeWorkout = function() {
         $scope.lastSetWorkout++;
 
-        if ($scope.lastSetWorkout >= $scope.routines[0].workoutDays.length)
+        if ($scope.lastSetWorkout >= $scope.programs[0].workoutDays.length + 1)
             $scope.lastSetWorkout = 0;
 
-        $scope.currentExercise = $scope.routines[0].workoutDays[$scope.lastSetWorkout].exercises[0];
+        $scope.currentExercise = $scope.programs[0].workoutDays[$scope.lastSetWorkout].exercises[0];
     };
 
-    $http.get('/api/Program/GetUserRoutines').success(function (routines) {
-        $scope.routines = routines;
-        $scope.currentWorkout = routines[0].workoutDays[0];
+    $scope.finishExercise = function() {
+        currentExercise++;
 
-            $scope.currentExercise = routines[0].workoutDays[0].exercises[0];
-            console.log($scope.currentExercise);
+        if (currentExercise >= $scope.programs[0].workoutDays[currentWorkoutDay].exercises.length)
+            currentExercise = 0;
+
+        $scope.currentExercise = $scope.programs[0].workoutDays[currentWorkoutDay].exercises[currentExercise];
+    };
+
+    $http.get('/api/Program/GetUserPrograms').success(function (programs) {
+        $scope.programs = programs;
+        $scope.currentWorkout = programs[0].workoutDays[currentWorkoutDay];
+
+        $scope.currentExercise = programs[0].workoutDays[currentWorkoutDay].exercises[0];
+        console.log($scope.currentExercise);
     });
 
     $http.get('/api/Program/GetUserExercises').success(function (exercises) {

@@ -14,7 +14,7 @@ namespace LiftBro.Web.Api
     public class ProgramController : ApiController
     {
         [HttpGet]
-        public List<Program> GetUserRoutines()
+        public List<Program> GetUserPrograms()
         {
             var user = GetUser();
 
@@ -25,10 +25,18 @@ namespace LiftBro.Web.Api
                     .Include(b => b.User)
                     .Select(routine => routine.Program)
                     .Include(routine => routine.WorkoutDays
-                        .Select(day => day.Exercises.OrderBy(exercise => exercise.Order).Select(exerciseDay => exerciseDay.Sets)))
+                        .Select(
+                            day =>
+                                day.Exercises.Select(exerciseDay => exerciseDay.Sets)))
                     .Include(routine => routine.WorkoutDays
                         .Select(day => day.Exercises.Select(exerciseDay => exerciseDay.Exercise)))
-                        .ToList();
+                    .ToList();
+
+                //ordering
+                foreach (var routine in userRoutines)
+                {
+                    routine.WorkoutDays = routine.WorkoutDays.OrderBy(day => day.Order).ToList();
+                }
 
                 return userRoutines;
             }

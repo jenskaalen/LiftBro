@@ -4,7 +4,9 @@
 }
 
 <div ng-controller="routineController">
-    
+    <div ng-show="programs.length > 1">
+        <div class="btn text-info" ng-click="alert('I am not yet implemented')">Change program?</div>
+    </div>
     
     @* Current exercise *@
     <div class="row">        
@@ -14,19 +16,21 @@
                 <tr>
                     <th class="">Reps</th>
                     <th>Weight</th>
+                    <th>Order</th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="set in currentExercise.sets">
                     <td> {{ set.reps }}</td>
                     <td> {{ (exercises[currentExercise.exercise.name] * set.ormPercentage) / 100 }}kg </td>
+                    <td> {{ set.order }} </td>
                 </tr>
             </tbody>
         </table>
         
-        <div class="col-sm-offset-7 col-sm-3">Exercise {{ lastSetWorkout + 1 }} of {{ currentWorkout.exercises.length }}</div>
-        <div ng-show="lastSetWorkout < currentWorkout.exercises.length - 1" class="col-sm-2 btn btn-primary" ng-click="changeWorkout()">Next</div>
-        <div ng-show="lastSetWorkout >= currentWorkout.exercises.length - 1" class="col-sm-2 btn btn-primary" ng-click="changeWorkout()">Finished!</div>
+        @*<div class="col-sm-offset-7 col-sm-3">Exercise {{ lastSetWorkout + 1 }} of {{ currentWorkout.exercises.length }}</div>*@
+        <div ng-show="lastSetWorkout < currentWorkout.exercises.length - 1" class="col-sm-2 btn btn-primary" ng-click="finishExercise()">Next</div>
+        <div ng-show="lastSetWorkout >= currentWorkout.exercises.length - 1" class="col-sm-2 btn btn-primary" ng-click="finishExercise()">Finished!</div>
     </div>
     
     <div class="horizontal-divider">
@@ -36,5 +40,14 @@
         <div ng-repeat="exercise in currentWorkout.exercises">
             <div>{{ exercise.Name }} </div>
         </div>
+    </div>
+    
+    
+    
+    <div class="row horizontal-divider">
+    </div>
+    
+    <div ng-repeat="workout in pastWorkouts">
+        
     </div>
 </div>
