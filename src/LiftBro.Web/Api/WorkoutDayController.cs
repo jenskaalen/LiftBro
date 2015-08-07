@@ -42,26 +42,29 @@ namespace LiftBro.Web.Api
                         break;
 
                     case ChangeModifier.Delete:
-                        //TODO: this should be solved in database by making Exercise a non-null field
-                        //if (exercise == null)
-                        //    sourceWorkoutDay.Exercises.RemoveAll(workoutExercise => workoutExercise.Exercise == null);
-                        //else
-                        //    sourceWorkoutDay.Exercises.RemoveAll(workoutExercise => workoutExercise.Exercise.Id == exercise.Id);
-
                         db.WorkoutExercises.Remove(workoutExercise);
-
-                        //var exerciseToDelete =
-                        //    workoutDay.Exercises.FirstOrDefault(
-                        //        workoutExercise => workoutExercise.Exercise.Id == exercise.Id);
-
-                        //db.WorkoutExercises.FirstOrDefault(workoutExercise => workoutExercise.Exercise.Id == exercise.Id 
-                        //    && workoutExercise.)
                     break;
                         case ChangeModifier.Update:
                         throw new NotImplementedException();
                 }
 
                 db.SaveChanges();
+            }
+        }
+
+        [HttpGet]
+        public IEnumerable<CompletedWorkoutDay> GetCompletedWorkouts(int take, int skip)
+        {
+            using (var db = new LiftBroContext())
+            {
+                //TODO: use authenticated user
+                User currentUser = db.Users.First();
+                return db.CompletedWorkouts.Where(day => day.User.Id == currentUser.Id)
+                    .OrderByDescending(day => day.When)
+                    .Skip(skip)
+                    .Take(take)
+                    .Include(day => day.Workout)
+                    .ToList();
             }
         }
     }
