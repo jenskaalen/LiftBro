@@ -8,6 +8,7 @@ namespace LiftBro.Model
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public Guid Id { get; set; }
         public Program Program { get; set; }
+        public WorkoutDay NextWorkout { get; set; }
         public User User { get; set; }
         public bool CurrentlyUsing { get; set; }
     }
