@@ -8,7 +8,8 @@ namespace LiftBro.Model
     {
         public string Name { get; set; }
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        //public Guid Id { get; set; }
         [Key]
-        public Guid Id { get; set; }
+        public string Username { get; set; }
     }
 }

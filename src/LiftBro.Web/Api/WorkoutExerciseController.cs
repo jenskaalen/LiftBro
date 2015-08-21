@@ -10,6 +10,7 @@ using LiftBro.Web.Models.Requests;
 
 namespace LiftBro.Web.Api
 {
+    [Authorize]
     public class WorkoutExerciseController : ApiController
     {
         [HttpPost]

@@ -6,4 +6,16 @@
 .set-container {
   border: 1px solid black; }
 
+.bot-padding-1 {
+  padding-bottom: 1em; }
+
+.top-padding-1 {
+  padding-top: 1em; }
+
+.bot-margin-1 {
+  margin-bottom: 1em; }
+
+.top-margin-1 {
+  margin-top: 1em; }
+
 /*# sourceMappingURL=liftbro.css.map */

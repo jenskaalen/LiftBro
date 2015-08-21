@@ -8,6 +8,7 @@ using LiftBro.Model;
 
 namespace LiftBro.Web.Api
 {
+    [Authorize]
     public class SetController : ApiController
     {
         [HttpDelete]

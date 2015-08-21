@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace LiftBro.Web.Controllers
 {
+    [Authorize]
     public class ProgramController : Controller
     {
         // GET: Program

@@ -11,6 +11,7 @@ using Microsoft.Ajax.Utilities;
 
 namespace LiftBro.Web.Api
 {
+    [Authorize]
     public class ProgramController : ApiController
     {
         [HttpGet]
@@ -21,7 +22,7 @@ namespace LiftBro.Web.Api
             using (var db = new LiftBroContext())
             {
                 List<Program> userRoutines = db.UserPrograms
-                    .Where(userRoutine => userRoutine.User.Id == user.Id)
+                    .Where(userRoutine => userRoutine.User.Username == User.Identity.Name)
                     .Include(b => b.User)
                     .Select(routine => routine.Program)
                     .Include(routine => routine.WorkoutDays
@@ -64,7 +65,7 @@ namespace LiftBro.Web.Api
 
             using (var db = new LiftBroContext())
             {
-                var exercises = db.UserExercises.Where(exercise => exercise.User.Id == user.Id)
+                var exercises = db.UserExercises.Where(exercise => exercise.User.Username == User.Identity.Name)
                     .Include(b => b.User)
                     .Include(b => b.Exercise)
                     .ToList();
@@ -80,7 +81,7 @@ namespace LiftBro.Web.Api
                 var user = GetUser();
                 exercise.User = user;
 
-                var existingExercise = db.UserExercises.FirstOrDefault(userExercise => userExercise.User.Id == user.Id
+                var existingExercise = db.UserExercises.FirstOrDefault(userExercise => userExercise.User.Username == User.Identity.Name
                                                      && userExercise.Exercise.Id == exercise.Id);
                 if (existingExercise == null)
                 {

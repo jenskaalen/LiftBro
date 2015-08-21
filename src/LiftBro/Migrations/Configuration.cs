@@ -27,7 +27,7 @@ namespace LiftBro.Migrations
                 "sp_MSForEachTable 'IF OBJECT_ID(''?'') NOT IN (ISNULL(OBJECT_ID(''[dbo].[__MigrationHistory]''),0)) DELETE FROM ?'");
             context.Database.ExecuteSqlCommand("EXEC sp_MSForEachTable 'ALTER TABLE ? CHECK CONSTRAINT ALL'");
 
-
+            string username = "ja.kaalen@gmail.com";
             Exercise squats = new Exercise() {Name = "Squats", Id = new Guid("2a4743fa-0324-e511-82ba-10c37b6cd0db")};
             context.Exercises.AddOrUpdate(squats);
             Exercise deads = new Exercise() {Name = "Deadlifts", Id = new Guid("424743fa-0324-e511-82ba-10c37b6cd0db")};
@@ -35,7 +35,7 @@ namespace LiftBro.Migrations
 
             User user = new User()
             {
-                Id = new Guid("366743fa-0324-e511-46ba-14c37b6cd0db"),
+                Username = username,
                 Name = "Jens Brohard"
             };
 
@@ -211,7 +211,7 @@ namespace LiftBro.Migrations
 
             context.Programs.AddOrUpdate(routine);
 
-            var dbUser = context.Users.Find(user.Id);
+            var dbUser = context.Users.Find(username);
             context.SaveChanges();
 
             var userExercise = new UserExercise()
@@ -231,12 +231,15 @@ namespace LiftBro.Migrations
                 User = dbUser
             };
 
+            var firstWorkoutDay = context.Programs.FirstOrDefault().WorkoutDays.FirstOrDefault();
+
             var userRoutine = new UserProgram()
             {
                 Program = context.Programs.Find(routine.Id),
                 Id = new Guid("664743fa-0324-e511-46ba-14c37b6cd0db"),
                 User = dbUser,
-                CurrentlyUsing = false
+                CurrentlyUsing = true, 
+                NextWorkout = firstWorkoutDay
             };
 
             context.UserPrograms.AddOrUpdate(userRoutine);
@@ -245,6 +248,23 @@ namespace LiftBro.Migrations
 
             context.UserExercises.AddOrUpdate(userExercise);
             context.UserExercises.AddOrUpdate(userDeadlifts);
+
+            WorkoutDay pastWorkoutDay = context.WorkoutDays.First();
+
+            context.CompletedWorkouts.AddOrUpdate(
+                new CompletedWorkoutDay
+                {
+                    User =dbUser,
+                    When = new DateTime(2015, 6, 6, 13, 0, 0),
+                    Workout = pastWorkoutDay
+                },
+                new CompletedWorkoutDay
+                {
+                    User = dbUser,
+                    When = new DateTime(2015, 6, 2, 13, 0, 0),
+                    Workout = pastWorkoutDay
+                }
+                );
 
             //base.Seed(context);
         }

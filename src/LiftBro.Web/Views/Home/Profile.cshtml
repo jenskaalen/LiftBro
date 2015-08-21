@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "Profile";
 }
+<h2>@User.Identity.Name</h2>
 
 <div ng-controller="routineController">
     <div ng-show="programs.length > 1">
@@ -29,8 +30,8 @@
         </table>
         
         @*<div class="col-sm-offset-7 col-sm-3">Exercise {{ lastSetWorkout + 1 }} of {{ currentWorkout.exercises.length }}</div>*@
-        <div ng-show="lastSetWorkout < currentWorkout.exercises.length - 1" class="col-sm-2 btn btn-primary" ng-click="finishExercise()">Next</div>
-        <div ng-show="lastSetWorkout >= currentWorkout.exercises.length - 1" class="col-sm-2 btn btn-primary" ng-click="finishExercise()">Finished!</div>
+        <div ng-show="currentExercise != currentWorkout.exercises[currentWorkout.exercises.length - 1]" class="col-sm-2 btn btn-primary" ng-click="finishExercise()">Next</div>
+        <div ng-show="currentExercise == currentWorkout.exercises[currentWorkout.exercises.length - 1]" class="col-sm-2 btn btn-primary" ng-click="finishWorkout()">Finished!</div>
     </div>
     
     <div class="horizontal-divider">
@@ -44,10 +45,11 @@
     
     
     
-    <div class="row horizontal-divider">
+    <div class="row horizontal-divider top-margin-1 top-padding-1">
     </div>
     
-    <div ng-repeat="workout in pastWorkouts">
-        
+    <div class="row h3">Completed workouts</div>
+    <div ng-repeat="workout in completedWorkouts">
+        <div>{{ workout.when }}</div>
     </div>
 </div>

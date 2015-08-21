@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using Microsoft.Web.WebPages.OAuth;
 using LiftBro.Web.Models;
+using Owin;
 
 namespace LiftBro.Web
 {
@@ -28,5 +30,10 @@ namespace LiftBro.Web
 
             //OAuthWebSecurity.RegisterGoogleClient();
         }
+
+        //public static void ConfigureAuth(IAppBuilder app)
+        //{
+        //    Debug.Print("This happened");    
+        //}
     }
 }

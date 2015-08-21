@@ -19,6 +19,7 @@ namespace LiftBro
         public DbSet<Set> Sets { get; set; }
         public DbSet<UserExercise> UserExercises { get; set; }
         public DbSet<UserProgram> UserPrograms { get; set; }
+        public DbSet<CompletedWorkoutDay> CompletedWorkouts { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
