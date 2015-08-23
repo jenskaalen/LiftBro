@@ -235,6 +235,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="BroExtensions.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProgramController.cs" />
@@ -938,6 +939,7 @@
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\app\app.js" />
     <Content Include="Scripts\app\directives.js" />
+    <Content Include="Scripts\app\newuser.js" />
     <Content Include="Scripts\app\program.js" />
     <Content Include="Scripts\app\routines.js" />
     <Content Include="Scripts\app\main.js" />
@@ -1769,6 +1771,7 @@
     <Content Include="Views\Program\Index.cshtml" />
     <Content Include="Views\Program\Exercises.cshtml" />
     <Content Include="Scripts\version.json" />
+    <Content Include="Views\Program\NewUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Filters\" />

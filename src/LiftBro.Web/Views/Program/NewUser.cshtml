@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "New uer";
+}
+
+<div class="h2">Hi</div>
+
+<div class="h4">Welcome as a new user. The first thing you need to do is choose a program. 
+    <br/> You customize the program after you're done.
+</div>
+
+<div ng-controller="newUserController">
+    <div class="row top-margin-1" ng-show="!programSet">
+        @*<div ng-repeat="program in allPrograms">
+                <div></div>
+            </div>*@
+        <div class="col-sm-6">
+            <select class="form-control" ng-options="program.name for program in allPrograms" ng-model="selectedProgram"></select>
+        </div>
+    </div>
+
+    <div class="row top-margin-1" ng-show="selectedProgram != null">
+        <div class="btn btn-primary" ng-click="selectProgram()">Select program</div>
+    </div>
+    
+    <div ng-show="programSet">
+        <div class="h4">Okay. Now you can jump to the program page to edit your program. </div>
+        <div class="h2"><a href="/Program/">Go to program</a></div>
+    </div>
+</div>

@@ -19,5 +19,10 @@ namespace LiftBro.Web.Controllers
         {
             return View();
         }
+
+        public ActionResult NewUser()
+        {
+            return View();
+        }
     }
 }

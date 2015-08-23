@@ -44,17 +44,62 @@ namespace LiftBro.Web.Api
         }
 
         [HttpGet]
+        public IEnumerable<Program> GetAll()
+        {
+            using (var db = new LiftBroContext())
+            {
+                return db.Programs.ToList();
+            }
+        }
+
+        [HttpPost]
+        public void SelectProgram(Program program)
+        {
+            Model.User currentUser = User.GetApplicationUser();
+
+            using (var db = new LiftBroContext())
+            {
+                db.Users.Attach(currentUser);
+                db.Programs.Attach(program);
+
+                var existingProgram = db.UserPrograms.FirstOrDefault(userProgram => userProgram.Program.Id == program.Id);
+
+                if (existingProgram != null)
+                {
+                    existingProgram.CurrentlyUsing = true;
+                }
+                else
+                {
+                    db.UserPrograms.Add(new UserProgram()
+                    {
+                        CurrentlyUsing = true, 
+                        Id = Guid.NewGuid(),
+                        Program =  program,
+                        User = currentUser
+                        //TODO: might need to set currentworkout here
+                    });
+                }
+
+                db.SaveChanges();
+            }
+        }
+
+        [HttpGet]
         public Program GetCurrentProgram()
         {
             //TODO: whatever, returning first program. fix this
             using (var db = new LiftBroContext())
             {
+                var currentUserProgram = db.UserPrograms
+                    .Include(program => program.User)
+                    .FirstOrDefault(program => program.User.Username == User.Identity.Name 
+                    && program.CurrentlyUsing);
+
                 return db.Programs
                     .Include(
                         routine => routine.WorkoutDays.Select(day => day.Exercises.Select(exercise => exercise.Sets)))
                         .Include(program => program.WorkoutDays.Select(day => day.Exercises.Select(exercise => exercise.Exercise)))
-                        .FirstOrDefault();
-
+                        .FirstOrDefault(program => program.Id == currentUserProgram.Program.Id);
             }
         }
 
