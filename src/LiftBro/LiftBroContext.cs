@@ -10,16 +10,16 @@ namespace LiftBro
 {
     public class LiftBroContext: DbContext
     {
-        public DbSet<User> Users { get; set; }
-        public DbSet<Exercise> Exercises { get; set; }
-        public DbSet<Program> Programs { get; set; }
-        public DbSet<WorkoutExercise> WorkoutExercises { get; set; }
-        public DbSet<WorkoutDay> WorkoutDays { get; set; }
-        //public DbSet<WorkoutWeek> WorkoutWeeks { get; set; }
-        public DbSet<Set> Sets { get; set; }
-        public DbSet<UserExercise> UserExercises { get; set; }
-        public DbSet<UserProgram> UserPrograms { get; set; }
-        public DbSet<CompletedWorkoutDay> CompletedWorkouts { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Exercise> Exercises { get; set; }
+        public virtual DbSet<Program> Programs { get; set; }
+        public virtual DbSet<WorkoutExercise> WorkoutExercises { get; set; }
+        public virtual DbSet<WorkoutDay> WorkoutDays { get; set; }
+        //public virtual DbSet<WorkoutWeek> WorkoutWeeks { get; set; }
+        public virtual DbSet<Set> Sets { get; set; }
+        public virtual DbSet<UserExercise> UserExercises { get; set; }
+        public virtual DbSet<UserProgram> UserPrograms { get; set; }
+        public virtual DbSet<CompletedWorkoutDay> CompletedWorkouts { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
