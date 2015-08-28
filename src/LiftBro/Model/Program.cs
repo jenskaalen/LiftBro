@@ -13,5 +13,6 @@ namespace LiftBro.Model
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public Guid Id { get; set; }
         public List<WorkoutDay> WorkoutDays { get; set; }
+        public User Creator { get; set; }
     }
 }
