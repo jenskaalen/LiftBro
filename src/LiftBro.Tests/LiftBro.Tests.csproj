@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="DatabaseTests.cs" />
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="ProgramTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
