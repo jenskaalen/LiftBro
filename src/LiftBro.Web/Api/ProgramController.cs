@@ -92,6 +92,7 @@ namespace LiftBro.Web.Api
             {
                 var currentUserProgram = db.UserPrograms
                     .Include(program => program.User)
+                    .Include(program => program.Program)
                     .FirstOrDefault(program => program.User.Username == User.Identity.Name 
                     && program.CurrentlyUsing);
 

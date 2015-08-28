@@ -11,7 +11,7 @@
     
     @* Current exercise *@
     <div class="row">        
-        <table class="table">
+        <table class="table" ng-show="currentExercise">
             <caption class="h4">{{ currentExercise.exercise.name }}</caption>
             <thead>
                 <tr>
@@ -30,8 +30,11 @@
         </table>
         
         @*<div class="col-sm-offset-7 col-sm-3">Exercise {{ lastSetWorkout + 1 }} of {{ currentWorkout.exercises.length }}</div>*@
-        <div ng-show="currentExercise != currentWorkout.exercises[currentWorkout.exercises.length - 1]" class="col-sm-2 btn btn-primary" ng-click="finishExercise()">Next</div>
-        <div ng-show="currentExercise == currentWorkout.exercises[currentWorkout.exercises.length - 1]" class="col-sm-2 btn btn-primary" ng-click="finishWorkout()">Finished!</div>
+        <div ng-show="currentExercise">
+            <div ng-show="currentExercise != currentWorkout.exercises[currentWorkout.exercises.length - 1]" class="col-sm-2 btn btn-primary" ng-click="finishExercise()">Next</div>
+            <div ng-show="currentExercise == currentWorkout.exercises[currentWorkout.exercises.length - 1]" class="col-sm-2 btn btn-primary" ng-click="finishWorkout()">Finished!</div>
+        </div>
+        <div ng-show="!currentExercise" class="col-sm-2 btn btn-primary" ng-click="getNextWorkout()">Next workout</div>
     </div>
     
     <div class="horizontal-divider">

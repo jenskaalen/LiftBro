@@ -4,6 +4,16 @@
     var currentExercise = 0;
     $scope.currentProgram = {};
 
+    $scope.getNextWorkout = function () {
+        $http.get('/api/WorkoutDay/GetNextWorkoutDay').success(function (workoutDay) {
+            $scope.currentWorkout = workoutDay;
+            $scope.currentExercise = workoutDay.exercises[0];
+        });
+    };
+
+
+    $scope.getNextWorkout();
+
     $scope.finishExercise = function() {
         currentExercise++;
 
@@ -21,13 +31,6 @@
     $http.get('/api/WorkoutDay/GetCompletedWorkouts?take=10&skip=0').success(function(completedWorkouts) {
         $scope.completedWorkouts = completedWorkouts;
     });
-
-    $http.get('/api/WorkoutDay/GetNextWorkoutDay').success(function (workoutDay) {
-            $scope.currentWorkout = workoutDay;
-            $scope.currentExercise = workoutDay.exercises[0];
-        }
-    );
-
     //$http.get('/api/Program/GetUserPrograms').success(function (programs) {
     //    $scope.programs = programs;
     //    $scope.currentWorkout = programs[0].workoutDays[currentWorkoutDay];

@@ -87,7 +87,17 @@
         $http.get('/api/Program/GetCurrentProgram').success(function (program) {
             $scope.currentProgram = program;
             console.log(program);
+            //
         });
     }
+
+    //todo: can rmeove i think
+    //function loadNextWorkout()
+    //{
+    //    $http.get('/api/WorkoutDay/GetNextWorkoutDay').success(function (workout) {
+    //        $scope.currentWorkout = workout;
+    //        $scope.selectDay(workout);
+    //    });
+    //}
 });
 
