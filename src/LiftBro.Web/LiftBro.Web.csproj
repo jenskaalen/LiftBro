@@ -245,6 +245,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ChangeModifier.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\IBroRepository.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LiftingProfile.cs" />
     <Compile Include="Models\Requests\SetUpdate.cs" />
@@ -941,7 +942,7 @@
     <Content Include="Scripts\app\directives.js" />
     <Content Include="Scripts\app\newuser.js" />
     <Content Include="Scripts\app\program.js" />
-    <Content Include="Scripts\app\routines.js" />
+    <Content Include="Scripts\app\profile.js" />
     <Content Include="Scripts\app\main.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -968,6 +969,8 @@
     <Content Include="Scripts\angular-aria.min.js.map" />
     <Content Include="Scripts\angular-animate.min.js.map" />
     <Content Include="Scripts\angular.min.js.map" />
+    <None Include="Properties\PublishProfiles\LiftBro debug.pubxml" />
+    <None Include="Properties\PublishProfiles\LiftBro release.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-dj.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-er.js" />
