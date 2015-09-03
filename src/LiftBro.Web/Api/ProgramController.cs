@@ -5,19 +5,20 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Mvc;
 using LiftBro.Model;
 using LiftBro.Web.Models;
 using Microsoft.Ajax.Utilities;
 
 namespace LiftBro.Web.Api
 {
-    [Authorize]
+    [System.Web.Http.Authorize]
     public class ProgramController : ApiController
     {
-        [HttpGet]
+        [System.Web.Http.HttpGet]
         public List<Program> GetUserPrograms()
         {
-            var user = GetUser();
+            var user = User.GetApplicationUser();
 
             using (var db = new LiftBroContext())
             {
@@ -43,7 +44,7 @@ namespace LiftBro.Web.Api
             }
         }
 
-        [HttpGet]
+        [System.Web.Http.HttpGet]
         public IEnumerable<Program> GetAll()
         {
             using (var db = new LiftBroContext())
@@ -52,7 +53,7 @@ namespace LiftBro.Web.Api
             }
         }
 
-        [HttpPost]
+        [System.Web.Http.HttpPost]
         public void SelectProgram(Program program)
         {
             Model.User currentUser = User.GetApplicationUser();
@@ -60,13 +61,28 @@ namespace LiftBro.Web.Api
             using (var db = new LiftBroContext())
             {
                 db.Users.Attach(currentUser);
-                db.Programs.Attach(program);
+                db.Programs
+                    .Attach(program);
 
-                var existingProgram = db.UserPrograms.FirstOrDefault(userProgram => userProgram.Program.Id == program.Id);
+                //disabling all other programs
+                //NOTE: it should practically not be possible to have more than one program that is currently used
+                var currentPrograms = db.UserPrograms.Where(userProgram => userProgram.CurrentlyUsing).ToList();
+                if (currentPrograms.Any())
+                {
+                    currentPrograms.ForEach(userProgram => userProgram.CurrentlyUsing = false);
+                }
+
+                var existingProgram = db.UserPrograms
+                    .Include(userP => userP.Program.WorkoutDays)
+                    .FirstOrDefault(userProgram => userProgram.Program.Id == program.Id);
 
                 if (existingProgram != null)
                 {
                     existingProgram.CurrentlyUsing = true;
+
+                    if (existingProgram.NextWorkout == null)
+                        existingProgram.NextWorkout =
+                            existingProgram.Program.WorkoutDays.OrderBy(day => day.Order).FirstOrDefault();
                 }
                 else
                 {
@@ -75,7 +91,8 @@ namespace LiftBro.Web.Api
                         CurrentlyUsing = true, 
                         Id = Guid.NewGuid(),
                         Program =  program,
-                        User = currentUser
+                        User = currentUser,
+                        NextWorkout = program.WorkoutDays.OrderBy(day => day.Order).FirstOrDefault()
                         //TODO: might need to set currentworkout here
                     });
                 }
@@ -84,7 +101,7 @@ namespace LiftBro.Web.Api
             }
         }
 
-        [HttpGet]
+        [System.Web.Http.HttpGet]
         public Program GetCurrentProgram()
         {
             //TODO: whatever, returning first program. fix this
@@ -104,10 +121,10 @@ namespace LiftBro.Web.Api
             }
         }
 
-        [HttpGet]
+        [System.Web.Http.HttpGet]
         public List<UserExercise> GetUserExercises()
         {
-            var user = GetUser();
+            var user = User.GetApplicationUser();
 
             using (var db = new LiftBroContext())
             {
@@ -119,12 +136,12 @@ namespace LiftBro.Web.Api
             }
         }
 
-        [HttpPost]
+        [System.Web.Http.HttpPost]
         public void SetOrm(UserExercise exercise)
         {
             using (var db = new LiftBroContext())
             {
-                var user = GetUser();
+                var user = User.GetApplicationUser();
                 exercise.User = user;
 
                 var existingExercise = db.UserExercises.FirstOrDefault(userExercise => userExercise.User.Username == User.Identity.Name
@@ -142,7 +159,7 @@ namespace LiftBro.Web.Api
             }
         }
 
-        [HttpPost]
+        [System.Web.Http.HttpPost]
         public void CreateExercise(Exercise exercise)
         {
             using (var db = new LiftBroContext())
@@ -152,7 +169,7 @@ namespace LiftBro.Web.Api
             }
         }
 
-        [HttpPost]
+        [System.Web.Http.HttpPost]
         public void CreateUpdateProgram(Program program)
         {
             using (var db = new LiftBroContext())
@@ -166,20 +183,12 @@ namespace LiftBro.Web.Api
                 }
                 else
                 {
+                    program.Id = Guid.NewGuid();
+                    program.Creator = User.GetApplicationUser();
                     db.Programs.Add(program);
                 }
 
                 db.SaveChanges();
-            }
-        }
-
-        private LiftBro.Model.User GetUser()
-        {
-            //var id = new Guid("d18a1e68-4523-e511-82ba-10c37b6cd0db");
-
-            using (var db = new LiftBroContext())
-            {
-                return db.Users.FirstOrDefault();
             }
         }
     }

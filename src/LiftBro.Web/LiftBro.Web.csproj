@@ -249,6 +249,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LiftingProfile.cs" />
     <Compile Include="Models\Requests\SetUpdate.cs" />
+    <Compile Include="Models\Requests\WorkoutDayChange.cs" />
     <Compile Include="Models\Requests\WorkoutDayExerciseChange.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -940,6 +941,8 @@
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\app\app.js" />
     <Content Include="Scripts\app\directives.js" />
+    <Content Include="Scripts\app\programCreator.js" />
+    <Content Include="Scripts\app\programEditor.js" />
     <Content Include="Scripts\app\newuser.js" />
     <Content Include="Scripts\app\program.js" />
     <Content Include="Scripts\app\profile.js" />
@@ -1775,6 +1778,8 @@
     <Content Include="Views\Program\Exercises.cshtml" />
     <Content Include="Scripts\version.json" />
     <Content Include="Views\Program\NewUser.cshtml" />
+    <Content Include="Views\Program\Editor.cshtml" />
+    <Content Include="Views\Program\_Creator.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Filters\" />

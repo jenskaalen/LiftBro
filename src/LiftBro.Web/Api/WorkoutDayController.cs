@@ -53,6 +53,56 @@ namespace LiftBro.Web.Api
             }
         }
 
+        [HttpPost]
+        public void UpdateDay(WorkoutDayChange workoutDayChange)
+        {
+            using (var db = new LiftBroContext())
+            {
+                ChangeModifier modifier = workoutDayChange.Modifier;
+                WorkoutDay workoutDay = workoutDayChange.WorkoutDay;
+                //workoutDay.Id = Guid.NewGuid();
+                Program workoutProgram = workoutDayChange.Program;
+
+                //WorkoutDay sourceWorkoutDay = db.WorkoutDays.FirstOrDefault(day => day.Id == workoutDayChange.WorkoutDay.Id);
+
+                switch (modifier)
+                {
+                    case ChangeModifier.Add:
+                        db.Programs.Attach(workoutProgram);
+
+                        db.Programs
+                            .Include(program => program.WorkoutDays)
+                            .FirstOrDefault(program1 => program1.Id == workoutProgram.Id)
+                            .WorkoutDays.Add(workoutDay);
+
+                        //Exercise exercise = db.Exercises.Find(workoutDayExerciseChange.Exercise.Id);
+
+                        //Guid workoutDayId = workoutDayExerciseChange.WorkoutDay.Id;
+                        //WorkoutDay day = db.WorkoutDays
+                        //    .Include("Exercises")
+                        //    .FirstOrDefault(workoutDay => workoutDay.Id == workoutDayId);
+
+                        //day.Exercises.Add(new WorkoutExercise()
+                        //{
+                        //    Id = Guid.NewGuid(),
+                        //    Exercise = exercise,
+                        //    Order = workoutDayExerciseChange.WorkoutDay.Exercises.Count + 1
+                        //});
+
+                        break;
+
+                    case ChangeModifier.Delete:
+                        db.WorkoutDays.Attach(workoutDay);
+                        db.WorkoutDays.Remove(workoutDay);
+                        break;
+                    case ChangeModifier.Update:
+                        throw new NotImplementedException();
+                }
+
+                db.SaveChanges();
+            }
+        }
+
         [HttpGet]
         public IEnumerable<CompletedWorkoutDay> GetCompletedWorkouts(int take, int skip)
         {
@@ -86,13 +136,17 @@ namespace LiftBro.Web.Api
 
                 WorkoutDay nextWorkoutDay = currentUserProgram.NextWorkout;
 
-                foreach (var workoutExercise in nextWorkoutDay.Exercises)
-                {
-                    workoutExercise.Sets =
-                        db.WorkoutExercises
-                        .Include(we => we.Exercise)
-                        .Include(we => we.Sets)
-                        .FirstOrDefault(we => we.Id == workoutExercise.Id).Sets;
+                //NOTE: seems there are no workouts. This means there workouts in the program
+                if (nextWorkoutDay != null)
+                { 
+                    foreach (var workoutExercise in nextWorkoutDay.Exercises)
+                    {
+                        workoutExercise.Sets =
+                            db.WorkoutExercises
+                            .Include(we => we.Exercise)
+                            .Include(we => we.Sets)
+                            .FirstOrDefault(we => we.Id == workoutExercise.Id).Sets;
+                    }
                 }
 
                 return nextWorkoutDay;

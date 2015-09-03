@@ -1,16 +1,23 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Profile";
 }
-<h2>@User.Identity.Name</h2>
+@*<h2>@User.Identity.Name</h2>*@
 
 <div ng-controller="profileController">
     <div ng-show="programs.length > 1">
         <div class="btn text-info" ng-click="alert('I am not yet implemented')">Change program?</div>
     </div>
-    
+
+    <div ng-show="$scope.currentProgram.workoutDays == null || $scope.currentProgram.workoutDays.length < 1">
+        <div>
+            Seems there are no workoutdays in your program. <a data-ng-href="/Program">Go here</a> to edit your current program.
+            <br />
+            Or click <a href="/Program/NewUser">here</a> to change your current program
+        </div>
+    </div>
+
     @* Current exercise *@
-    <div class="row">        
+    <div class="row">
         <table class="table" ng-show="currentExercise">
             <caption class="h4">{{ currentExercise.exercise.name }}</caption>
             <thead>
@@ -28,7 +35,7 @@
                 </tr>
             </tbody>
         </table>
-        
+
         @*<div class="col-sm-offset-7 col-sm-3">Exercise {{ lastSetWorkout + 1 }} of {{ currentWorkout.exercises.length }}</div>*@
         <div ng-show="currentExercise">
             <div ng-show="currentExercise != currentWorkout.exercises[currentWorkout.exercises.length - 1]" class="col-sm-2 btn btn-primary" ng-click="finishExercise()">Next</div>
@@ -36,7 +43,7 @@
         </div>
         <div ng-show="!currentExercise" class="col-sm-2 btn btn-primary" ng-click="getNextWorkout()">Next workout</div>
     </div>
-    
+
     <div class="horizontal-divider">
     </div>
 
@@ -45,12 +52,12 @@
             <div>{{ exercise.Name }} </div>
         </div>
     </div>
-    
-    
-    
+
+
+
     <div class="row horizontal-divider top-margin-1 top-padding-1">
     </div>
-    
+
     <div class="row h3">Completed workouts</div>
     <div ng-repeat="workout in completedWorkouts">
         <div>{{ workout.when }}</div>

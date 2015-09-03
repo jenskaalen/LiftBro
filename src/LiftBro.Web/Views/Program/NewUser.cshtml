@@ -1,26 +1,44 @@
 ﻿
 @{
-    ViewBag.Title = "New uer";
+    ViewBag.Title = "New user";
 }
 
-<div class="h2">Hi</div>
-
-<div class="h4">Welcome as a new user. The first thing you need to do is choose a program. 
-    <br/> You customize the program after you're done.
-</div>
 
 <div ng-controller="newUserController">
-    <div class="row top-margin-1" ng-show="!programSet">
-        @*<div ng-repeat="program in allPrograms">
-                <div></div>
-            </div>*@
-        <div class="col-sm-6">
-            <select class="form-control" ng-options="program.name for program in allPrograms" ng-model="selectedProgram"></select>
-        </div>
-    </div>
+    <div ng-show="!programSet">
+        <div class="h2">Hi</div>
 
-    <div class="row top-margin-1" ng-show="selectedProgram != null">
-        <div class="btn btn-primary" ng-click="selectProgram()">Select program</div>
+        <div class="h4">
+            Welcome as a new user. The first thing you need to do is choose a program.
+            <br /> You customize the program after you're done.
+        </div>
+
+        <div class="row top-margin-1" ng-show="!programSet">
+            <div class="col-sm-6">
+                <select class="form-control" ng-options="program.name for program in allPrograms" ng-model="selectedProgram"></select>
+                @*<div><span class="glyphicon glyphicon-refresh btn" ng-click="loadPrograms()"></span></div>*@
+            </div>
+        </div>
+
+        <div class="horizontal-divider"></div>
+
+        <div class="row">
+            <a class="col-sm-3 btn" data-ng-href="#"
+               ng-click="createNewProgram()">Create  program</a>
+        </div>
+
+        <div ng-show="creatingNew">
+            <form role="form">
+                <input ng-model="newProgram.Name" />
+
+                <div class="btn btn-primary"
+                     ng-click="create()">Create bish</div>
+            </form>
+        </div>
+
+        <div class="row top-margin-1" ng-show="selectedProgram != null">
+            <div class="btn btn-primary" ng-click="selectProgram()">Select program</div>
+        </div>
     </div>
     
     <div ng-show="programSet">

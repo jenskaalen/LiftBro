@@ -18,12 +18,17 @@
     };
 
     $scope.addDay = function () {
-        var workoutDay = new {
+        var workoutDay = {
             order: $scope.currentProgram.workoutDays.length,
             id: guid()
-                };
+        };
 
-        $scope.currentProgram.workoutDays.push(workoutDay);
+        $http.post('/api/WorkoutDay/UpdateDay', { workoutDay: workoutDay, program: $scope.currentProgram, modifier: 'add' })
+            .success(function () {
+                $scope.selectedExerciseToAdd = null;
+                $scope.currentProgram.workoutDays.push(workoutDay);
+                loadProgram();
+            });
     };
 
     $scope.addExercise = function (exercise) {
@@ -68,12 +73,14 @@
     };
 
     function guid() {
-        var guid = (S4() + S4() + "-" + S4() + "-4" + S4().substr(0, 3) + "-" + S4() + "-" + S4() + S4() + S4()).toLowerCase();
-        return guid;
-    }
+        function s4() {
+            return Math.floor((1 + Math.random()) * 0x10000)
+              .toString(16)
+              .substring(1);
+        }
 
-    function S4() {
-        return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+        return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+          s4() + '-' + s4() + s4() + s4();
     }
 
     function loadExercises() {
@@ -90,14 +97,5 @@
             //
         });
     }
-
-    //todo: can rmeove i think
-    //function loadNextWorkout()
-    //{
-    //    $http.get('/api/WorkoutDay/GetNextWorkoutDay').success(function (workout) {
-    //        $scope.currentWorkout = workout;
-    //        $scope.selectDay(workout);
-    //    });
-    //}
 });
 
