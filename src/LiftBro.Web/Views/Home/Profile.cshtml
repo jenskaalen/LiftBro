@@ -8,7 +8,7 @@
         <div class="btn text-info" ng-click="alert('I am not yet implemented')">Change program?</div>
     </div>
 
-    <div ng-show="$scope.currentProgram.workoutDays == null || $scope.currentProgram.workoutDays.length < 1">
+    <div ng-show="currentProgram.workoutDays == null || currentProgram.workoutDays.length < 1">
         <div>
             Seems there are no workoutdays in your program. <a data-ng-href="/Program">Go here</a> to edit your current program.
             <br />
@@ -22,16 +22,17 @@
             <caption class="h4">{{ currentExercise.exercise.name }}</caption>
             <thead>
                 <tr>
-                    <th class="">Reps</th>
+                    <th>Reps</th>
                     <th>Weight</th>
-                    <th>Order</th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="set in currentExercise.sets">
                     <td> {{ set.reps }}</td>
-                    <td> {{ (exercises[currentExercise.exercise.name] * set.ormPercentage) / 100 }}kg </td>
-                    <td> {{ set.order }} </td>
+                    <td ng-show="userExercises[currentExercise.exercise.name] != null"> {{ (userExercises[currentExercise.exercise.name].oneRepetitionMax * set.ormPercentage) / 100 }}kg </td>
+                    <td ng-show="userExercises[currentExercise.exercise.name] == null">
+                        <a data-ng-href="#" ng-click="editExercise(currentExercise)">Weight needs to be set</a>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -62,4 +63,35 @@
     <div ng-repeat="workout in completedWorkouts">
         <div>{{ workout.when }}</div>
     </div>
+    
+    <script type="text/ng-template" id="dialog1.tmpl.html">
+        <md-dialog aria-label="{{ exercise.Name }}">
+            <form>
+                <md-toolbar>
+                    <div class="md-toolbar-tools">
+                        <h2>Set yo lifts for {{ exercise.exercise.name }}</h2>
+                        <span flex></span>
+                        @*<md-button class="md-icon-button" ng-click="cancel()">
+                            <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                        </md-button>*@
+                    </div>
+                </md-toolbar>
+                <md-dialog-content style="max-width:800px;max-height:810px; ">
+                    <div>
+                        <md-input-container>
+                            <label>Set your one repetition max</label>
+                            <input ng-model="orm">
+                        </md-input-container>
+                    </div>
+                </md-dialog-content>
+
+                <div class="md-actions" layout="row">
+                    <md-button ng-click="setWeight(orm)">
+                        Set weight
+                    </md-button>
+                </div>
+            </form>
+        </md-dialog>
+    </script>
+
 </div>

@@ -18,7 +18,6 @@ namespace LiftBro.Migrations
             AutomaticMigrationDataLossAllowed = true;
             ContextKey = "LiftBro.LiftBroContext";
         }
-
         protected override void Seed(LiftBro.LiftBroContext context)
         {
             SeedWithoutUser(context);
@@ -399,7 +398,7 @@ namespace LiftBro.Migrations
             {
                 Exercise = squatToUse,
                 Id = new Guid("344743fa-0333-e511-46ba-14c37b6cd0db"),
-                OneRepetationMax = 100,
+                OneRepetitionMax = 100,
                 User = dbUser
             };
 
@@ -408,7 +407,7 @@ namespace LiftBro.Migrations
             {
                 Exercise = context.Exercises.Find(deads.Id),
                 Id = new Guid("344743fa-4242-e511-46ba-14c37b6cd0db"),
-                OneRepetationMax = 233,
+                OneRepetitionMax = 233,
                 User = dbUser
             };
 

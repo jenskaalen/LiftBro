@@ -68,6 +68,7 @@ namespace LiftBro.Web.Api
                 switch (modifier)
                 {
                     case ChangeModifier.Add:
+                        //TODO: this doesn twork, apparently
                         db.Programs.Attach(workoutProgram);
 
                         db.Programs

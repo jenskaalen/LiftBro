@@ -36,7 +36,7 @@ namespace LiftBro.Tests
                 {
                     Exercise = db.Exercises.First(),
                     Id = new Guid(),
-                    OneRepetationMax = 44,
+                    OneRepetitionMax = 44,
                     User = db.Users.First()
                 };
 

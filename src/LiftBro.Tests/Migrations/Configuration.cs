@@ -35,7 +35,7 @@ namespace LiftBro.Migrations
             {
                 Exercise = context.Exercises.First(),
                 Id = new Guid(),
-                OneRepetationMax = 44,
+                OneRepetitionMax = 44,
                 User = context.Users.First()
             };
 

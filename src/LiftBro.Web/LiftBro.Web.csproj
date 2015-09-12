@@ -876,6 +876,7 @@
     </Content>
     <Content Include="Content\site.css" />
     <Content Include="Content\ng-grid.css" />
+    <Content Include="Content\templates\userExercise.html" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -942,6 +943,7 @@
     <Content Include="Scripts\app\app.js" />
     <Content Include="Scripts\app\directives.js" />
     <Content Include="Scripts\app\programCreator.js" />
+    <Content Include="Scripts\app\userExercise.js" />
     <Content Include="Scripts\app\programEditor.js" />
     <Content Include="Scripts\app\newuser.js" />
     <Content Include="Scripts\app\program.js" />
@@ -1732,6 +1734,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\ui-bootstrap-tpls-0.13.4.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

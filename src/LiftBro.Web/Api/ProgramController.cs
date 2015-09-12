@@ -92,7 +92,12 @@ namespace LiftBro.Web.Api
                         Id = Guid.NewGuid(),
                         Program =  program,
                         User = currentUser,
-                        NextWorkout = program.WorkoutDays.OrderBy(day => day.Order).FirstOrDefault()
+                        NextWorkout = db.Programs
+                        .Include(pr => pr.WorkoutDays)
+                        .FirstOrDefault(pr => pr.Id == program.Id)
+                        .WorkoutDays.OrderBy(day => day.Order).FirstOrDefault()
+                        
+                        //.WorkoutDays.OrderBy(day => day.Order).FirstOrDefault()
                         //TODO: might need to set currentworkout here
                     });
                 }
@@ -152,7 +157,7 @@ namespace LiftBro.Web.Api
                 }
                 else
                 {
-                    existingExercise.OneRepetationMax = exercise.OneRepetationMax;
+                    existingExercise.OneRepetitionMax = exercise.OneRepetitionMax;
                 }
 
                 db.SaveChanges();

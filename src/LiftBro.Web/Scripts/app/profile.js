@@ -1,4 +1,4 @@
-﻿angular.module('main').controller('profileController', function($scope, $http) {
+﻿angular.module('main').controller('profileController', function($scope, $http, $mdDialog) {
     $scope.lastSetWorkout = 0;
     var currentWorkoutDay = 0;
     var currentExercise = 0;
@@ -11,8 +11,19 @@
         });
     };
 
+    $scope.getCurrentProgram = function() {
+        $http.get('/api/Program/GetCurrentProgram').success(function (program) {
+            $scope.currentProgram = program;
+            console.log(program);
+        });
+    };
+
+    $scope.updateExerciseWeight = function(exercise, weight) {
+
+    };
 
     $scope.getNextWorkout();
+    $scope.getCurrentProgram();
 
     $scope.finishExercise = function() {
         currentExercise++;
@@ -33,14 +44,59 @@
     });
 
     $http.get('/api/Program/GetUserExercises').success(function (exercises) {
-        $scope.exercises = new Array();
+        $scope.userExercises = new Array();
+        
 
         for (var i = 0; i < exercises.length; i++) {
-            $scope.exercises[exercises[i].exercise.name] = exercises[i].oneRepetationMax;
+            $scope.userExercises[exercises[i].exercise.name] = exercises[i];
         }
     });
 
-    //$scope.markAsDone = function(dayExercise) {
-    //    $http.post('/api/Program/MarkExerciseAsCompleted', dayExercise);
-    //};
+    $scope.editExercise = function (exercise) {
+        $scope.selectedExercise = exercise;
+        
+        $mdDialog.show({
+            controller: DialogController,
+            templateUrl: 'dialog1.tmpl.html',
+            parent: angular.element(document.body),
+            //targetEvent: ev,
+            clickOutsideToClose: true,
+            locals: { exercise: $scope.selectedExercise }
+        })
+        .then(function (orm) {
+            if ($scope.userExercises[$scope.selectedExercise.exercise.name] == null) {
+                console.log('setting userexercises to ' + $scope.selectedExercise.exercise.name + ' ' + orm);
+
+                $scope.userExercises[$scope.selectedExercise.exercise.name] = {
+                    exercise: $scope.selectedExercise.exercise,
+                    oneRepetitionMax: orm
+                };
+            }
+
+            $scope.userExercises[$scope.selectedExercise.exercise.name].oneRepetationMax = orm;
+
+            $http.post('/api/Exercise/UpdateUserExercise', $scope.userExercises[$scope.selectedExercise.exercise.name]);
+            //TODO: this
+
+        }, function () {
+            $scope.status = 'You cancelled the dialog.';
+        });
+    };
 });
+
+
+function DialogController($scope, $mdDialog, exercise) {
+    $scope.exercise = exercise;
+
+    $scope.hide = function () {
+        $mdDialog.hide();
+    };
+
+    $scope.cancel = function () {
+        $mdDialog.cancel();
+    };
+
+    $scope.setWeight = function (weight) {
+        $mdDialog.hide(weight);
+    };
+}

@@ -11,7 +11,7 @@ namespace LiftBro.Model
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public Guid Id { get; set; }
-        public double OneRepetationMax { get; set; }
+        public double OneRepetitionMax { get; set; }
         public User User { get; set; }
         public Exercise Exercise { get; set; }
     }
