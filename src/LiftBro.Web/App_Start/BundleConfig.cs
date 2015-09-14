@@ -25,16 +25,6 @@ namespace LiftBro.Web
                         "~/Scripts/angular-resource.js",
                         "~/Scripts/angular-route.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/app").Include(
-                        "~/Scripts/app/app.js",
-                        "~/Scripts/app/services.js",
-                        "~/Scripts/app/directives.js",
-                        "~/Scripts/app/main.js",
-                        "~/Scripts/app/contact.js",
-                        "~/Scripts/app/about.js",
-                        "~/Scripts/app/demo.js"
-                        ));
-
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(

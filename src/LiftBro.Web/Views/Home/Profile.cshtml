@@ -3,6 +3,11 @@
 }
 @*<h2>@User.Identity.Name</h2>*@
 
+
+<md-checkbox class="md-primary" aria-label="Checkbox No Ink" ng-model="data.cb5" md-no-ink="">
+    Checkbox (md-primary): No Ink
+</md-checkbox>
+
 <div ng-controller="profileController">
     <div ng-show="programs.length > 1">
         <div class="btn text-info" ng-click="alert('I am not yet implemented')">Change program?</div>

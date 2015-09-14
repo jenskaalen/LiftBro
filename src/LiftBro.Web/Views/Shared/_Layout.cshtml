@@ -41,7 +41,8 @@
             </div>
         </div>
     </div>
-        @Scripts.Render("~/bundles/jquery")
+    @*    @Scripts.Render("~/bundles/jquery")*@
+
         @*@Scripts.Render("~/bundles/angular")*@
 
     @* dump *@
@@ -52,10 +53,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-messages.min.js"></script>
     <script src="https://gitcdn.xyz/repo/angular/bower-material/v0.11.0/angular-material.js"></script>
 
-
-    @Scripts.Render("~/bundles/app")
+    
+    @* TODO: can be removed *@
+    @*@Scripts.Render("~/bundles/app")*@
 
     <script src="~/Scripts/ui-bootstrap-tpls-0.13.4.min.js"></script>
+    <script type="text/javascript" src="/Scripts/app/app.js"></script>
+    <script type="text/javascript" src="/Scripts/app/directives.js"></script>
+
     <script type="text/javascript" src="/Scripts/app/profile.js"></script>
     <script type="text/javascript" src="/Scripts/app/program.js"></script>
     <script type="text/javascript" src="/Scripts/app/programCreator.js"></script>
