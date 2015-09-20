@@ -4,7 +4,11 @@
   background: #fff; }
 
 .set-container {
-  border: 1px solid black; }
+  /*border-bottom: 1px solid black;*/ }
+
+.alternateDivColor:nth-of-type(even) {
+  /*background: #e0e0e0;*/
+  background-color: rgba(0, 0, 0, 0.05); }
 
 .bot-padding-1 {
   padding-bottom: 1em; }

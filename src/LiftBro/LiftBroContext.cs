@@ -25,6 +25,28 @@ namespace LiftBro
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<WorkoutExercise>()
+                .HasMany(w => w.Sets)
+                .WithOptional()
+                .WillCascadeOnDelete(true);
+
+            modelBuilder.Entity<WorkoutDay>()
+                .HasMany(w => w.Exercises)
+                .WithOptional()
+                .WillCascadeOnDelete(true);
+
+            modelBuilder.Entity<Program>()
+                .HasMany(w => w.WorkoutDays)
+                .WithOptional()
+                .WillCascadeOnDelete(true);
+
+
+
+            //modelBuilder.Entity<UserProgram>()
+            //    .HasRequired(w => w.Program)
+            //    .
+            //    .WillCascadeOnDelete(true);
+
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
     }

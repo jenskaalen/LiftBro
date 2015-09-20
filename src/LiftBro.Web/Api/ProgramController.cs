@@ -15,6 +15,18 @@ namespace LiftBro.Web.Api
     [System.Web.Http.Authorize]
     public class ProgramController : ApiController
     {
+        [System.Web.Http.HttpPut]
+        public void Update(Program program)
+        {
+            //TODO: need to account for user not owning this program
+            using (var db = new LiftBroContext())
+            {
+                db.Programs.Attach(program);
+
+                db.SaveChanges();
+            }
+        }
+
         [System.Web.Http.HttpGet]
         public List<Program> GetUserPrograms()
         {

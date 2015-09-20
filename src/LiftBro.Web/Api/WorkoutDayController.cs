@@ -14,92 +14,42 @@ namespace LiftBro.Web.Api
     [Authorize]
     public class WorkoutDayController : ApiController
     {
-        [HttpPost]
-        public void UpdateExercise(WorkoutDayExerciseChange workoutDayExerciseChange)
+        [HttpDelete]
+        public void Delete(Guid id)
         {
             using (var db = new LiftBroContext())
             {
-                ChangeModifier modifier = workoutDayExerciseChange.Modifier;
-                WorkoutExercise workoutExercise = db.WorkoutExercises.Find(workoutDayExerciseChange.Exercise.Id);
-                WorkoutDay sourceWorkoutDay = db.WorkoutDays.FirstOrDefault(day => day.Id == workoutDayExerciseChange.WorkoutDay.Id);
+                var day = db.WorkoutDays.Find(id);
 
-                switch (modifier)
-                {
-                    case ChangeModifier.Add:
-                        Exercise exercise = db.Exercises.Find(workoutDayExerciseChange.Exercise.Id);
+                var programs = db.UserPrograms
+                    .Include(program => program.NextWorkout)
+                    .Where(program => program.NextWorkout.Id == id).ToList();
+                programs.ForEach(program => program.NextWorkout = null);
 
-                        Guid workoutDayId = workoutDayExerciseChange.WorkoutDay.Id;
-                        WorkoutDay day = db.WorkoutDays
-                            .Include("Exercises")
-                            .FirstOrDefault(workoutDay => workoutDay.Id == workoutDayId);
+                db.WorkoutDays.Remove(day);
+                db.SaveChanges();
+            }
+        }
 
-                        day.Exercises.Add(new WorkoutExercise()
-                        {
-                            Id = Guid.NewGuid(),
-                            Exercise = exercise,
-                            Order = workoutDayExerciseChange.WorkoutDay.Exercises.Count + 1
-                        });
-
-                        break;
-
-                    case ChangeModifier.Delete:
-                        db.WorkoutExercises.Remove(workoutExercise);
-                    break;
-                        case ChangeModifier.Update:
-                        throw new NotImplementedException();
-                }
-
+        [HttpPut]
+        public void Update(WorkoutDay workoutDay)
+        {
+            using (var db = new LiftBroContext())
+            {
+                db.WorkoutDays.Attach(workoutDay);
+                db.ChangeTracker.Entries<WorkoutDay>().First(e => e.Entity == workoutDay)
+                                                      .State = EntityState.Modified;
                 db.SaveChanges();
             }
         }
 
         [HttpPost]
-        public void UpdateDay(WorkoutDayChange workoutDayChange)
+        public void Create(CreateWorkoutDay update)
         {
             using (var db = new LiftBroContext())
             {
-                ChangeModifier modifier = workoutDayChange.Modifier;
-                WorkoutDay workoutDay = workoutDayChange.WorkoutDay;
-                //workoutDay.Id = Guid.NewGuid();
-                Program workoutProgram = workoutDayChange.Program;
-
-                //WorkoutDay sourceWorkoutDay = db.WorkoutDays.FirstOrDefault(day => day.Id == workoutDayChange.WorkoutDay.Id);
-
-                switch (modifier)
-                {
-                    case ChangeModifier.Add:
-                        //TODO: this doesn twork, apparently
-                        db.Programs.Attach(workoutProgram);
-
-                        db.Programs
-                            .Include(program => program.WorkoutDays)
-                            .FirstOrDefault(program1 => program1.Id == workoutProgram.Id)
-                            .WorkoutDays.Add(workoutDay);
-
-                        //Exercise exercise = db.Exercises.Find(workoutDayExerciseChange.Exercise.Id);
-
-                        //Guid workoutDayId = workoutDayExerciseChange.WorkoutDay.Id;
-                        //WorkoutDay day = db.WorkoutDays
-                        //    .Include("Exercises")
-                        //    .FirstOrDefault(workoutDay => workoutDay.Id == workoutDayId);
-
-                        //day.Exercises.Add(new WorkoutExercise()
-                        //{
-                        //    Id = Guid.NewGuid(),
-                        //    Exercise = exercise,
-                        //    Order = workoutDayExerciseChange.WorkoutDay.Exercises.Count + 1
-                        //});
-
-                        break;
-
-                    case ChangeModifier.Delete:
-                        db.WorkoutDays.Attach(workoutDay);
-                        db.WorkoutDays.Remove(workoutDay);
-                        break;
-                    case ChangeModifier.Update:
-                        throw new NotImplementedException();
-                }
-
+                db.Programs.Attach(update.Program);
+                update.Program.WorkoutDays.Add(update.WorkoutDay);
                 db.SaveChanges();
             }
         }

@@ -248,7 +248,7 @@
     <Compile Include="Models\IBroRepository.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LiftingProfile.cs" />
-    <Compile Include="Models\Requests\SetUpdate.cs" />
+    <Compile Include="Models\Requests\CreateSet.cs" />
     <Compile Include="Models\Requests\WorkoutDayChange.cs" />
     <Compile Include="Models\Requests\WorkoutDayExerciseChange.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -941,6 +941,7 @@
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\app\app.js" />
+    <Content Include="Scripts\app\factories.js" />
     <Content Include="Scripts\app\directives.js" />
     <Content Include="Scripts\app\programCreator.js" />
     <Content Include="Scripts\app\userExercise.js" />

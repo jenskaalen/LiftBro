@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -13,40 +14,36 @@ namespace LiftBro.Web.Api
     [Authorize]
     public class WorkoutExerciseController : ApiController
     {
-        [HttpPost]
-        public void UpdateSet(SetUpdate update)
+        [HttpDelete]
+        public void Delete(Guid id)
         {
-            WorkoutExercise exercise = update.Exercise;
-            Set set = update.Set;
-            ChangeModifier modifier = update.Modifier;
-
             using (var db = new LiftBroContext())
             {
-                switch (modifier)
-                {
-                    case ChangeModifier.Add:
-                        //set.Id = Guid.NewGuid();
+                var exercise = db.WorkoutExercises.Find(id);
+                db.WorkoutExercises.Remove(exercise);
+                db.SaveChanges();
+            }
+        }
 
-                        db.WorkoutExercises.Attach(exercise);
-                        exercise.Sets.Add(set);
+        [HttpPut]
+        public void Update(WorkoutExercise exercise)
+        {
+            using (var db = new LiftBroContext())
+            {
+                db.WorkoutExercises.Attach(exercise);
+                db.ChangeTracker.Entries<WorkoutExercise>().First(e => e.Entity == exercise)
+                                                      .State = EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
 
-                        break;
-
-                        case ChangeModifier.Delete:
-                        var sourceSet = db.Sets.Find(update.Set.Id);
-                        db.Sets.Remove(sourceSet);
-                        break;
-
-                        case ChangeModifier.Update:
-                        var updateSet = db.Sets.Find(update.Set.Id);
-                        updateSet.ORMPercentage = set.ORMPercentage;
-                        updateSet.Reps = set.Reps;
-                        updateSet.Order = set.Order;
-                        break;
-                    default:
-                        throw new NotImplementedException();
-                }
-
+        [HttpPost]
+        public void Create(CreateWorkoutExercise update)
+        {
+            using (var db = new LiftBroContext())
+            {
+                db.WorkoutDays.Attach(update.WorkoutDay);
+                update.WorkoutDay.Exercises.Add(update.Exercise);
                 db.SaveChanges();
             }
         }

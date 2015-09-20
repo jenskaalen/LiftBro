@@ -6,58 +6,66 @@
         Current program: <strong>{{ currentProgram.name }}</strong>
     </div>
 
-    <div>
+    @*<div>
         <a href="/Program/Profile">Go to workout</a>
-    </div>
-    
-    <div></div>
+    </div>*@
 
     @*<div class="btn btn-primary" ng-click="selectDay(currentWorkout)">Select day {{ currentWorkout.order }}</div>*@
     
-    <div ng-repeat="workoutDay in currentProgram.workoutDays | orderBy: 'order'" class="row">
+    @*<div ng-repeat="workoutDay in currentProgram.workoutDays | orderBy: 'order'" class="row">
         <div class="btn btn-primary top-margin-1" ng-click="$parent.selectedDay = workoutDay">Day {{ workoutDay.order }}</div>
-    </div>
-        
-    <div ng-show="selectedDay" ng-repeat="exercise in selectedDay.exercises | orderBy: 'order'">
-        <a href="javascript:;" ng-click="selectExercise(exercise)" class="btn">
-            {{ exercise.exercise.name }}
-        </a>
-        <div class="glyphicon glyphicon-remove btn" ng-click="removeExercise(exercise)"></div>
-
-        <div ng-show="selectedExercise == exercise">
-            <div>Exercise: {{ selectedExercise.exercise.name }}</div>
-
-            <div class="row">
-                <div class="h4">Sets</div>
-
-                <div ng-repeat="set in selectedExercise.sets" class="set-container">
-                    <div class="glyphicon glyphicon-remove btn" ng-click="removeSet(set)"></div>
-                    <div>Reps: {{ set.reps }}</div>
-                    <div>One rep max percentage: {{ set.ormPercentage }}</div>
-                    <br />
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm-4">
-                    <input ng-model="newSet.reps" placeholder="Repetitions" min="1" max="30" />
-                </div>
-
-                <div class="col-sm-4">
-                    <input ng-model="newSet.ormPercentage" type="number" max="100" min="10" ng-init="newSet.ormPercentage = 50.0" />
-                </div>
-            </div>
-
-            <div ng-click="addSet()" class="btn btn-primary">Add set</div>
-        </div>
-    </div>
+    </div>*@
     
-    <div ng-show="selectedDay">
-        <select ng-options="exercise as exercise.name for exercise in allExercises" ng-model="selectedExerciseToAdd"></select>
-        <div ng-show="selectedExerciseToAdd != null" class="btn btn-primary" ng-click="addExercise(selectedExerciseToAdd)">Add exercise</div>
-    </div>
+    <md-content>
+        <md-tabs md-dynamic-height="true">
+            <md-tab ng-repeat="day in currentProgram.workoutDays | orderBy: 'order'" label="Day {{ day.order }}">
+                <div class="col-sm-12">
+                    <div ng-show="day" ng-repeat="exercise in day.exercises | orderBy: 'order'">
+                        <a href="javascript:;" ng-click="selectExercise(exercise)" class="btn">
+                            {{ exercise.exercise.name }}
+                        </a>
+                        <div class="glyphicon glyphicon-remove btn" ng-click="removeExercise(exercise)"></div>
 
-    <div>
-        <div class="btn btn-primary top-margin-1" ng-click="addDay()">Add day</div>
-    </div>
+                        <div>
+                            <div class="row" ng-show="exercise == selectedExercise">
+                                <div class="">
+                                    <div class="h4">Sets</div>
+
+                                    <div ng-show="exercise == selectedExercise" ng-repeat="set in selectedExercise.sets"
+                                         class="set-container row alternateDivColor">
+                                        <div class="col-xs-1 glyphicon glyphicon-edit btn" ng-show="!editingSet" ng-click="editingSet = true"></div>
+                                        <div class="col-xs-1 glyphicon glyphicon-ok btn" ng-show="editingSet" ng-click="updateSet(set); editingSet=false;"></div>
+                                        <input class="col-xs-2" ng-model="set.reps" ng-disabled="!editingSet" />
+                                        <input class="col-xs-4" ng-model="set.ormPercentage" ng-disabled="!editingSet"/>
+                                        <div class="col-xs-1 glyphicon glyphicon-remove btn" ng-click="removeSet(set)"></div>
+                                        <br />
+                                    </div>
+                                </div>
+                                
+                                <div class="top-margin-1">
+                                    <div class="col-sm-4">
+                                        <input ng-model="newSet.reps" placeholder="Repetitions" min="1" max="30" />
+                                    </div>
+
+                                    <div class="col-sm-4">
+                                        <input ng-model="newSet.ormPercentage" type="number" max="100" min="10" ng-init="newSet.ormPercentage = 50.0" />
+                                    </div>
+
+                                    <div ng-disabled="newSet.ormPercentage < 10 || newSet.reps < 1 || !newSet.ormPercentage || !newSet.reps"
+                                         ng-click="addSet()" class="btn btn-primary">Add set</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <br/>
+                
+                <div class="top-margin-1">
+                    <a href="javascript:;" ng-click="removeDay(day)">Delete current day?</a>
+                </div>
+            </md-tab>
+        </md-tabs>
+    </md-content>
+        
 </div>
