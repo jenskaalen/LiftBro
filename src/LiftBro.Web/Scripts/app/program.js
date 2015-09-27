@@ -1,8 +1,7 @@
 ﻿angular.module('main').controller('programController', function ($scope, $http, programUpdater) {
-    loadProgram();
-    loadExercises();
-
+  
     $scope.newSet = {};
+    $scope.newExerciseName = "";
 
     $scope.selectExercise = function (exercise) {
         if ($scope.selectedExercise == exercise) {
@@ -17,7 +16,6 @@
         $scope.selectedDay = day;
     };
 
-
     $scope.saveEverything = function() {
         programUpdater.saveProgram($scope.currentProgram).success(function() {
             alert('yay');
@@ -26,15 +24,18 @@
         });
     };
 
-
     $scope.addDay = function () {
         var workoutDay = {
-            order: $scope.currentProgram.workoutDays.length,
+            order: $scope.currentProgram.workoutDays.length + 1,
             id: guid()
         };
 
-        $http.post('/api/WorkoutDay/UpdateDay', { workoutDay: workoutDay, program: $scope.currentProgram, modifier: 'add' })
+        $http.post('/api/WorkoutDay/Create', { workoutDay: workoutDay, program: $scope.currentProgram })
             .success(function () {
+                if ($scope.selectedDay == null) {
+                    $scope.selectedDay = workoutDay;
+                }
+
                 $scope.selectedExerciseToAdd = null;
                 $scope.currentProgram.workoutDays.push(workoutDay);
                 loadProgram();
@@ -44,13 +45,20 @@
     $scope.addExercise = function (exercise) {
         var workoutExercise = {
             id: guid(),
-            exercise: exercise
-        };
+            exercise: exercise,
+            sets: []
+    };
+
+        console.log($scope.selectedDay);
 
         $http.post('/api/WorkoutExercise/Create', { workoutDay: $scope.selectedDay, exercise: workoutExercise })
             .success(function () {
+                if ($scope.selectedDay.workoutDays == null)
+                    $scope.selectedDay.workoutDays = [];
+
+                $scope.selectedDay.exercises.push(workoutExercise);
                 $scope.selectedExerciseToAdd = null;
-                loadProgram();
+                $scope.addingExercise = false;
             });
     };
 
@@ -62,7 +70,22 @@
         });
     };
 
-    //updating... order?
+    $scope.createExercise = function (name) {
+        var newExercise = {
+            id: guid(),
+            name: name
+        };
+
+        if (newExercise.name == null) {
+            alert('name must be set');
+            return;
+        }
+
+        $http.post('/api/Exercise/Create', newExercise).success(function () {
+            $scope.allExercises.push(newExercise);
+            $scope.newExerciseName = "";
+        });
+    };
 
     $scope.addSet = function() {
         $scope.newSet.id = guid();
@@ -118,9 +141,14 @@
     function loadProgram() {
         $http.get('/api/Program/GetCurrentProgram').success(function (program) {
             $scope.currentProgram = program;
-            console.log(program);
-            //
+
+            if ($scope.currentProgram.workoutDays != null) {
+                $scope.selectedDay = $scope.currentProgram.workoutDays[0];
+            }
         });
     }
+
+    loadProgram();
+    loadExercises();
 });
 

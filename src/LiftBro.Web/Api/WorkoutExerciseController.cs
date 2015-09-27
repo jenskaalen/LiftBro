@@ -42,8 +42,11 @@ namespace LiftBro.Web.Api
         {
             using (var db = new LiftBroContext())
             {
-                db.WorkoutDays.Attach(update.WorkoutDay);
-                update.WorkoutDay.Exercises.Add(update.Exercise);
+                var workoutDay = db.WorkoutDays
+                    .Include(day => day.Exercises).FirstOrDefault(day => day.Id == update.WorkoutDay.Id);
+                    //db.WorkoutDays.Attach(update.WorkoutDay);
+                db.Exercises.Attach(update.Exercise.Exercise);
+                workoutDay.Exercises.Add(update.Exercise);
                 db.SaveChanges();
             }
         }

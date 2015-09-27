@@ -202,6 +202,7 @@ namespace LiftBro.Web.Api
                 {
                     program.Id = Guid.NewGuid();
                     program.Creator = User.GetApplicationUser();
+                    db.Users.Attach(program.Creator);
                     db.Programs.Add(program);
                 }
 

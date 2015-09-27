@@ -20,6 +20,20 @@ namespace LiftBro.Web.Api
         }
 
         [HttpPost]
+        public void Create(Exercise exercise)
+        {
+            using (var db = new LiftBroContext())
+            {
+                var user = User.GetApplicationUser();
+                db.Users.Attach(user);
+
+                exercise.Creator = user;
+                db.Exercises.Add(exercise);
+                db.SaveChanges();
+            }
+        }
+
+        [HttpPost]
         public void UpdateUserExercise(UserExercise userExercise)
         {
             if (userExercise.User == null)

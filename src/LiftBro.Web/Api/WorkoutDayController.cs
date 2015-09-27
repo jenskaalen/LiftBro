@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Security.Cryptography.X509Certificates;
 using System.Web.Http;
 using LiftBro.Model;
 using LiftBro.Web.Models;
@@ -48,8 +49,14 @@ namespace LiftBro.Web.Api
         {
             using (var db = new LiftBroContext())
             {
-                db.Programs.Attach(update.Program);
-                update.Program.WorkoutDays.Add(update.WorkoutDay);
+                var program =
+                    db.Programs.Include(pr => pr.WorkoutDays)
+                        .FirstOrDefault(program1 => program1.Id == update.Program.Id);
+
+                if  (program == null)
+                    throw new Exception("Program not found");
+
+                program.WorkoutDays.Add(update.WorkoutDay);
                 db.SaveChanges();
             }
         }
@@ -111,6 +118,8 @@ namespace LiftBro.Web.Api
             {
                 //TODO: use authenticated user
                 User currentUser = db.Users.First();
+                //TOOD:unecessary attach?
+                db.Users.Attach(currentUser);
 
                 UserProgram currentUserProgram = db.UserPrograms
                     .Include(userProgram => userProgram.Program.WorkoutDays)
@@ -136,6 +145,13 @@ namespace LiftBro.Web.Api
 
                 currentUserProgram.NextWorkout = attached;
                 //nextWorkoutDay.CurrentWorkoutDay = true;
+
+                db.CompletedWorkouts.Add(new CompletedWorkoutDay()
+                {
+                    User = currentUser, 
+                    When = DateTime.Now,
+                    Workout = db.WorkoutDays.FirstOrDefault(day => day.Id == workoutDay.Id)
+                });
 
                 db.SaveChanges();
             }

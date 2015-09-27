@@ -8,5 +8,6 @@ namespace LiftBro.Model
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public Guid Id { get; set; }
         public string Name { get; set; }
+        public User Creator { get; set; }
     }
 }
