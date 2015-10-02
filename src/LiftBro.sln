@@ -1,13 +1,18 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiftBro", "LiftBro\LiftBro.csproj", "{0CA29482-822A-4D3B-B8EA-FE2E381176F7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiftBro.Tests", "LiftBro.Tests\LiftBro.Tests.csproj", "{34ECFE03-0C5D-4B9E-A58B-C993AD799FFC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiftBro.Web", "LiftBro.Web\LiftBro.Web.csproj", "{9B8BF380-7F42-4F02-8107-2C03CA88527C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1D5B7A89-C934-41CD-B6FC-2EB4C9BD66A4}"
+	ProjectSection(SolutionItems) = preProject
+		WebEssentials2015-Settings.json = WebEssentials2015-Settings.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
