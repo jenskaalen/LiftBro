@@ -30,14 +30,20 @@
                                 <div class="col-xs-12">
                                     <div class="h4">Sets</div>
 
-                                    <div ng-show="exercise == selectedExercise" ng-repeat="set in selectedExercise.sets"
-                                         class="set-container row alternateDivColor">
-                                        <div class="col-xs-1 glyphicon glyphicon-edit btn" ng-show="!editingSet" ng-click="editingSet = true"></div>
-                                        <div class="col-xs-1 glyphicon glyphicon-ok btn" ng-show="editingSet" ng-click="updateSet(set); editingSet=false;"></div>
-                                        <input class="col-xs-2" ng-model="set.reps" ng-disabled="!editingSet"/>
-                                        <input class="col-xs-4" ng-model="set.ormPercentage" ng-disabled="!editingSet"/>
-                                        <div class="col-xs-1 glyphicon glyphicon-remove btn" ng-click="removeSet(set)"></div>
-                                        <br/>
+                                    <div ui-sortable="sortableOptions" ng-model="selectedExercise.sets" ng-class="slist">
+                                        <div ng-show="exercise == selectedExercise" ng-repeat="set in selectedExercise.sets  | orderBy:'order'"
+                                             class="set-container row alternateDivColor">
+                                            <div class="col-xs-1 btn sitem glyphicon glyphicon-move">
+                                            </div>
+                                            <div class="col-xs-1 glyphicon glyphicon-edit btn" ng-show="!editingSet" ng-click="editingSet = true"></div>
+                                            <div class="col-xs-1 glyphicon glyphicon-ok btn" ng-show="editingSet" ng-click="updateSet(set); editingSet=false;"></div>
+                                                <input class="col-xs-2" ng-model="set.reps" ng-disabled="!editingSet" />
+                                                <input class="col-xs-4" ng-model="set.ormPercentage" ng-disabled="!editingSet" />
+                                            <div class="col-xs-1 glyphicon glyphicon-remove btn" ng-click="removeSet(set)"></div>
+                                            <br/>
+
+                                            {{ $index }}
+                                        </div>
                                     </div>
                                 </div>
 

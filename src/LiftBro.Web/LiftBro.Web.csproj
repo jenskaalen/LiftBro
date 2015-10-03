@@ -12,7 +12,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>LiftBro.Web</RootNamespace>
-    <AssemblyName>z</AssemblyName>
+    <AssemblyName>LiftBro.Web</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -261,6 +261,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\depencies.js" />
     <Content Include="Content\glyphs\glyphicons-1-glass.png" />
     <Content Include="Content\glyphs\glyphicons-10-magic.png" />
     <Content Include="Content\glyphs\glyphicons-100-vector-path-all.png" />
@@ -462,6 +463,8 @@
     <Content Include="Content\glyphs\glyphicons-278-pizza.png" />
     <Content Include="Content\glyphs\glyphicons-279-birthday-cake.png" />
     <Content Include="Content\glyphs\glyphicons-28-search.png" />
+    <Content Include="Content\liftbro.css" />
+    <Content Include="Content\liftbro.min.css" />
     <Content Include="Content\ng-grid.css" />
     <Content Include="Content\themes\base\datepicker.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -976,6 +979,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Controllers\Content\bootstrap-theme.css.map" />
     <Content Include="Controllers\Content\bootstrap.css.map" />
+    <Content Include="Content\liftbro.scss" />
+    <Content Include="Content\liftbro.css.map" />
     <None Include="Properties\PublishProfiles\LiftBro debug.pubxml" />
     <None Include="Properties\PublishProfiles\LiftBro release.pubxml" />
     <Content Include="Scripts\errors.json" />

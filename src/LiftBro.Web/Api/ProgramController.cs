@@ -86,7 +86,9 @@ namespace LiftBro.Web.Api
 
                 var existingProgram = db.UserPrograms
                     .Include(userP => userP.Program.WorkoutDays)
-                    .FirstOrDefault(userProgram => userProgram.Program.Id == program.Id);
+                    .Include(userP => userP.User)
+                    .FirstOrDefault(userProgram => userProgram.Program.Id == program.Id 
+                    && userProgram.User.Username == currentUser.Username);
 
                 if (existingProgram != null)
                 {
