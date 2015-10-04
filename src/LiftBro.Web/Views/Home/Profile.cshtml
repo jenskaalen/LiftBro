@@ -15,7 +15,6 @@
         </div>
     </div>
 
-    @* Current exercise *@
     <div class="row">
         <table class="table" ng-show="currentExercise">
             <caption class="h4">{{ currentExercise.exercise.name }}</caption>
@@ -36,10 +35,9 @@
             </tbody>
         </table>
 
-        @*<div class="col-sm-offset-7 col-sm-3">Exercise {{ lastSetWorkout + 1 }} of {{ currentWorkout.exercises.length }}</div>*@
         <div ng-show="currentExercise">
-            <div ng-show="currentExercise != currentWorkout.exercises[currentWorkout.exercises.length - 1]" class="col-sm-2 btn btn-primary" ng-click="finishExercise()">Next</div>
-            <div ng-show="currentExercise == currentWorkout.exercises[currentWorkout.exercises.length - 1]" class="col-sm-2 btn btn-primary" ng-click="finishWorkout()">Finished!</div>
+            <div ng-show="currentExercise != currentWorkout.exercises[currentWorkout.exercises.length - 1]" class="col-sm-2 col-xs-4 pull-right btn btn-primary" ng-click="finishExercise()">Next</div>
+            <div ng-show="currentExercise == currentWorkout.exercises[currentWorkout.exercises.length - 1]" class="col-sm-2 col-xs-4 pull-right btn btn-primary" ng-click="finishWorkout()">Finished!</div>
         </div>
         <div ng-show="!currentExercise" class="col-sm-2 btn btn-primary" ng-click="getNextWorkout()">Next workout</div>
     </div>
@@ -70,9 +68,6 @@
                     <div class="md-toolbar-tools">
                         <h2>Set yo lifts for {{ exercise.exercise.name }}</h2>
                         <span flex></span>
-                        @*<md-button class="md-icon-button" ng-click="cancel()">
-                            <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
-                        </md-button>*@
                     </div>
                 </md-toolbar>
                 <md-dialog-content style="max-width:800px;max-height:810px; ">

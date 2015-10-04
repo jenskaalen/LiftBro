@@ -13,7 +13,7 @@
             <br /> You customize the program after you're done.
         </div>
 
-        <div class="row top-margin-1" ng-show="!programSet">
+        <div class="top-margin-1" ng-show="!programSet">
             <div class="col-sm-6">
                 <select class="form-control" ng-options="program.name for program in allPrograms" ng-model="selectedProgram"></select>
             </div>
@@ -21,7 +21,7 @@
 
         <div class="horizontal-divider"></div>
 
-        <div class="row">
+        <div class="col-xs-12">
             <a class="col-sm-3 btn" data-ng-href="#"
                ng-click="createNewProgram()">Create  program</a>
         </div>
@@ -35,7 +35,7 @@
             </form>
         </div>
 
-        <div class="row top-margin-1" ng-show="selectedProgram != null">
+        <div class="col-xs-4 top-margin-1" ng-show="selectedProgram != null">
             <div class="btn btn-primary" ng-click="selectProgram()">Select program</div>
         </div>
     </div>
