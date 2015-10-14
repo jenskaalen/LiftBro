@@ -8,8 +8,13 @@
         $http.get('/api/WorkoutDay/GetNextWorkoutDay').success(function (workoutDay) {
             $scope.currentWorkout = workoutDay;
             $scope.currentExercise = workoutDay.exercises[0];
+            $scope.originalWorkoutDay = workoutDay;
         });
     };
+
+    $scope.$watch('currentWorkout', function() {
+        $scope.currentExercise = $scope.currentWorkout.exercises[0];
+    });
 
     $scope.getCurrentProgram = function() {
         $http.get('/api/Program/GetCurrentProgram').success(function (program) {
@@ -26,13 +31,29 @@
     $scope.getCurrentProgram();
 
     $scope.finishExercise = function() {
-        currentExercise++;
+        var index = $scope.currentWorkout.exercises.indexOf($scope.currentExercise);
+        var nextWorkoutIndex = index + 1;
 
-        if (currentExercise >= $scope.currentWorkout.exercises.length)
-            currentExercise = 0;
+        if (nextWorkoutIndex >= $scope.currentWorkout.exercises.length) {
+            nextWorkoutIndex = 0;
+        }
 
-        $scope.currentExercise = $scope.currentWorkout.exercises[currentExercise];
+        console.log($scope.currentWorkout.exercises.length);
+        console.log('next workout is ' + nextWorkoutIndex);
+
+        $scope.selectExercise($scope.currentWorkout.exercises[nextWorkoutIndex]);
     };
+
+    $scope.selectExercise = function(exercise) {
+        $scope.currentExercise = exercise;
+    }
+
+    $scope.setWorkoutDay = function (workoutDay) {
+        $http.post('/api/WorkoutDay/SetNextWorkoutDay', '"' + workoutDay.id.toString() + '"').success(function () {
+            $scope.currentWorkout = workoutDay;
+            $scope.originalWorkoutDay = workoutDay;
+        });
+    }
 
     $scope.finishWorkout = function() {
         $scope.currentExercise = null;
@@ -45,7 +66,6 @@
 
     $http.get('/api/Program/GetUserExercises').success(function (exercises) {
         $scope.userExercises = new Array();
-        
 
         for (var i = 0; i < exercises.length; i++) {
             $scope.userExercises[exercises[i].exercise.name] = exercises[i];

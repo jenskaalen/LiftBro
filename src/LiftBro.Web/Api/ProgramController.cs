@@ -78,7 +78,9 @@ namespace LiftBro.Web.Api
 
                 //disabling all other programs
                 //NOTE: it should practically not be possible to have more than one program that is currently used
-                var currentPrograms = db.UserPrograms.Where(userProgram => userProgram.CurrentlyUsing).ToList();
+                var currentPrograms = db.UserPrograms
+                    .Include("User").Where(userProgram => userProgram.CurrentlyUsing 
+                                                            && userProgram.User.Username == currentUser.Username).ToList();
                 if (currentPrograms.Any())
                 {
                     currentPrograms.ForEach(userProgram => userProgram.CurrentlyUsing = false);

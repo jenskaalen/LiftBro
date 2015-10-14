@@ -77,6 +77,25 @@ namespace LiftBro.Web.Api
             }
         }
 
+        [HttpPost]
+        public void SetNextWorkoutDay([FromBody]string id)
+        {
+            using (var db = new LiftBroContext())
+            {
+                Guid guidId = Guid.Parse(id);
+
+                UserProgram userProgram = db.UserPrograms
+                    .Include("User")
+                    //.Include("Program.WorkoutDays")
+                    .FirstOrDefault(program => program.User.Username == User.Identity.Name && program.CurrentlyUsing);
+
+                WorkoutDay workoutDay = db.WorkoutDays.Find(guidId);
+
+                userProgram.NextWorkout = workoutDay;
+                db.SaveChanges();
+            }
+        }
+
         [HttpGet]
         public WorkoutDay GetNextWorkoutDay()
         {
@@ -88,11 +107,21 @@ namespace LiftBro.Web.Api
                 UserProgram currentUserProgram = db.UserPrograms
                     .Include(userProgram => userProgram.NextWorkout.Exercises)
                     .Include(userProgram => userProgram.User)
+                    .Include("Program")
+                    .Include("Program.WorkoutDays")
                     .FirstOrDefault(program =>
                     program.User.Username == User.Identity.Name
                     && program.CurrentlyUsing);
 
                 WorkoutDay nextWorkoutDay = currentUserProgram.NextWorkout;
+
+                if (nextWorkoutDay == null)
+                {
+                    currentUserProgram.NextWorkout = currentUserProgram.Program.WorkoutDays
+                        .OrderBy(day => day.Order).FirstOrDefault();
+                    nextWorkoutDay = currentUserProgram.NextWorkout;
+                    db.SaveChanges();
+                }
 
                 //NOTE: seems there are no workouts. This means there workouts in the program
                 if (nextWorkoutDay != null)

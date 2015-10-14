@@ -23,5 +23,22 @@ namespace LiftBro.Web.Controllers
 
             return View("Profile");
         }
+
+        public ActionResult Weight()
+        {
+            //TODO: check if the user has any registered programs
+            using (var db = new LiftBroContext())
+            {
+                if (!db.UserPrograms.Any(program =>
+                    program.User.Username == User.Identity.Name))
+                {
+                    return Redirect("/Program/NewUser");
+                }
+            }
+
+            return View();
+        }
+
+
     }
 }

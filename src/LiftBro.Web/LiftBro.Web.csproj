@@ -231,6 +231,7 @@
     <Compile Include="Api\ExerciseController.cs" />
     <Compile Include="Api\ProgramController.cs" />
     <Compile Include="Api\SetController.cs" />
+    <Compile Include="Api\UserWeightController.cs" />
     <Compile Include="Api\WorkoutDayController.cs" />
     <Compile Include="Api\WorkoutExerciseController.cs" />
     <Compile Include="App_Start\AuthConfig.cs" />
@@ -463,7 +464,6 @@
     <Content Include="Content\glyphs\glyphicons-278-pizza.png" />
     <Content Include="Content\glyphs\glyphicons-279-birthday-cake.png" />
     <Content Include="Content\glyphs\glyphicons-28-search.png" />
-    <Content Include="Content\liftbro.css" />
     <Content Include="Content\liftbro.min.css" />
     <Content Include="Content\ng-grid.css" />
     <Content Include="Content\themes\base\datepicker.css" />
@@ -960,6 +960,7 @@
     <Content Include="Scripts\app\factories.js" />
     <Content Include="Scripts\app\directives.js" />
     <Content Include="Scripts\app\programCreator.js" />
+    <Content Include="Scripts\app\weight.js" />
     <Content Include="Scripts\app\userExercise.js" />
     <Content Include="Scripts\app\programEditor.js" />
     <Content Include="Scripts\app\newuser.js" />
@@ -1785,16 +1786,11 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
-    <Content Include="Views\Home\Main.cshtml" />
-    <Content Include="Views\Home\angular.cshtml" />
-    <Content Include="Views\Home\Demo.cshtml" />
     <Content Include="Views\Home\Profile.cshtml" />
     <Content Include="Views\Program\Index.cshtml" />
     <Content Include="Views\Program\Exercises.cshtml" />
@@ -1802,11 +1798,11 @@
     <Content Include="Views\Program\Editor.cshtml" />
     <Content Include="Views\Program\_Creator.cshtml" />
     <Content Include="Scripts\version.json" />
+    <Content Include="Views\Home\Weight.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\Content\bootstrap\" />
     <Folder Include="Filters\" />
-    <Folder Include="Views\Routines\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

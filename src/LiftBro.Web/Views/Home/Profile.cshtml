@@ -10,10 +10,34 @@
     <div ng-show="currentProgram.workoutDays == null || currentProgram.workoutDays.length < 1">
         <div>
             Seems there are no workoutdays in your program. <a data-ng-href="/Program">Go here</a> to edit your current program.
-            <br />
+            <br/>
             Or click <a href="/Program/NewUser">here</a> to change your current program
         </div>
     </div>
+
+    <div>
+        <a href="javascript:;" ng-click="showingAllDays = !showingAllDays">{{ showingAllDays ? '- Hide all days' : '+ Show all days' }}</a>
+
+        <div ng-show="showingAllDays">
+            <div class="row">
+                <div ng-repeat="day in currentProgram.workoutDays | orderBy: 'order'">
+                    <a href="javascript:;" ng-class="{ 'text-danger': day.id == $parent.currentWorkout.id }" 
+                       ng-click="$parent.currentWorkout;$parent.currentWorkout = day">Day {{ $index + 1 }}</a>
+                </div>
+            </div>
+
+            <div ng-show="originalWorkoutDay.id != currentWorkout.id" class="btn btn-primary pull-right"
+                 ng-click="setWorkoutDay(currentWorkout)">Set as current day</div>
+        </div>
+    </div>
+
+    <div class="row bot-margin-1 horizontal-divider"></div>
+
+    @*<div ng-repeat="exercise in currentWorkout.exercises">
+        <div ng-show="$index < currentWorkout.exercises.indexOf(currentExercise)">
+            <a href="javascript:;" ng-click="selectExercise(exercise)">{{ exercise.exercise.name }}</a>
+        </div>
+    </div>*@
 
     <div class="row">
         <table class="table" ng-show="currentExercise">
@@ -42,24 +66,20 @@
         <div ng-show="!currentExercise" class="col-sm-2 btn btn-primary" ng-click="getNextWorkout()">Next workout</div>
     </div>
 
-    <div class="horizontal-divider">
+    <div class="row horizontal-divider">
     </div>
 
-    <div class="row">
-        <div ng-repeat="exercise in currentWorkout.exercises">
-            <div>{{ exercise.Name }} </div>
+    <div ng-repeat="exercise in currentWorkout.exercises">
+        <div class="">
+            <a  ng-class="{ 'text-uppercase': currentExercise.id == exercise.id }"
+               href="javascript:;" ng-click="selectExercise(exercise)">{{ exercise.exercise.name }}</a>
         </div>
     </div>
 
-
-
-    <div class="row horizontal-divider top-margin-1 top-padding-1">
-    </div>
-
-    <div class="row h3">Completed workouts</div>
+    @*<div class="row h3">Completed workouts</div>
     <div ng-repeat="workout in completedWorkouts">
         <div>{{ workout.when }}</div>
-    </div>
+    </div>*@
     
     <script type="text/ng-template" id="dialog1.tmpl.html">
         <md-dialog aria-label="{{ exercise.Name }}">
