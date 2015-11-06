@@ -1,4 +1,4 @@
-﻿angular.module('main').controller('profileController', function($scope, $http, $mdDialog) {
+﻿angular.module('main').controller('profileController', function($scope, $http, $mdDialog, workoutExercise) {
     $scope.lastSetWorkout = 0;
     var currentWorkoutDay = 0;
     var currentExercise = 0;
@@ -30,7 +30,13 @@
     $scope.getNextWorkout();
     $scope.getCurrentProgram();
 
-    $scope.finishExercise = function() {
+    $scope.finishExercise = function () {
+
+        if ($scope.currentExercise.comment !== "" && $scope.currentExercise.comment != null)
+        workoutExercise.logWorkout($scope.currentExercise, $scope.currentExercise.comment).success(function(id) {
+
+        });
+
         var index = $scope.currentWorkout.exercises.indexOf($scope.currentExercise);
         var nextWorkoutIndex = index + 1;
 

@@ -50,5 +50,30 @@ namespace LiftBro.Web.Api
                 db.SaveChanges();
             }
         }
+
+        [HttpPost]
+        public Guid Log(WorkoutExerciseLog log)
+        {
+            using (var db = new LiftBroContext())
+            {
+                log.When = DateTime.Now;
+                db.WorkoutExercises.Attach(log.WorkoutExercise);
+
+                //update an already saved one
+                if (!log.Id.Equals(Guid.Empty))
+                {
+                    db.WorkoutExerciseLogs.Attach(log);
+                    db.Entry(log).State = EntityState.Modified;
+                }
+                else
+                {
+                    db.WorkoutExerciseLogs.Add(log);
+                    log.Id = Guid.NewGuid();
+                }
+
+                db.SaveChanges();
+                return log.Id;
+            }
+        }
     }
 }

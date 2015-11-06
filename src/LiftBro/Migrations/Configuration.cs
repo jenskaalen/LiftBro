@@ -1,16 +1,12 @@
+using System;
 using System.Collections.Generic;
-using System.Data.Entity.ModelConfiguration.Conventions;
-using DotNetOpenAuth.OpenId.Extensions.AttributeExchange;
+using System.Data.Entity.Migrations;
+using System.Linq;
 using LiftBro.Model;
 
 namespace LiftBro.Migrations
 {
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
-
-    public class Configuration : DbMigrationsConfiguration<LiftBro.LiftBroContext>
+    public class Configuration : DbMigrationsConfiguration<LiftBroContext>
     {
         public Configuration()
         {
@@ -18,18 +14,18 @@ namespace LiftBro.Migrations
             AutomaticMigrationDataLossAllowed = true;
             ContextKey = "LiftBro.LiftBroContext";
         }
-        protected override void Seed(LiftBro.LiftBroContext context)
+        protected override void Seed(LiftBroContext context)
         {
-            SeedWithoutUser(context);
+            //SeedWithoutUser(context);
         }
 
-        private void SeedWithoutUser(LiftBro.LiftBroContext context)
+        private void SeedWithoutUser(LiftBroContext context)
         {
             //cleaning out the entire db because EF is a schtickler when it comes to updating seed
-            context.Database.ExecuteSqlCommand("sp_MSForEachTable 'ALTER TABLE ? NOCHECK CONSTRAINT ALL'");
-            context.Database.ExecuteSqlCommand(
-                "sp_MSForEachTable 'IF OBJECT_ID(''?'') NOT IN (ISNULL(OBJECT_ID(''[dbo].[__MigrationHistory]''),0)) DELETE FROM ?'");
-            context.Database.ExecuteSqlCommand("EXEC sp_MSForEachTable 'ALTER TABLE ? CHECK CONSTRAINT ALL'");
+            //context.Database.ExecuteSqlCommand("sp_MSForEachTable 'ALTER TABLE ? NOCHECK CONSTRAINT ALL'");
+            //context.Database.ExecuteSqlCommand(
+            //    "sp_MSForEachTable 'IF OBJECT_ID(''?'') NOT IN (ISNULL(OBJECT_ID(''[dbo].[__MigrationHistory]''),0)) DELETE FROM ?'");
+            //context.Database.ExecuteSqlCommand("EXEC sp_MSForEachTable 'ALTER TABLE ? CHECK CONSTRAINT ALL'");
 
             Exercise squats = new Exercise() { Name = "Squats", Id = new Guid("2a4743fa-0324-e511-82ba-10c37b6cd0db") };
             context.Exercises.AddOrUpdate(squats);
@@ -198,7 +194,7 @@ namespace LiftBro.Migrations
 
         }
 
-        private void SeedWithUser(LiftBro.LiftBroContext context)
+        private void SeedWithUser(LiftBroContext context)
         {
 
             //cleaning out the entire db because EF is a schtickler when it comes to updating seed

@@ -1,0 +1,50 @@
+﻿
+
+<div class="h2">Weight</div>
+
+<div ng-controller="userWeight" >
+    <div class="row">
+        <form name="weightForm">
+            <div class="col-sm-3 col-xs-4 col-md-2">
+                <input placeholder="Weight" class="form-control" ng-model="userWeight" type="number" required />
+            </div>
+
+            <span><span>Select date?</span><span class="glyphicon glyphicon-calendar btn-styleless"></span></span>
+
+            <div style="display:inline-block; min-height:290px;">
+                <uib-datepicker ng-model="dt" min-date="minDate" show-weeks="true" class="well well-sm" custom-class="getDayClass(date, mode)"></uib-datepicker>
+            </div>
+
+
+
+            <div class="btn btn-primary" ng-disabled="weightForm.$invalid" ng-click="registerWeight()">Register weight</div>
+        </form>
+    </div>
+
+    <div>Gain rate per week: {{ stats.dailyGainRate * 7 | number: 2 }}kg</div>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-8 col-md-6">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Weight</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="registeredWeight in registeredWeights | orderBy: '-when'">
+                        <td>
+                            <span>
+                                <span class="glyphicon glyphicon-remove text-danger"
+                                      ng-click="deleteWeight(registeredWeight)"></span>
+                                <span>{{ registeredWeight.when | date: 'yyyy-MM-dd'}}</span>
+                            </span>
+                        </td>
+                        <td> {{ registeredWeight.weight }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

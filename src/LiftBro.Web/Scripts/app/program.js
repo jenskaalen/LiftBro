@@ -3,6 +3,17 @@
     $scope.newSet = {};
     $scope.newExerciseName = "";
 
+    function guid() {
+        function s4() {
+            return Math.floor((1 + Math.random()) * 0x10000)
+              .toString(16)
+              .substring(1);
+        }
+
+        return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+          s4() + '-' + s4() + s4() + s4();
+    }
+
     $scope.selectExercise = function (exercise) {
         if ($scope.selectedExercise == exercise) {
             //deselect
@@ -120,17 +131,6 @@
         });
     };
 
-    function guid() {
-        function s4() {
-            return Math.floor((1 + Math.random()) * 0x10000)
-              .toString(16)
-              .substring(1);
-        }
-
-        return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-          s4() + '-' + s4() + s4() + s4();
-    }
-
     function loadExercises() {
         console.log('loading exercises');
         $http.get('/api/Exercise/GetAll').success(function (exercises) {
@@ -200,13 +200,6 @@
                 set.order = i;
                 $scope.updateSet(set);
             }
-
-
-            //// this callback has the changed model
-            //var logEntry = tmpList.map(function (i) {
-            //    return i.value;
-            //}).join(', ');
-            //$scope.sortingLog.push('Stop: ' + logEntry);
         }
     };
 

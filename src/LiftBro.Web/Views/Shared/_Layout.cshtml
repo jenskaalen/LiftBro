@@ -11,13 +11,36 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width" />
-    <link href="/Content/liftbro.css" rel="stylesheet" />
     <link href="~/Content/liftbro.min.css" rel="stylesheet" />
     @Styles.Render("~/Content/bootstrap")
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.0/angular-material.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+    @*<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.0/angular-material.min.css">*@
+    @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />*@
+    <link rel="stylesheet" href="/Content/bro.min.css"/>
+
+    <script src="/Content/depencies.js"></script>
+
+    @if (Context.IsDebuggingEnabled)
+    {
+        // use something.css
+        <script src="~/Scripts/ui-bootstrap-tpls-0.13.4.min.js"></script>
+        <script type="text/javascript" src="/Scripts/app/app.js"></script>
+        <script type="text/javascript" src="/Scripts/app/directives.js"></script>
+        <script type="text/javascript" src="/Scripts/app/factories.js"></script>
+        <script type="text/javascript" src="/Scripts/app/profile.js"></script>
+        <script type="text/javascript" src="/Scripts/app/program.js"></script>
+        <script type="text/javascript" src="/Scripts/app/programCreator.js"></script>
+        <script type="text/javascript" src="/Scripts/app/newuser.js"></script>
+        <script src="/Scripts/app/weight.js"></script>
+
+    }
+    else
+    {
+        // use something.min.css
+        <script src="/Content/broscripts.js"></script>
+    }
+
 </head>
 <body data-ng-app="main">
     <div class="container">
@@ -32,6 +55,7 @@
                             <li class=""><a href="/Home/">Go work out</a></li>
                             <li><a href="/Program">Edit your program</a></li>
                             <li><a href="/Program/NewUser">Program selection</a></li>
+                            <li><a href="/Home/Weight">Weight</a></li>
                         </ul>
                     </div>
                 </div>
@@ -44,29 +68,29 @@
         </div>
     </div>
 
-@* dump *@
-<script src="/Content/depencies.js"></script>
+    @* dump *@
 
-@*<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>*@
-@*<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-animate.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-route.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-aria.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-messages.min.js"></script>
-    <script src="https://gitcdn.xyz/repo/angular/bower-material/v0.11.0/angular-material.js"></script>*@
+    @*<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>*@
+    @*<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-animate.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-route.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-aria.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-messages.min.js"></script>
+        <script src="https://gitcdn.xyz/repo/angular/bower-material/v0.11.0/angular-material.js"></script>*@
 
 
-@* TODO: can be removed *@
-@*@Scripts.Render("~/bundles/app")*@
+    @* TODO: can be removed *@
+    @*@Scripts.Render("~/bundles/app")*@
 
-<script src="~/Scripts/ui-bootstrap-tpls-0.13.4.min.js"></script>
-<script type="text/javascript" src="/Scripts/app/app.js"></script>
-<script type="text/javascript" src="/Scripts/app/directives.js"></script>
-<script type="text/javascript" src="/Scripts/app/factories.js"></script>
+    <script src="~/Scripts/ui-bootstrap-tpls-0.13.4.min.js"></script>
+    <script type="text/javascript" src="/Scripts/app/app.js"></script>
+    <script type="text/javascript" src="/Scripts/app/directives.js"></script>
+    <script type="text/javascript" src="/Scripts/app/factories.js"></script>
+    <script type="text/javascript" src="/Scripts/app/profile.js"></script>
+    <script type="text/javascript" src="/Scripts/app/program.js"></script>
+    <script type="text/javascript" src="/Scripts/app/programCreator.js"></script>
+    <script type="text/javascript" src="/Scripts/app/newuser.js"></script>
+    <script src="/Scripts/app/weight.js"></script>
 
-<script type="text/javascript" src="/Scripts/app/profile.js"></script>
-<script type="text/javascript" src="/Scripts/app/program.js"></script>
-<script type="text/javascript" src="/Scripts/app/programCreator.js"></script>
-<script type="text/javascript" src="/Scripts/app/newuser.js"></script>
-@RenderSection("scripts", required: false)
+    @RenderSection("scripts", required: false)
 </body>
 </html>

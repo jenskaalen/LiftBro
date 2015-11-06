@@ -17,7 +17,7 @@
 
     $scope.createNewProgram = function() {
         $scope.newProgram = {
-            Name: "Unnamed program",
+            Name: "Unnamed program"
         };
     };
 

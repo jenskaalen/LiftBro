@@ -20,6 +20,8 @@ namespace LiftBro
         public virtual DbSet<UserExercise> UserExercises { get; set; }
         public virtual DbSet<UserProgram> UserPrograms { get; set; }
         public virtual DbSet<CompletedWorkoutDay> CompletedWorkouts { get; set; }
+        public virtual DbSet<UserWeight> UserWeights { get; set; }
+        public virtual DbSet<WorkoutExerciseLog> WorkoutExerciseLogs { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -43,22 +43,27 @@
         <table class="table" ng-show="currentExercise">
             <caption class="h4">{{ currentExercise.exercise.name }}</caption>
             <thead>
-                <tr>
-                    <th>Reps</th>
-                    <th>Weight</th>
-                </tr>
+            <tr>
+                <th>Reps</th>
+                <th>Weight</th>
+            </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="set in currentExercise.sets | orderBy: 'order'">
-                    <td> {{ set.reps }}</td>
-                    <td ng-show="userExercises[currentExercise.exercise.name] != null"> {{ (userExercises[currentExercise.exercise.name].oneRepetitionMax * set.ormPercentage) / 100 }}kg </td>
-                    <td ng-show="userExercises[currentExercise.exercise.name] == null">
-                        <a data-ng-href="#" ng-click="editExercise(currentExercise)">Weight needs to be set</a>
-                    </td>
-                </tr>
+            <tr ng-repeat="set in currentExercise.sets | orderBy: 'order'">
+                <td> {{ set.reps }}</td>
+                <td ng-show="userExercises[currentExercise.exercise.name] != null"> {{ (userExercises[currentExercise.exercise.name].oneRepetitionMax * set.ormPercentage) / 100 }}kg </td>
+                <td ng-show="userExercises[currentExercise.exercise.name] == null">
+                    <a data-ng-href="#" ng-click="editExercise(currentExercise)">Weight needs to be set</a>
+                </td>
+            </tr>
             </tbody>
         </table>
 
+        <div class="col-xs-10 col-sm-4 form-group">
+            <label>Comment</label>
+            <input ng-model="currentExercise.log" class="form-control"/>
+        </div>
+        
         <div ng-show="currentExercise">
             <div ng-show="currentExercise != currentWorkout.exercises[currentWorkout.exercises.length - 1]" class="col-sm-2 col-xs-4 pull-right btn btn-primary" ng-click="finishExercise()">Next</div>
             <div ng-show="currentExercise == currentWorkout.exercises[currentWorkout.exercises.length - 1]" class="col-sm-2 col-xs-4 pull-right btn btn-primary" ng-click="finishWorkout()">Finished!</div>
