@@ -3,7 +3,7 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
-<html class="no-js">
+<html>
 <!--<![endif]-->
 <head>
     <title>LiftBro.Web</title>
@@ -12,16 +12,19 @@
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width" />
     <link href="~/Content/liftbro.min.css" rel="stylesheet" />
-    @Styles.Render("~/Content/bootstrap")
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-    @*<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.0/angular-material.min.css">*@
-    @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />*@
+
+    @*<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.0/angular-material.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />*@
     <link rel="stylesheet" href="/Content/bro.min.css"/>
 
-    <script src="/Content/depencies.js"></script>
+    <script src="/Content/dependencies.js"></script>
 
-    @if (Context.IsDebuggingEnabled)
+
+    @Scripts.Render("~/bundles/app")
+
+
+
+    @*@if (Context.IsDebuggingEnabled)
     {
         // use something.css
         <script src="~/Scripts/ui-bootstrap-tpls-0.13.4.min.js"></script>
@@ -39,7 +42,7 @@
     {
         // use something.min.css
         <script src="/Content/broscripts.js"></script>
-    }
+    }*@
 
 </head>
 <body data-ng-app="main">
@@ -81,16 +84,7 @@
     @* TODO: can be removed *@
     @*@Scripts.Render("~/bundles/app")*@
 
-    <script src="~/Scripts/ui-bootstrap-tpls-0.13.4.min.js"></script>
-    <script type="text/javascript" src="/Scripts/app/app.js"></script>
-    <script type="text/javascript" src="/Scripts/app/directives.js"></script>
-    <script type="text/javascript" src="/Scripts/app/factories.js"></script>
-    <script type="text/javascript" src="/Scripts/app/profile.js"></script>
-    <script type="text/javascript" src="/Scripts/app/program.js"></script>
-    <script type="text/javascript" src="/Scripts/app/programCreator.js"></script>
-    <script type="text/javascript" src="/Scripts/app/newuser.js"></script>
-    <script src="/Scripts/app/weight.js"></script>
-
+   
     @RenderSection("scripts", required: false)
 </body>
 </html>
